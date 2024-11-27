@@ -1,0 +1,21 @@
+# This is Git's per-user configuration file.
+[user]
+  name = julibnk
+  email = fernandezfernandezjulian@gmail.com
+
+[init]
+  defaultBranch = main
+
+[delta]
+  navigate = true
+  side-by-side = true
+
+[core]
+  pager = delta
+  editor = nvim
+
+[merge]
+  conflictstyle = diff3
+
+[diff]
+  colorMoved = default
