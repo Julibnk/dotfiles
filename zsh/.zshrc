@@ -180,13 +180,12 @@ _fzf_comprun() {
 
 
 
-# Aliases
-# vim
 
 alias vim='nvim'
 alias cat='bat'
 alias cd='z'
-alias ls='eza --color=always --long --git --no-filesize --icons=always --no-time --no-user'
+alias rm='trash'
+alias ls='eza -a --color=always --long --git --no-filesize --icons=always --no-time --no-user'
 alias cl='clear'
 alias lg='lazygit'
 alias ldc='lazydocker'
@@ -194,7 +193,6 @@ alias zshrc='nvim ~/.zshrc'
 
 alias work='cd ~/dev/work/'
 alias github='cd ~/dev/github/'
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 #
 # Init zoxide
