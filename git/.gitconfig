@@ -6,6 +6,24 @@
 [init]
   defaultBranch = main
 
+[core]
+  pager = delta
+  editor = nvim
+
+[merge]
+  conflictstyle = diff3
+  tool = nvim
+
+[mergetool "nvim"]
+  cmd = nvim -c "DiffviewOpen"
+
+[mergetool]
+  prompt = false
+
+[diff]
+  colorMoved = default
+
+# DELTA
 [delta]
   navigate = true
   line-numbers = true
@@ -22,13 +40,3 @@
     hunk-header-file-style = red
     hunk-header-line-number-style = "#067a00"
     hunk-header-style = file line-number syntax
-
-[core]
-  pager = delta
-  editor = nvim
-
-[merge]
-  conflictstyle = diff3
-
-[diff]
-  colorMoved = default
