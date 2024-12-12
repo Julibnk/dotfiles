@@ -40,7 +40,7 @@ return { -- Autoformat
       html = { 'prettierd', 'prettier' },
       javascript = { 'prettierd', 'prettier' },
       javascriptreact = { 'prettierd', 'prettier' },
-      json = { 'jq' },
+      json = { 'prettierd', 'prettier' },
       lua = { 'stylua' },
       markdown = { 'prettierd', 'prettier' },
       python = { 'isort', 'black' },
