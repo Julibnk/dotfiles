@@ -43,6 +43,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
             ['<C-k>'] = 'move_selection_previous',
           },
         },
+        file_ignore_patterns = { 'node_modules/*', '.git/*', 'dist/*', 'build/*', 'target/*' },
       },
       extensions = {
         ['ui-select'] = {
@@ -58,6 +59,9 @@ return { -- Fuzzy Finder (files, lsp, etc)
               ['<c-d>'] = 'delete_buffer',
             },
           },
+        },
+        find_files = {
+          hidden = true,
         },
       },
     }
