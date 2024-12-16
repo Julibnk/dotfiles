@@ -4,4 +4,17 @@ alt - b : open -a "Brave Browser"
 alt - c : open -a "Microsoft Teams"
 alt - n : open -a "Notion"
 alt - m : open -a "Microsoft Outlook"
+alt - p : open -a "Postman"
+alt - s : open -a "Spotify"
+alt - f : open -a "Finder"
 
+# Window management
+alt - h : yabai -m window --focus west
+alt - j : yabai -m window --focus south
+alt - k : yabai -m window --focus north
+alt - l : yabai -m window --focus east
+
+alt - H : yabai -m display --focus west
+alt - J : yabai -m display --focus south
+alt - K : yabai -m display --focus north
+alt - L : yabai -m display --focus east
