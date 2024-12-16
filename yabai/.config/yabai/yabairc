@@ -1,24 +1,24 @@
 #!/usr/bin/env sh
-adjust_spaces() {
-  local desired_spaces=("$@")
-  local display=1
-  for desired_space in "${desired_spaces[@]}"; do
-    local actual_space=$(yabai -m query --spaces | jq 'map(select(.display == '$display')) | length')
-    yabai -m display --focus $display
-    while (( actual_space != desired_space )); do
-      if (( actual_space < desired_space )); then
-        yabai -m space --create
-        ((actual_space++))
-      else
-        local last_space_index=$(yabai -m query --spaces | jq '.[].index | select(. == '$spaces_on_display')')
-        yabai -m space --focus $last_space_index
-        yabai -m space --destroy
-        ((actual_space--))
-      fi
-    done
-    ((display++))
-  done
-}
+# adjust_spaces() {
+#   local desired_spaces=("$@")
+#   local display=1
+#   for desired_space in "${desired_spaces[@]}"; do
+#     local actual_space=$(yabai -m query --spaces | jq 'map(select(.display == '$display')) | length')
+#     yabai -m display --focus $display
+#     while (( actual_space != desired_space )); do
+#       if (( actual_space < desired_space )); then
+#         yabai -m space --create
+#         ((actual_space++))
+#       else
+#         local last_space_index=$(yabai -m query --spaces | jq '.[].index | select(. == '$spaces_on_display')')
+#         yabai -m space --focus $last_space_index
+#         yabai -m space --destroy
+#         ((actual_space--))
+#       fi
+#     done
+#     ((display++))
+#   done
+# }
 
 # setup_space() {
 #   local idx="$1"
@@ -40,14 +40,14 @@ yabai -m config top_padding 6 \
 	window_gap 6 \
 
 # Spaces adjustment
-num_displays=$(yabai -m query --displays | jq 'length')
-if [[ "$num_displays" -eq 3 ]]; then
-    adjust_spaces 3 3 4
-elif [[ "$num_displays" -eq 2 ]]; then
-    adjust_spaces 5 5
-elif [[ "$num_displays" -eq 1 ]]; then
-    adjust_spaces 5
-fi
+# num_displays=$(yabai -m query --displays | jq 'length')
+# if [[ "$num_displays" -eq 3 ]]; then
+#     adjust_spaces 3 3 4
+# elif [[ "$num_displays" -eq 2 ]]; then
+#     adjust_spaces 5 5
+# elif [[ "$num_displays" -eq 1 ]]; then
+#     adjust_spaces 5
+# fi
 # mouse settings
 yabai -m config mouse_follows_focus on
 
@@ -60,8 +60,8 @@ yabai -m space 5 --label other
 
 # window rules
 yabai -m rule --add app="^iTerm$" space=code
-yabai -m rule --add app="^Brave Browser$" space=web
-yabai -m rule --add app="^Notion$" space=notes
+yabai -m rule --add app="^Brave Browser$" space=browse
+yabai -m rule --add app="^Notion$" space=notion
 yabai -m rule --add app="^Microsoft Outlook$" space=mail
 yabai -m rule --add app="^Microsoft Teams$" space=mail
 yabai -m rule --add app="^Postman$" space=other
