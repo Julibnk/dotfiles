@@ -177,10 +177,6 @@ _fzf_comprun() {
   esac
 }
 
-
-
-
-
 alias vim='nvim'
 alias cat='bat'
 alias cd='z'
@@ -203,3 +199,6 @@ export VISUAL=nvim
 export EDITOR="$VISUAL"
 
 export XDG_CONFIG_HOME="$HOME/.config"
+
+# To customize prompt, run `p10k configure` or edit ~/.dotfiles/zsh/.p10k.zsh.
+[[ ! -f ~/.dotfiles/zsh/.p10k.zsh ]] || source ~/.dotfiles/zsh/.p10k.zsh

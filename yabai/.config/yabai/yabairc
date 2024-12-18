@@ -59,18 +59,18 @@ yabai -m space 4 --label mail
 yabai -m space 5 --label other
 
 # window rules
-yabai -m rule --add app="^iTerm$" space=code
-yabai -m rule --add app="^Brave Browser$" space=browse
-yabai -m rule --add app="^Notion$" space=notion
-yabai -m rule --add app="^Microsoft Outlook$" space=mail
-yabai -m rule --add app="^Microsoft Teams$" space=mail
-yabai -m rule --add app="^Postman$" space=other
-yabai -m rule --add app="^Spotify$" space=other
+yabai -m rule --add app="^iTerm$" space=^code
+yabai -m rule --add app="^Brave Browser$" space=^browse
+yabai -m rule --add app="^Notion$" space=^notion
+yabai -m rule --add app="^Microsoft Outlook$" space=^mail
+yabai -m rule --add app="^Microsoft Teams$" space=^mail
+yabai -m rule --add app="^Postman$" space=^other
+yabai -m rule --add app="^Spotify$" space=^other
 
 # specific space settings
 yabai -m config --space mail  layout stack
 
 # Ignore apps
-yabai -m rule --add app="^(Messages|System Settings|Calculator|App Store|Steam|Alfred|Activity Monitor)" manage=off
+yabai -m rule --add app="^(Messages|System Settings|Calculator|App Store|Steam|Alfred|Activity Monitor|Strongbox)" manage=off
 
 

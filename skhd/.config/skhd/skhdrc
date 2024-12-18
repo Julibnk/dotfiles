@@ -1,4 +1,31 @@
+#!/usr/bin/env sh
+# open_and_move() {
+# 	alt - $1 : open -a "$2" && yabai -m window --focus "$(yabai -m query --windows --app \"$2\" | jq '.[0].id')"
+# }
 #App shortcuts
+# open_and_move t "iTerm"
+# open_and_move b "Brave Browser"
+# open_and_move c "Microsoft Teams"
+# open_and_move n "Notion"
+# open_and_move m "Microsoft Outlook"
+# open_and_move p "Postman"
+# open_and_move s "Spotify"
+
+# alt - t : open -a "iTerm" && yabai -m space --focus  $(yabai -m query --windows | jq 'map(select(.app = "iTerm"))[0].space') && yabai -m window --focus "$(yabai -m query --windows | jq 'map(select(.app = "iTerm"))[0].id')"
+
+
+# switch_yabai_layout() {
+#     current_layout=$(yabai -m query --spaces --space | jq -r '.type')
+#
+#     if [ "$current_layout" == "bsp" ]; then
+#         yabai -m space --layout stack
+#     elif [ "$current_layout" == "stack" ]; then
+#         yabai -m space --layout float
+#     else
+#         yabai -m space --layout bsp
+#     fi
+# }
+
 alt - t : open -a "iTerm"
 alt - b : open -a "Brave Browser"
 alt - c : open -a "Microsoft Teams"
@@ -6,6 +33,7 @@ alt - n : open -a "Notion"
 alt - m : open -a "Microsoft Outlook"
 alt - p : open -a "Postman"
 alt - s : open -a "Spotify"
+alt - l : switch_yabai_layout 
 
 # Window management
 alt - x : yabai -m window --focus recent
