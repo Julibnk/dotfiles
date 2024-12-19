@@ -34,13 +34,7 @@ APPLE=􀣺
 # YABAI_FLOAT=􀢌
 # YABAI_GRID=􀧍
 
-# Battery Icons
-# BATTERY_FULL=􀛨
-# BATTERY_75=􀺸
-# BATTERY_50=􀺶
-# BATTERY_25=􀛩
-# BATTERY_0=􀛪
-# BATTERY_CHARGING=􀢋
+
 
 # Volume Icons
 VOLUME_100=􀊩

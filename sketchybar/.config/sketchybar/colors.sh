@@ -13,7 +13,7 @@ export GREY=0xff939ab7
 export SKY=0xff91d7e3
 export PINK=0xfff5bde6
 export TRANSPARENT=0x00000000
-export ITEM_COLOR=0xff1e1e2e
+# export ITEM_COLOR=0xff1e1e2e
 
 # General bar colors
 export BAR_COLOR=0x22494d64 #$GREY # Grey bar
@@ -34,6 +34,12 @@ export POPUP_BORDER_COLOR=$WHITE
 
 export SHADOW_COLOR=$BLACK
 
-export TEST_BACKGROUND=0xe01d2021
 
 
+export BACKGROUND_1=$BG1
+export BACKGROUND_2=$BG2
+
+
+export BG0=0xff1e1e2e
+export BG1=0x603c3e4f
+export BG2=0x60494d64
