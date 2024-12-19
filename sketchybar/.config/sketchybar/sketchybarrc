@@ -34,8 +34,9 @@ sketchybar --default \
 	        icon.font.size=16 \
                 background.corner_radius=$ITEM_CORNER_RADIUS \
                 background.color=$SPACE_DESELECTED \
-                background.height=20 \
+                background.height=24 \
                 icon.padding_left=5 \
+                label.padding_right=5 \
                 icon.padding_right=5 \
                 padding_left=2 \
                 padding_right=2
@@ -61,24 +62,26 @@ sketchybar --add item time right \
                            icon=$ICON_CALENDAR
 
 # sketchybar --add bracket clock time date
-           # --set clock background.color=$TEST_BACKGROUND \
-           #                     background.border_color=$RED
+#            --set clock background.color=$TEST_BACKGROUND \
+#                                background.border_color=$RED
 
-sketchybar --add item battery right \
-           --set battery update_freq=3 \
-                         icon.color=$BLACK \
-                         icon.background.color=$GREEN \
-                         icon.font="$FONT:Bold:16.0" \
-                         icon.background.height=$ITEM_BACKGROUND_HEIGHT \
-                         icon.background.padding_right=0 \
-                         icon.background.corner_radius=$ITEM_CORNER_RADIUS \
-                         icon.drawing=on \
-                         script="$PLUGIN_DIR/power.sh" \
-                         background.color=$ITEM_COLOR \
-                         background.padding_left=0  \
-                         background.height=$ITEM_BACKGROUND_HEIGHT        \
-                         background.corner_radius=$ITEM_CORNER_RADIUS \
-                         padding_right=$ITEM_PADDING \
-                         padding_left=0
+
+
+# sketchybar --add item  volume right                                  \
+#            --set       volume script="$PLUGIN_DIR/volume.sh"         \
+#                               padding_left=2                         \
+#                               padding_right=2                        \
+#                               background.border_width=0              \
+#                               background.height=24                   \
+#            --subscribe volume volume_change
+
+sketchybar --add item  battery right                       \
+           --set       battery script="$PLUGIN_DIR/battery.sh"       \
+                               update_freq=120                       \
+                               padding_left=8                        \
+                               padding_right=2                       \
+                               background.border_width=0             \
+                               background.height=24                  \
+           --subscribe battery system_woke power_source_change
 
 sketchybar --update
