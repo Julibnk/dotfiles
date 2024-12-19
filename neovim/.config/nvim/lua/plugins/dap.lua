@@ -120,6 +120,7 @@ return {
           program = '${file}',
           cwd = vim.fn.getcwd(),
           sourceMaps = true,
+          runtimeExecutable = 'tsx',
         },
         -- Debug nodejs processes (make sure to add --inspect when you run the process)
         {
@@ -129,6 +130,7 @@ return {
           processId = require('dap.utils').pick_process,
           cwd = vim.fn.getcwd(),
           sourceMaps = true,
+          runtimeExecutable = 'tsx',
         },
 
         -- Debug web applications (client side)
