@@ -7,7 +7,9 @@ ITEM_DIR="$HOME/.config/sketchybar/items" # Directory where the items are config
 PLUGIN_DIR="$HOME/.config/sketchybar/plugins"
 
 SPACE_CLICK_SCRIPT="yabai -m space --focus \$SID 2>/dev/null" # The script that is run for clicking on space components
-
+ITEM_CORNER_RADIUS=3
+ITEM_BACKGROUND_HEIGHT=26
+ITEM_PADDING=14
 
 # helper process
 # HELPER=git.felix.helper
@@ -32,102 +34,51 @@ sketchybar --default \
 	        icon.font.size=16 \
                 background.corner_radius=$ITEM_CORNER_RADIUS \
                 background.color=$SPACE_DESELECTED \
+                background.height=20 \
                 icon.padding_left=5 \
                 icon.padding_right=5 \
                 padding_left=2 \
                 padding_right=2
-
-		#        icon.padding_left=0 \
-		# icon.padding_right=0 \
-		# label.font="$FONT:Semibold:13.0" \
-		# label.color=$LABEL_COLOR \
-		# label.padding_left=0 \
-		# label.padding_right=0 \
-		# padding_right=0 \
-		# padding_left=0 \
-		# background.height=30 \
-		# background.corner_radius=9 \
-		# popup.background.border_width=2 \
-		# popup.background.corner_radius=9 \
-		# popup.background.border_color=$POPUP_BORDER_COLOR \
-		# popup.background.color=$POPUP_BACKGROUND_COLOR \
-		# popup.blur_radius=20 \
-		# popup.background.shadow.drawing=on
-
-
-# Setting up default values
-# defaults=(icon.color=$ICON_COLOR
-#   updates=when_shown
-#   icon.font="$FONT:Bold:14.0"
-  
-#   icon.padding_left=$PADDINGS
-#   icon.padding_right=$PADDINGS
-#   label.font="$FONT:Semibold:13.0"
-#   label.color=$LABEL_COLOR
-#   label.padding_left=$PADDINGS
-#   label.padding_right=$PADDINGS
-#   padding_right=$PADDINGS
-#   padding_left=$PADDINGS
-#   background.height=30
-#   background.corner_radius=9
-#   popup.background.border_width=2
-#   popup.background.corner_radius=9
-#   popup.background.border_color=$POPUP_BORDER_COLOR
-#   popup.background.color=$POPUP_BACKGROUND_COLOR
-#   popup.blur_radius=20
-#   popup.background.shadow.drawing=on
-# )
-#
-# sketchybar --default "${defaults[@]}"
-
-ITEM_CORNER_RADIUS=3
-ITEM_BACKGROUND_HEIGHT=26
-ITEM_PADDING=14
 
 # Left
 source "$ITEM_DIR/apple.sh"
 source "$ITEM_DIR/spaces.sh"
 # source "$ITEM_DIR/front_app.sh"
 
-
 # Right
 # TIME AND DATE
-sketchybar --add item time right                        \
-           --set      time script="$PLUGIN_DIR/time.sh" \
-                           update_freq=5                \
-                           padding_left=12               \
-                           padding_right=18              \
-                           background.color=$SPACE_DESELECTED \
-                           background.border_width=0    \
-                           background.corner_radius=6   \
-                           background.height=24         \
-                           icon=$ICON_CLOCK             
-           # --add item date right                        \
-           # --set      date script="$PLUGIN_DIR/date.sh" \
-           #                 update_freq=60               \
-           #                 padding_left=18               \
-           #                 padding_right=12              \
-           #                 background.border_width=0    \
-           #                 background.height=24         \
-           #                 icon=$ICON_CALENDAR          \
-           #                 background.color=$SPACE_DESELECTED \
-           #                 icon.padding_left=18               \
-           #                 icon.padding_right=12              \
-           #                 icon.font.size=16                \
-           #                 icon.color=$ICON_COLOR       \
-           #                 label.color=$COLOR_RED
+sketchybar --add item time right \
+           --set      time label="$(date '+%I:%M %p')" \
+                           update_freq=5 \
+                           padding_left=12  \
+                           padding_right=18 \
+                           icon=$ICON_CLOCK \ 
+           --add item date right \
+           --set      date label="$(date '+%a %b %d')" \
+                           update_freq=60  \
+                           padding_left=18 \
+                           padding_right=12 \
+                           icon=$ICON_CALENDAR
 
+# sketchybar --add bracket clock time date
+           # --set clock background.color=$TEST_BACKGROUND \
+           #                     background.border_color=$RED
 
-# sketchybar --add bracket clock time date                         \
-#            --set         clock background.color=$TEST_BACKGROUND \
-#                                background.border_color=$MAGENTA
-# source "$ITEM_DIR/mail.sh"
-# source "$ITEM_DIR/power.sh"
-# source "$ITEM_DIR/battery.sh"
-# source "$ITEM_DIR/calendar.sh"
-# source "$ITEM_DIR/cpu.sh"
-# source "$ITEM_DIR/network.sh"
-# source "$ITEM_DIR/spotify.sh"
-# source "$ITEM_DIR/volume.sh"
+sketchybar --add item battery right \
+           --set battery update_freq=3 \
+ icon.color=$BLACK \
+ icon.background.color=$GREEN \
+ icon.font="$FONT:Bold:16.0" \
+ icon.background.height=$ITEM_BACKGROUND_HEIGHT \
+ icon.background.padding_right=0 \
+ icon.background.corner_radius=$ITEM_CORNER_RADIUS \
+                         icon.drawing=on \
+                         script="$PLUGIN_DIR/power.sh" \
+                         background.color=$ITEM_COLOR \
+                         background.padding_left=0  \
+                         background.height=$ITEM_BACKGROUND_HEIGHT        \
+                         background.corner_radius=$ITEM_CORNER_RADIUS \
+                         padding_right=$ITEM_PADDING \
+                         padding_left=0
 
 sketchybar --update

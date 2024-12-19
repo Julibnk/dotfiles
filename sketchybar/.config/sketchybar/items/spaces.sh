@@ -39,7 +39,7 @@ do
 done
 
 spaces_bracket=(
-  background.color=$SPACE_BACKGROUND
+  background.color=$TRANSPARENT
   background.corner_radius=$ITEM_CORNER_RADIUS
 )
 
