@@ -48,13 +48,13 @@ source "$ITEM_DIR/spaces.sh"
 # Right
 # TIME AND DATE
 sketchybar --add item time right \
-           --set      time label="$(date '+%I:%M %p')" \
+           --set      time script="$PLUGIN_DIR/time.sh" \
                            update_freq=5 \
                            padding_left=12  \
                            padding_right=18 \
-                           icon=$ICON_CLOCK \ 
+                           icon=$ICON_CLOCK \
            --add item date right \
-           --set      date label="$(date '+%a %b %d')" \
+           --set      date script="$PLUGIN_DIR/date.sh" \
                            update_freq=60  \
                            padding_left=18 \
                            padding_right=12 \
@@ -66,12 +66,12 @@ sketchybar --add item time right \
 
 sketchybar --add item battery right \
            --set battery update_freq=3 \
- icon.color=$BLACK \
- icon.background.color=$GREEN \
- icon.font="$FONT:Bold:16.0" \
- icon.background.height=$ITEM_BACKGROUND_HEIGHT \
- icon.background.padding_right=0 \
- icon.background.corner_radius=$ITEM_CORNER_RADIUS \
+                         icon.color=$BLACK \
+                         icon.background.color=$GREEN \
+                         icon.font="$FONT:Bold:16.0" \
+                         icon.background.height=$ITEM_BACKGROUND_HEIGHT \
+                         icon.background.padding_right=0 \
+                         icon.background.corner_radius=$ITEM_CORNER_RADIUS \
                          icon.drawing=on \
                          script="$PLUGIN_DIR/power.sh" \
                          background.color=$ITEM_COLOR \
