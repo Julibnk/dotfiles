@@ -84,4 +84,5 @@ sketchybar --add item  battery right                       \
                                background.height=24                  \
            --subscribe battery system_woke power_source_change
 
+source "$ITEM_DIR/volume.sh"
 sketchybar --update

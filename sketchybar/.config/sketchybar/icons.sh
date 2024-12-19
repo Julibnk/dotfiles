@@ -43,11 +43,11 @@ APPLE=􀣺
 # BATTERY_CHARGING=􀢋
 
 # Volume Icons
-# VOLUME_100=􀊩
-# VOLUME_66=􀊧
-# VOLUME_33=􀊥
-# VOLUME_10=􀊡
-# VOLUME_0=􀊣
+VOLUME_100=􀊩
+VOLUME_66=􀊧
+VOLUME_33=􀊥
+VOLUME_10=􀊡
+VOLUME_0=􀊣
 
 
 #!/bin/sh
@@ -102,8 +102,6 @@ ICON_CALENDAR=󰃭 # calendar
 ICON_WIFI=󰖩
 ICON_WIFI_OFF=󰖪
 ICON_VPN=󰦝 # vpn, nordvpn
-
-ICONS_VOLUME=(󰸈 󰕿 󰖀 󰕾)
 
 ICONS_BATTERY=(󰂎 󰁺 󰁻 󰁼 󰁽 󰁾 󰁿 󰂀 󰂁 󰂂 󰁹)
 ICONS_BATTERY_CHARGING=(󰢟 󰢜 󰂆 󰂇 󰂈 󰢝 󰂉 󰢞 󰂊 󰂋 󰂅)
