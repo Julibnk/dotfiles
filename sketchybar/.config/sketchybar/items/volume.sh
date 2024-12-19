@@ -1,3 +1,4 @@
+
 #!/bin/bash
 
 volume_slider=(
