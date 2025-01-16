@@ -189,7 +189,7 @@ alias zshrc='nvim ~/.zshrc'
 
 alias work='cd ~/dev/work/'
 alias github='cd ~/dev/github/'
-alias dotfiles='cd ~/.dotfiles'
+alias dot='cd ~/.dotfiles'
 
 #
 # Init zoxide

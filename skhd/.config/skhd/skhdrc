@@ -26,13 +26,13 @@
 #     fi
 # }
 
-alt - t : open -a "iTerm"
-alt - b : open -a "Brave Browser"
-alt - c : open -a "Microsoft Teams"
-alt - n : open -a "Notion"
-alt - m : open -a "Microsoft Outlook"
-alt - p : open -a "Postman"
-alt - s : open -a "Spotify"
+# alt - t : open -a "iTerm"
+# alt - b : open -a "Brave Browser"
+# alt - c : open -a "Microsoft Teams"
+# alt - n : open -a "Notion"
+# alt - m : open -a "Microsoft Outlook"
+# alt - p : open -a "Postman"
+# alt - s : open -a "Spotify"
 alt - l : switch_yabai_layout 
 
 # Window management

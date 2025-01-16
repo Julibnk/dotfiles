@@ -49,23 +49,23 @@ yabai -m config top_padding 6 \
 #     adjust_spaces 5
 # fi
 # mouse settings
-yabai -m config mouse_follows_focus on
+# yabai -m config mouse_follows_focus on
 
 # mission-control desktop labels
-yabai -m space 1 --label code
-yabai -m space 2 --label browse
-yabai -m space 3 --label notion
-yabai -m space 4 --label mail
-yabai -m space 5 --label other
+# yabai -m space 1 --label code
+# yabai -m space 2 --label browse
+# yabai -m space 3 --label notion
+# yabai -m space 4 --label mail
+# yabai -m space 5 --label other
 
 # window rules
-yabai -m rule --add app="^iTerm$" space=^code
-yabai -m rule --add app="^Brave Browser$" space=^browse
-yabai -m rule --add app="^Notion$" space=^notion
-yabai -m rule --add app="^Microsoft Outlook$" space=^mail
-yabai -m rule --add app="^Microsoft Teams$" space=^mail
-yabai -m rule --add app="^Postman$" space=^other
-yabai -m rule --add app="^Spotify$" space=^other
+# yabai -m rule --add app="^iTerm$" space=^code
+# yabai -m rule --add app="^Brave Browser$" space=^browse
+# yabai -m rule --add app="^Notion$" space=^notion
+# yabai -m rule --add app="^Microsoft Outlook$" space=^mail
+# yabai -m rule --add app="^Microsoft Teams$" space=^mail
+# yabai -m rule --add app="^Postman$" space=^other
+# yabai -m rule --add app="^Spotify$" space=^other
 
 # specific space settings
 yabai -m config --space mail  layout stack

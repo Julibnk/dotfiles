@@ -51,14 +51,14 @@ source "$ITEM_DIR/spaces.sh"
 sketchybar --add item time right \
            --set      time script="$PLUGIN_DIR/time.sh" \
                            update_freq=5 \
-                           padding_left=12  \
-                           padding_right=18 \
+                           padding_left=2  \
+                           padding_right=8 \
                            icon=$ICON_CLOCK \
            --add item date right \
            --set      date script="$PLUGIN_DIR/date.sh" \
                            update_freq=60  \
-                           padding_left=18 \
-                           padding_right=12 \
+                           padding_left=8 \
+                           padding_right=2 \
                            icon=$ICON_CALENDAR
 
 # sketchybar --add bracket clock time date

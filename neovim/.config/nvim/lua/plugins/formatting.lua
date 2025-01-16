@@ -29,11 +29,11 @@ return { -- Autoformat
     --     timeout_ms = 500,
     --     lsp_format = lsp_format_opt,
     --   }
-    format_on_save = {
-      lsp_fallback = true,
-      async = false,
-      timeout_ms = 500,
-    }, -- end,
+    -- format_on_save = {
+    --   lsp_fallback = true,
+    --   async = false,
+    --   timeout_ms = 500,
+    -- }, -- end,
     formatters_by_ft = {
       css = { 'prettierd', 'prettier' },
       graphql = { 'prettierd', 'prettier' },

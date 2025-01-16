@@ -310,6 +310,13 @@ require('lazy').setup({
     config = function()
       require('typescript-tools').setup {
         tsserver_locale = 'en',
+        settings = {
+
+          -- This is a list of settings that are passed to the LSP server.
+          tsserver_file_preferences = {
+            importModuleSpecifierPreference = 'relative',
+          },
+        }
       }
     end,
   },
