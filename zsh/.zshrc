@@ -189,9 +189,10 @@ alias zshrc='nvim ~/.zshrc'
 
 alias work='cd ~/dev/work/'
 alias github='cd ~/dev/github/'
-alias dot='cd ~/.dotfiles'
+alias dotfiles='cd ~/.dotfiles'
+alias drive="cd ~/Google Drive/My Drive"
+alias onedrive="cd ~/OneDrive - Strategic Platform"
 
-#
 # Init zoxide
 eval "$(zoxide init zsh)"
 
