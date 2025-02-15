@@ -1,0 +1,190 @@
+# vim:ft=dircolors
+# (This is not a dircolors file but it helps to highlight colors and comments)
+
+# default values from dircolors
+# (entries with a leading # are not implemented in lf)
+# #no     00              # NORMAL
+# fi      00              # FILE
+# #rs     0               # RESET
+# di      01;34           # DIR
+# ln      01;36           # LINK
+# #mh     00              # MULTIHARDLINK
+# pi      40;33           # FIFO
+# so      01;35           # SOCK
+# #do     01;35           # DOOR
+# bd      40;33;01        # BLK
+# cd      40;33;01        # CHR
+# or      40;31;01        # ORPHAN
+# #mi     00              # MISSING
+# su      37;41           # SETUID
+# sg      30;43           # SETGID
+# #ca     30;41           # CAPABILITY
+# tw      30;42           # STICKY_OTHER_WRITABLE
+# ow      34;42           # OTHER_WRITABLE
+# st      37;44           # STICKY
+# ex      01;32           # EXEC
+
+# default values from lf (with matching order)
+# ln      01;36   # LINK
+# or      31;01   # ORPHAN
+# tw      01;34   # STICKY_OTHER_WRITABLE
+# ow      01;34   # OTHER_WRITABLE
+# st      01;34   # STICKY
+# di      01;34   # DIR
+# pi      33      # FIFO
+# so      01;35   # SOCK
+# bd      33;01   # BLK
+# cd      33;01   # CHR
+# su      01;32   # SETUID
+# sg      01;32   # SETGID
+# ex      01;32   # EXEC
+# fi      00      # FILE
+
+
+#################################################################################
+#This configuration uses the vibrant colors of the "Latte" theme while ensuring that each file type is easily distinguishable.
+
+# Explanation:
+# Directories (di): Mapped to Blue for clarity.
+# Files (fi): Mapped to Base for a neutral color.
+# Executables (ex): Mapped to Green to represent actions.
+# Archives (*.tar, etc.): Mapped to Red for prominence.
+# Images (*.jpg, etc.): Mapped to Mauve for a pleasing aesthetic.
+# Audio (*.mp3, etc.): Mapped to Sky to differentiate from other file types.
+# Symbolic Links (ln): Mapped to Mauve for distinction.
+# Orphan Links (or): Mapped to Red for warnings.
+# Sockets (so): Mapped to Mauve.
+# Devices (bd, cd): Mapped to Yellow for caution.
+
+# file types (with matching order)
+ln      01;35   # Mauve (Symbolic Links)
+or      01;31   # Red (Orphan Links)
+tw      01;33   # Peach (Sticky other writable)
+ow      01;33   # Peach (Other writable)
+st      01;33   # Peach (Sticky)
+di      01;34   # Blue (Directories)
+pi      33;01   # Maroon (Named Pipes)
+so      01;35   # Mauve (Sockets)
+bd      33;01   # Yellow (Block Devices)
+cd      33;01   # Yellow (Character Devices)
+su      37;41   # Flamingo (Setuid)
+sg      30;43   # Text (Setgid)
+ex      01;32   # Green (Executables)
+fi      00      # Base (Files)
+
+# archives or compressed
+*.tar   01;31   # Red
+*.tgz   01;31   # Red
+*.arc   01;31   # Red
+*.arj   01;31   # Red
+*.taz   01;31   # Red
+*.lha   01;31   # Red
+*.lz4   01;31   # Red
+*.lzh   01;31   # Red
+*.lzma  01;31   # Red
+*.tlz   01;31   # Red
+*.txz   01;31   # Red
+*.tzo   01;31   # Red
+*.t7z   01;31   # Red
+*.zip   01;31   # Red
+*.z     01;31   # Red
+*.dz    01;31   # Red
+*.gz    01;31   # Red
+*.lrz   01;31   # Red
+*.lz    01;31   # Red
+*.lzo   01;31   # Red
+*.xz    01;31   # Red
+*.zst   01;31   # Red
+*.tzst  01;31   # Red
+*.bz2   01;31   # Red
+*.bz    01;31   # Red
+*.tbz   01;31   # Red
+*.tbz2  01;31   # Red
+*.tz    01;31   # Red
+*.deb   01;31   # Red
+*.rpm   01;31   # Red
+*.jar   01;31   # Red
+*.war   01;31   # Red
+*.ear   01;31   # Red
+*.sar   01;31   # Red
+*.rar   01;31   # Red
+*.alz   01;31   # Red
+*.ace   01;31   # Red
+*.zoo   01;31   # Red
+*.cpio  01;31   # Red
+*.7z    01;31   # Red
+*.rz    01;31   # Red
+*.cab   01;31   # Red
+*.wim   01;31   # Red
+*.swm   01;31   # Red
+*.dwm   01;31   # Red
+*.esd   01;31   # Red
+
+# image formats
+*.jpg   01;35   # Mauve
+*.jpeg  01;35   # Mauve
+*.mjpg  01;35   # Mauve
+*.mjpeg 01;35   # Mauve
+*.gif   01;35   # Mauve
+*.bmp   01;35   # Mauve
+*.pbm   01;35   # Mauve
+*.pgm   01;35   # Mauve
+*.ppm   01;35   # Mauve
+*.tga   01;35   # Mauve
+*.xbm   01;35   # Mauve
+*.xpm   01;35   # Mauve
+*.tif   01;35   # Mauve
+*.tiff  01;35   # Mauve
+*.png   01;35   # Mauve
+*.svg   01;35   # Mauve
+*.svgz  01;35   # Mauve
+*.mng   01;35   # Mauve
+*.pcx   01;35   # Mauve
+*.mov   01;35   # Mauve
+*.mpg   01;35   # Mauve
+*.mpeg  01;35   # Mauve
+*.m2v   01;35   # Mauve
+*.mkv   01;35   # Mauve
+*.webm  01;35   # Mauve
+*.ogm   01;35   # Mauve
+*.mp4   01;35   # Mauve
+*.m4v   01;35   # Mauve
+*.mp4v  01;35   # Mauve
+*.vob   01;35   # Mauve
+*.qt    01;35   # Mauve
+*.nuv   01;35   # Mauve
+*.wmv   01;35   # Mauve
+*.asf   01;35   # Mauve
+*.rm    01;35   # Mauve
+*.rmvb  01;35   # Mauve
+*.flc   01;35   # Mauve
+*.avi   01;35   # Mauve
+*.fli   01;35   # Mauve
+*.flv   01;35   # Mauve
+*.gl    01;35   # Mauve
+*.dl    01;35   # Mauve
+*.xcf   01;35   # Mauve
+*.xwd   01;35   # Mauve
+*.yuv   01;35   # Mauve
+*.cgm   01;35   # Mauve
+*.emf   01;35   # Mauve
+*.ogv   01;35   # Mauve
+*.ogx   01;35   # Mauve
+
+# audio formats
+*.aac   00;36   # Sky
+*.au    00;36   # Sky
+*.flac  00;36   # Sky
+*.m4a   00;36   # Sky
+*.mid   00;36   # Sky
+*.midi  00;36   # Sky
+*.mka   00;36   # Sky
+*.mp3   00;36   # Sky
+*.mpc   00;36   # Sky
+*.ogg   00;36   # Sky
+*.ra    00;36   # Sky
+*.wav   00;36   # Sky
+*.oga   00;36   # Sky
+*.opus  00;36   # Sky
+*.spx   00;36   # Sky
+*.xspf  00;36   # Sky

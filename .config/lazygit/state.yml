@@ -1,0 +1,26 @@
+lastupdatecheck: 0
+recentrepos:
+    - /Users/julibnk/dotfiles
+    - /Users/julibnk/dev/work/fedo
+    - /Users/julibnk/dev/work/mto/frontend-smart-budgeting-tool
+    - /Users/julibnk/dev/work/ocad_poc_v1
+    - /Users/julibnk/dev/work/mto/matching-smart-budgeting-tool
+    - /Users/julibnk/dev/github/side-projects/h
+    - /Users/julibnk/dev/work/smart-tag-frontend
+    - /Users/julibnk/dev/github/public/mantine
+    - /Users/julibnk/dev/work/mto/smart-budgeting-tool
+startuppopupversion: 5
+lastversion: 0.44.1
+customcommandshistory:
+    - q
+    - qq
+    - git fetch origin
+    - tmux new
+hidecommandlog: false
+ignorewhitespaceindiffview: false
+diffcontextsize: 3
+renamesimilaritythreshold: 50
+localbranchsortorder: recency
+remotebranchsortorder: alphabetical
+gitlogorder: topo-order
+gitlogshowgraph: always
