@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/bash
 #  NOTE(koekeishiya): A list of all built-in modifier and literal keywords can
 #        be found at https://github.com/koekeishiya/skhd/issues/1
 #
@@ -105,42 +105,33 @@
 #    "terminal"
 #    "qutebrowser"
 # ]
+
 # open_and_move() {
-# 	alt - $1 : open -a "$2" && yabai -m window --focus "$(yabai -m query --windows --app \"$2\" | jq '.[0].id')"
+#  alt - b : open -a "Brave Browser" && yabai -m window --focus "$(yabai -m query --windows | jq '.[] | select(.app=="Brave Browser").id')"
 # }
-#App shortcuts
-# open_and_move t "iTerm"
-# open_and_move b "Brave Browser"
-# open_and_move c "Microsoft Teams"
-# open_and_move n "Notion"
-# open_and_move m "Microsoft Outlook"
-# open_and_move p "Postman"
-# open_and_move s "Spotify"
-
-# alt - t : open -a "iTerm" && yabai -m space --focus  $(yabai -m query --windows | jq 'map(select(.app = "iTerm"))[0].space') && yabai -m window --focus "$(yabai -m query --windows | jq 'map(select(.app = "iTerm"))[0].id')"
-
-
-# switch_yabai_layout() {
-#     current_layout=$(yabai -m query --spaces --space | jq -r '.type')
-#
-#     if [ "$current_layout" == "bsp" ]; then
-#         yabai -m space --layout stack
-#     elif [ "$current_layout" == "stack" ]; then
-#         yabai -m space --layout float
-#     else
-#         yabai -m space --layout bsp
-#     fi
+# alt - $1 : open -a "$2" && yabai -m window --focus "$(yabai -m query --windows | jq '.[] | select(.app=="Brave Browser").id')"
+# open_and_move() {
+# 	alt - "$1" : open -a "Brave Browser" 
 # }
-# cmd - "tab" : echo 'Get used to it'
-
-lalt - t : open -a "Ghostty"
-lalt - b : open -a "Brave Browser"
-lalt - c : open -a "Microsoft Teams"
-lalt - n : open -a "Notion"
-lalt - m : open -a "Microsoft Outlook"
-lalt - p : open -a "Postman"
-lalt - s : open -a "Spotify"
-lalt - v : switch_yabai_layout 
+# && yabai -m window --focus "$(yabai -m query --windows | jq '.[] | select(.app=="Brave Browser").id')" # --app \"$2\" | jq '.[0].id')"
+# function open_and_move() {
+# 	open -a "Brave Browser" && yabai -m window --focus "$(yabai -m query --windows | jq ".[] | select(.app==\"Brave Browser\").id")"
+# }
+lalt - b : open_and_move "Brave Browser"
+lalt - t : open_and_move "Ghostty"
+lalt - n : open_and_move "Notion"
+lalt - m : open_and_move "Microsoft Outlook"
+lalt - s : open_and_move "Spotify"
+lalt - p : open_and_move "Postman"
+lalt - d : open_and_move "pgAdmin 4"
+lalt - c : open_and_move "Microsoft Teams"
+# lalt - t : open -a "Ghostty"
+# lalt - b : open -a "Brave Browser"
+# lalt - n : open -a "Notion"
+# lalt - m : open -a "Microsoft Outlook"
+# lalt - p : open -a "Postman"
+# lalt - s : open -a "Spotify"
+lalt - v : switch_yabai_layout
 
 # Window management
 lalt - h : yabai -m window --focus west
@@ -149,12 +140,12 @@ lalt - k : yabai -m window --focus north
 lalt - l : yabai -m window --focus east
 
 # Move between spaces
-lalt - 1 : yabai -m space --focus  1 
+lalt - 1 : yabai -m space --focus  1
 lalt - 2 : yabai -m space --focus  2
 lalt - 3 : yabai -m space --focus  3
 lalt - 4 : yabai -m space --focus  4
 lalt - 5 : yabai -m space --focus  5
-lalt - 6 : yabai -m space --focus  6 
+lalt - 6 : yabai -m space --focus  6
 lalt - 7 : yabai -m space --focus  7
 lalt - 8 : yabai -m space --focus  8
 lalt - 9 : yabai -m space --focus  9
@@ -172,11 +163,12 @@ shift + alt - 8 : yabai -m window --space  8; yabai -m space --focus 8
 shift + alt - 9 : yabai -m window --space  9; yabai -m space --focus 9
 shift + alt - 0 : yabai -m window --space  10; yabai -m space --focus 10
 
+# Disable cmd tab 
 cmd - 0x30 : echo 'Get used to!!'
 
 # toggle window zoom
 # alt - d : yabai -m window --toggle zoom-parent
-alt - f : yabai -m window --toggle zoom-fullscreen
+lalt - f : yabai -m window --toggle zoom-fullscreen
 
 # toggle window split type
-alt - e : yabai -m window --toggle split
+lalt - e : yabai -m window --toggle split

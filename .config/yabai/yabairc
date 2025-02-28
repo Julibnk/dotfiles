@@ -62,6 +62,8 @@ yabai -m config                                 \
     mouse_action1                move           \
     mouse_action2                resize         \
     mouse_drop_action            swap
+
+yabai -m config --display 1 external_bar all:30:0
 # Spaces adjustment
 # num_displays=$(yabai -m query --displays | jq 'length')
 # if [[ "$num_displays" -eq 3 ]]; then

@@ -80,8 +80,8 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(git docker zsh-syntax-highlighting zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
-
 # User configuration
+
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -200,7 +200,6 @@ eval "$(zoxide init zsh)"
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
-export XDG_CONFIG_HOME="$HOME/.config"
 
 # To customize prompt, run `p10k configure` or edit ~/.dotfiles/zsh/.p10k.zsh.
 [[ ! -f ~/.dotfiles/zsh/.p10k.zsh ]] || source ~/.dotfiles/zsh/.p10k.zsh
