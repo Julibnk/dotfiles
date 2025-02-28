@@ -56,3 +56,4 @@ map('n', '<leader>bp', ':bprevious<CR>', { desc = '[B]uffer [p]revious' })
 
 -- Close the current buffer
 map('n', '<leader>bd', ':bdelete<CR>', { desc = '[B]uffer [d]elete' })
+map('n', '<leader>bw', ':w<CR>', { desc = '[B]uffer [w]rite' })

@@ -1,88 +1,91 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-source "$HOME/.config/sketchybar/colors.sh" # Loads all defined colors 
-source "$HOME/.config/sketchybar/icons.sh" # Loads all defined icons
+source "$CONFIG_DIR/colors.sh" # Loads all defined colors
+source "$CONFIG_DIR/icons.sh" # Loads all defined icons
 
-ITEM_DIR="$HOME/.config/sketchybar/items" # Directory where the items are configured
-PLUGIN_DIR="$HOME/.config/sketchybar/plugins"
+ITEM_DIR="$CONFIG_DIR/items" # Directory where the items are configured
+PLUGIN_DIR="$CONFIG_DIR/plugins" # Directory where all the plugin scripts are stored
 
-SPACE_CLICK_SCRIPT="yabai -m space --focus \$SID 2>/dev/null" # The script that is run for clicking on space components
-ITEM_CORNER_RADIUS=3
-ITEM_BACKGROUND_HEIGHT=26
-ITEM_PADDING=14
+FONT="SF Pro" # Needs to have Regular, Bold, Semibold, Heavy and Black variants
+PADDINGS=3 # All paddings use this value (icon, label, background)
 
-# helper process
+# # Setting up and starting the helper process
 # HELPER=git.felix.helper
 # killall helper
-# cd $HOME/.config/sketchybar/helper && make
-# $HOME/.config/sketchybar/helper/helper $HELPER > /dev/null 2>&1 &
+# (cd $CONFIG_DIR/helper && make)
+# $CONFIG_DIR/helper/helper $HELPER > /dev/null 2>&1 &
 
-# FONT="SF Pro"
+# Unload the macOS on screen indicator overlay for volume change
+launchctl unload -F /System/Library/LaunchAgents/com.apple.OSDUIHelper.plist > /dev/null 2>&1 &
 
-# Set up your own custom sketchybar config here
-sketchybar --bar height=32 \
-		color=$BAR_COLOR \
-		margin=0 \
-		blur_radius=20 \
-		padding_right=23 \
-		padding_left=23 \
-		notch_width=188
+# Setting up the general bar appearance of the bar
+bar=(
+  corner_radius=12
+  height=33
+  color=$BAR_COLOR
+  border_width=2
+  border_color=$BAR_BORDER_COLOR
+  shadow=off
+  position=top
+  sticky=on
+  y_offset=0
+  margin=6
+  topmost=window
+)
 
 
-sketchybar --default \
-                icon.color=$ICON_COLOR \
-	        icon.font.size=16 \
-                background.corner_radius=$ITEM_CORNER_RADIUS \
-                background.color=$SPACE_DESELECTED \
-                background.height=24 \
-                icon.padding_left=5 \
-                label.padding_right=5 \
-                icon.padding_right=5 \
-                padding_left=2 \
-                padding_right=2
+# Setting up default values
+defaults=(
+  updates=when_shown
+  icon.font="$FONT:Bold:14.0"
+  icon.color=$ICON_COLOR
+  icon.padding_left=$PADDINGS
+  icon.padding_right=$PADDINGS
+  label.font="$FONT:Semibold:13.0"
+  label.color=$LABEL_COLOR
+  label.padding_left=$PADDINGS
+  label.padding_right=$PADDINGS
+  padding_right=$PADDINGS
+  padding_left=$PADDINGS
+  background.height=26
+  background.corner_radius=9
+  background.border_width=2
+  popup.background.border_width=2
+  popup.background.corner_radius=9
+  popup.background.border_color=$POPUP_BORDER_COLOR
+  popup.background.color=$POPUP_BACKGROUND_COLOR
+  popup.blur_radius=20
+  popup.background.shadow.drawing=on
+)
+
+sketchybar  --bar "${bar[@]}" --default "${defaults[@]}"
 
 # Left
-source "$ITEM_DIR/apple.sh"
 source "$ITEM_DIR/spaces.sh"
-# source "$ITEM_DIR/front_app.sh"
+source "$ITEM_DIR/yabai.sh"
 
 # Right
-# TIME AND DATE
-sketchybar --add item time right \
-           --set      time script="$PLUGIN_DIR/time.sh" \
-                           update_freq=5 \
-                           padding_left=2  \
-                           padding_right=8 \
-                           icon=$ICON_CLOCK \
-           --add item date right \
-           --set      date script="$PLUGIN_DIR/date.sh" \
-                           update_freq=60  \
-                           padding_left=8 \
-                           padding_right=2 \
-                           icon=$ICON_CALENDAR
+source "$ITEM_DIR/front_app.sh"
+source "$ITEM_DIR/calendar.sh"
 
-# sketchybar --add bracket clock time date
-#            --set clock background.color=$TEST_BACKGROUND \
-#                                background.border_color=$RED
+sketchybar --add alias "TextInputMenuAgent,Item-0" right \
+           --set "TextInputMenuAgent,Item-0" padding_left=0 padding_right=10 label.width=0 update_freq=1
 
-
-
-# sketchybar --add item  volume right                                  \
-#            --set       volume script="$PLUGIN_DIR/volume.sh"         \
-#                               padding_left=2                         \
-#                               padding_right=2                        \
-#                               background.border_width=0              \
-#                               background.height=24                   \
-#            --subscribe volume volume_change
-
-sketchybar --add item  battery right                       \
-           --set       battery script="$PLUGIN_DIR/battery.sh"       \
-                               update_freq=120                       \
-                               padding_left=8                        \
-                               padding_right=2                       \
-                               background.border_width=0             \
-                               background.height=24                  \
-           --subscribe battery system_woke power_source_change
-
+source "$ITEM_DIR/wifi.sh"
+source "$ITEM_DIR/battery.sh"
 source "$ITEM_DIR/volume.sh"
+
+
+status_bracket=(
+  background.color=$BACKGROUND_1
+  background.border_color=$BACKGROUND_2
+)
+
+sketchybar --add bracket status "TextInputMenuAgent,Item-0" wifi battery github.bell volume_icon \
+           --set status "${status_bracket[@]}"
+
+# Forcing all item scripts to run (never do this outside of sketchybarrc)
 sketchybar --update
+
+echo "sketchybar configuation loaded.."
+

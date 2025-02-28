@@ -127,6 +127,7 @@ unset __conda_setup
 
 #Init nvm on startup
 source $(brew --prefix nvm)/nvm.sh
+nvm alias default 22.13.0 > /dev/null
 
 # ---- FZF -----
 
@@ -189,7 +190,7 @@ alias zshrc='nvim ~/.zshrc'
 
 alias work='cd ~/dev/work/'
 alias github='cd ~/dev/github/'
-alias dotfiles='cd ~/.dotfiles'
+alias dotfiles='cd ~/dotfiles'
 alias drive="cd ~/Google Drive/My Drive"
 alias onedrive="cd ~/OneDrive - Strategic Platform"
 

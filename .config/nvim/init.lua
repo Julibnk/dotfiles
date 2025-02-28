@@ -38,6 +38,20 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
+vim.diagnostic.config { virtual_text = false }
+-- Command to toggle inline diagnostics
+vim.api.nvim_create_user_command('DiagnosticsToggleVirtualText', function()
+  local current_value = vim.diagnostic.config().virtual_text
+  if current_value then
+    vim.diagnostic.config { virtual_text = false }
+  else
+    vim.diagnostic.config { virtual_text = true }
+  end
+end, {})
+
+-- Keybinding to toggle inline diagnostics (ii)
+vim.api.nvim_set_keymap('n', '<Leader>ii', ':lua vim.cmd("DiagnosticsToggleVirtualText")<CR>', { noremap = true, silent = true })
+
 -- [[ Configure and install plugins ]]
 --
 --  To check the current status of your plugins, run
@@ -160,7 +174,7 @@ require('lazy').setup({
 
           -- Rename the variable under your cursor.
           --  Most Language Servers support renaming across files, etc.
-          map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+          map('<F2>', vim.lsp.buf.rename, '[R]e[n]ame')
 
           -- Execute a code action, usually your cursor needs to be on top of an error
           -- or a suggestion from your LSP for this to activate.
@@ -316,7 +330,7 @@ require('lazy').setup({
           tsserver_file_preferences = {
             importModuleSpecifierPreference = 'relative',
           },
-        }
+        },
       }
     end,
   },
@@ -519,6 +533,7 @@ require('lazy').setup({
         'typescript',
         'vim',
         'vimdoc',
+        'xml',
       },
       -- Autoinstall languages that are not installed
       auto_install = true,
