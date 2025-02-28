@@ -1,4 +1,68 @@
 #!/bin/bash
+
+
+lalt - b : open_and_move "Brave Browser"
+lalt - t : open_and_move "Ghostty"
+lalt - n : open_and_move "Notion"
+lalt - m : open_and_move "Microsoft Outlook"
+lalt - s : open_and_move "Spotify"
+lalt - p : open_and_move "Postman"
+lalt - d : open_and_move "pgAdmin 4"
+lalt - c : open_and_move "Microsoft Teams"
+# lalt - t : open -a "Ghostty"
+# lalt - b : open -a "Brave Browser"
+# lalt - n : open -a "Notion"
+# lalt - m : open -a "Microsoft Outlook"
+# lalt - p : open -a "Postman"
+# lalt - s : open -a "Spotify"
+lalt - v : switch_yabai_layout
+
+# Window management
+lalt - h : yabai -m window --focus west
+lalt - j : yabai -m window --focus south
+lalt - k : yabai -m window --focus north
+lalt - l : yabai -m window --focus east
+
+# Move between spaces
+lalt - 1 : yabai -m space --focus  1
+lalt - 2 : yabai -m space --focus  2
+lalt - 3 : yabai -m space --focus  3
+lalt - 4 : yabai -m space --focus  4
+lalt - 5 : yabai -m space --focus  5
+lalt - 6 : yabai -m space --focus  6
+lalt - 7 : yabai -m space --focus  7
+lalt - 8 : yabai -m space --focus  8
+lalt - 9 : yabai -m space --focus  9
+lalt - 0 : yabai -m space --focus  10
+
+# send window to desktop and follow focus
+shift + alt - 1 : yabai -m window --space  1; yabai -m space --focus 1
+shift + alt - 2 : yabai -m window --space  2; yabai -m space --focus 2
+shift + alt - 3 : yabai -m window --space  3; yabai -m space --focus 3
+shift + alt - 4 : yabai -m window --space  4; yabai -m space --focus 4
+shift + alt - 5 : yabai -m window --space  5; yabai -m space --focus 5
+shift + alt - 6 : yabai -m window --space  6; yabai -m space --focus 6
+shift + alt - 7 : yabai -m window --space  7; yabai -m space --focus 7
+shift + alt - 8 : yabai -m window --space  8; yabai -m space --focus 8
+shift + alt - 9 : yabai -m window --space  9; yabai -m space --focus 9
+shift + alt - 0 : yabai -m window --space  10; yabai -m space --focus 10
+
+# Disable cmd tab 
+cmd - 0x30 : echo 'Get used to!!'
+
+# toggle window zoom
+# alt - d : yabai -m window --toggle zoom-parent
+lalt - f : yabai -m window --toggle zoom-fullscreen
+
+# toggle window split type
+lalt - e : yabai -m window --toggle split
+
+
+
+
+# ==========================================================================
+#  DOCS
+# ==========================================================================
 #  NOTE(koekeishiya): A list of all built-in modifier and literal keywords can
 #        be found at https://github.com/koekeishiya/skhd/issues/1
 #
@@ -106,69 +170,3 @@
 #    "qutebrowser"
 # ]
 
-# open_and_move() {
-#  alt - b : open -a "Brave Browser" && yabai -m window --focus "$(yabai -m query --windows | jq '.[] | select(.app=="Brave Browser").id')"
-# }
-# alt - $1 : open -a "$2" && yabai -m window --focus "$(yabai -m query --windows | jq '.[] | select(.app=="Brave Browser").id')"
-# open_and_move() {
-# 	alt - "$1" : open -a "Brave Browser" 
-# }
-# && yabai -m window --focus "$(yabai -m query --windows | jq '.[] | select(.app=="Brave Browser").id')" # --app \"$2\" | jq '.[0].id')"
-# function open_and_move() {
-# 	open -a "Brave Browser" && yabai -m window --focus "$(yabai -m query --windows | jq ".[] | select(.app==\"Brave Browser\").id")"
-# }
-lalt - b : open_and_move "Brave Browser"
-lalt - t : open_and_move "Ghostty"
-lalt - n : open_and_move "Notion"
-lalt - m : open_and_move "Microsoft Outlook"
-lalt - s : open_and_move "Spotify"
-lalt - p : open_and_move "Postman"
-lalt - d : open_and_move "pgAdmin 4"
-lalt - c : open_and_move "Microsoft Teams"
-# lalt - t : open -a "Ghostty"
-# lalt - b : open -a "Brave Browser"
-# lalt - n : open -a "Notion"
-# lalt - m : open -a "Microsoft Outlook"
-# lalt - p : open -a "Postman"
-# lalt - s : open -a "Spotify"
-lalt - v : switch_yabai_layout
-
-# Window management
-lalt - h : yabai -m window --focus west
-lalt - j : yabai -m window --focus south
-lalt - k : yabai -m window --focus north
-lalt - l : yabai -m window --focus east
-
-# Move between spaces
-lalt - 1 : yabai -m space --focus  1
-lalt - 2 : yabai -m space --focus  2
-lalt - 3 : yabai -m space --focus  3
-lalt - 4 : yabai -m space --focus  4
-lalt - 5 : yabai -m space --focus  5
-lalt - 6 : yabai -m space --focus  6
-lalt - 7 : yabai -m space --focus  7
-lalt - 8 : yabai -m space --focus  8
-lalt - 9 : yabai -m space --focus  9
-lalt - 0 : yabai -m space --focus  10
-
-# send window to desktop and follow focus
-shift + alt - 1 : yabai -m window --space  1; yabai -m space --focus 1
-shift + alt - 2 : yabai -m window --space  2; yabai -m space --focus 2
-shift + alt - 3 : yabai -m window --space  3; yabai -m space --focus 3
-shift + alt - 4 : yabai -m window --space  4; yabai -m space --focus 4
-shift + alt - 5 : yabai -m window --space  5; yabai -m space --focus 5
-shift + alt - 6 : yabai -m window --space  6; yabai -m space --focus 6
-shift + alt - 7 : yabai -m window --space  7; yabai -m space --focus 7
-shift + alt - 8 : yabai -m window --space  8; yabai -m space --focus 8
-shift + alt - 9 : yabai -m window --space  9; yabai -m space --focus 9
-shift + alt - 0 : yabai -m window --space  10; yabai -m space --focus 10
-
-# Disable cmd tab 
-cmd - 0x30 : echo 'Get used to!!'
-
-# toggle window zoom
-# alt - d : yabai -m window --toggle zoom-parent
-lalt - f : yabai -m window --toggle zoom-fullscreen
-
-# toggle window split type
-lalt - e : yabai -m window --toggle split
