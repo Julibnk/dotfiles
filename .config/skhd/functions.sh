@@ -15,3 +15,26 @@ switch_yabai_layout() {
     fi
 }
 
+hook_back() {
+    current_app=$(yabai -m query --windows | jq -r '.[] | select(.["has-focus"] == true).app')
+    space=5
+    if [[ $current_app == "Ghostty" ]]; then
+        space="code"
+    elif [[ $current_app == "Brave Browser" ]]; then
+        space="browser"
+    elif [[ $current_app == "Microsoft Outlook" ]]; then
+        space="work"
+    elif [[ $current_app == "Microsoft Teams" ]]; then
+        space="work"
+    elif [[ $current_app == "Notion" ]]; then
+        space="util"
+    elif [[ $current_app == "Postman" ]]; then
+        space="util"
+    elif [[ $current_app == "pgAdmin 4" ]]; then
+        space="util"
+    elif [[ $current_app == "Spotify" ]]; then
+        space="other"
+    fi
+    yabai -m window --space "$space"; yabai -m space --focus "$space";
+ }
+

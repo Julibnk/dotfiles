@@ -1,30 +1,4 @@
 #!/usr/bin/env sh
-# adjust_spaces() {
-#   local desired_spaces=("$@")
-#   local display=1
-#   for desired_space in "${desired_spaces[@]}"; do
-#     local actual_space=$(yabai -m query --spaces | jq 'map(select(.display == '$display')) | length')
-#     yabai -m display --focus $display
-#     while (( actual_space != desired_space )); do
-#       if (( actual_space < desired_space )); then
-#         yabai -m space --create
-#         ((actual_space++))
-#       else
-#         local last_space_index=$(yabai -m query --spaces | jq '.[].index | select(. == '$spaces_on_display')')
-#         yabai -m space --focus $last_space_index
-#         yabai -m space --destroy
-#         ((actual_space--))
-#       fi
-#     done
-#     ((display++))
-#   done
-# }
-
-# setup_space() {
-#   local idx="$1"
-#   local name="$2"
-#   yabai -m space "$idx" --label "$name"
-# }
 
 sudo yabai --load-sa
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
@@ -64,6 +38,59 @@ yabai -m config                                 \
     mouse_drop_action            swap
 
 yabai -m config --display 1 external_bar all:30:0
+
+# mission-control desktop labels
+yabai -m space 1 --label code
+yabai -m space 2 --label browser
+yabai -m space 3 --label work
+yabai -m space 4 --label util
+yabai -m space 5 --label other
+yabai -m space 6 --label external
+
+# window rules
+yabai -m rule --add app="^Ghostty$" space=^code
+yabai -m rule --add app="^Brave Browser$" space=^browser
+yabai -m rule --add app="^Microsoft Outlook$" space=^work
+yabai -m rule --add app="^Microsoft Teams$" space=^work
+yabai -m rule --add app="^Notion$" space=^util
+yabai -m rule --add app="^Postman$" space=^util
+yabai -m rule --add app="^pgAdmin 4$" space=^util
+yabai -m rule --add app="^Spotify$" space=^other
+
+# specific space settings
+yabai -m config --space work  layout bsp
+
+# Ignore apps
+yabai -m rule --add app="^(Messages|System Settings|Calculator|App Store|Steam|Alfred|Activity Monitor|Strongbox)" manage=off
+
+
+# adjust_spaces() {
+#   local desired_spaces=("$@")
+#   local display=1
+#   for desired_space in "${desired_spaces[@]}"; do
+#     local actual_space=$(yabai -m query --spaces | jq 'map(select(.display == '$display')) | length')
+#     yabai -m display --focus $display
+#     while (( actual_space != desired_space )); do
+#       if (( actual_space < desired_space )); then
+#         yabai -m space --create
+#         ((actual_space++))
+#       else
+#         local last_space_index=$(yabai -m query --spaces | jq '.[].index | select(. == '$spaces_on_display')')
+#         yabai -m space --focus $last_space_index
+#         yabai -m space --destroy
+#         ((actual_space--))
+#       fi
+#     done
+#     ((display++))
+#   done
+# }
+
+# setup_space() {
+#   local idx="$1"
+#   local name="$2"
+#   yabai -m space "$idx" --label "$name"
+# }
+
 # Spaces adjustment
 # num_displays=$(yabai -m query --displays | jq 'length')
 # if [[ "$num_displays" -eq 3 ]]; then
@@ -75,27 +102,3 @@ yabai -m config --display 1 external_bar all:30:0
 # fi
 # mouse settings
 # yabai -m config mouse_follows_focus on
-
-# mission-control desktop labels
-# yabai -m space 1 --label code
-# yabai -m space 2 --label browse
-# yabai -m space 3 --label notion
-# yabai -m space 4 --label mail
-# yabai -m space 5 --label other
-
-# window rules
-# yabai -m rule --add app="^iTerm$" space=^code
-# yabai -m rule --add app="^Brave Browser$" space=^browse
-# yabai -m rule --add app="^Notion$" space=^notion
-# yabai -m rule --add app="^Microsoft Outlook$" space=^mail
-# yabai -m rule --add app="^Microsoft Teams$" space=^mail
-# yabai -m rule --add app="^Postman$" space=^other
-# yabai -m rule --add app="^Spotify$" space=^other
-
-# specific space settings
-# yabai -m config --space mail  layout stack
-
-# Ignore apps
-yabai -m rule --add app="^(Messages|System Settings|Calculator|App Store|Steam|Alfred|Activity Monitor|Strongbox)" manage=off
-
-
