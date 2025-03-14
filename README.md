@@ -20,6 +20,8 @@ My workspace configuration
 - lf _file manager_
 - cptv _lf file visualizer_
 - jq
+- yazi
+- imagemagick
 
 ### ZSH plugins
 

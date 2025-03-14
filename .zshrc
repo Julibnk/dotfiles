@@ -193,6 +193,7 @@ alias github='cd ~/dev/github/'
 alias dotfiles='cd ~/dotfiles'
 alias drive="cd ~/Google Drive/My Drive"
 alias onedrive="cd ~/OneDrive - Strategic Platform"
+alias downloads="cd ~/Downloads"
 
 # Init zoxide
 eval "$(zoxide init zsh)"

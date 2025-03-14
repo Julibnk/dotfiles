@@ -3,7 +3,6 @@ require('config.lazy')
 -- Options
 vim.opt.number = true
 vim.opt.relativenumber = true
-    
 -- Keymaps
 vim.keymap.set('i', 'jk', '<Esc>')
 vim.keymap.set('i', 'jj', '<Esc>')

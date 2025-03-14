@@ -29,14 +29,14 @@ lalt - 0 : yabai -m space --focus  10
 
 # Change layout
 lalt - v : switch_yabai_layout
-#Send to ultrawide or external window
+#Send to external window
 lalt - e : yabai -m window --space 6; yabai -m space --focus 6 
 lalt - i : hook_back
 
 # toggle window zoom
 # alt - d : yabai -m window --toggle zoom-parent
-lalt - f : yabai -m window --toggle zoom-fullscreen
-
+lalt - z : yabai -m window --toggle zoom-fullscreen
+lalt - r : yabai -m space --rotate 270
 # toggle window split type
 # lalt - - : yabai -m window --toggle split
 

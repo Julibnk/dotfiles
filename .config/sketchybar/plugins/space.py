@@ -8,7 +8,7 @@ ICON_MAP = [
     {"regex": r"Affinity Photo", "icon": ":affinity_photo:"},
     {"regex": r"Affinity Publisher", "icon": ":affinity_publisher:"},
     {"regex": r"Airmail", "icon": ":airmail:"},
-    {"regex": r"Alacritty|Hyper|iTerm2|kitty|Terminal|WezTerm", "icon": ":terminal:"},
+    {"regex": r"Alacritty|Hyper|iTerm2|kitty|Terminal|WezTerm|Ghostty", "icon": ":terminal:"},
     {"regex": r"Alfred", "icon": ":alfred:"},
     {"regex": r"Android Messages", "icon": ":android_messages:"},
     {"regex": r"Android Studio", "icon": ":android_studio:"},
