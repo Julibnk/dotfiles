@@ -6,6 +6,7 @@
 
 ## WM
 
+[] yabai signal when ext screen connected
 [] borders
 [X] open apps in defined space
 [X] external and internal screen movement
@@ -17,4 +18,4 @@
 
 ## tmux
 
-[] current pane better indicator
+[X] current pane better indicator
