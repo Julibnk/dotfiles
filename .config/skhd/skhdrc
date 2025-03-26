@@ -6,7 +6,8 @@ lalt - n : open_and_move "Notion"
 lalt - m : open_and_move "Microsoft Outlook"
 lalt - s : open_and_move "Spotify"
 lalt - p : open_and_move "Postman"
-lalt - d : open_and_move "pgAdmin 4"
+lalt - d : open_and_move "DBeaver"
+lalt - o : open_and_move "Obsidian"
 lalt - c : open_and_move "Microsoft Teams"
 
 # Window management
@@ -36,28 +37,26 @@ lalt - i : hook_back
 # toggle window zoom
 # alt - d : yabai -m window --toggle zoom-parent
 lalt - z : yabai -m window --toggle zoom-fullscreen
-lalt - r : yabai -m space --rotate 270
+lalt - r : yabai -m space --rotate 90
 # toggle window split type
 # lalt - - : yabai -m window --toggle split
 
+ # yabai -m query --windows | jq 'map(select(.space == 2)) | first | .id'
 # send window to desktop and follow focus
-shift + alt - 1 : yabai -m window --space  1; yabai -m space --focus 1
-shift + alt - 2 : yabai -m window --space  2; yabai -m space --focus 2
-shift + alt - 3 : yabai -m window --space  3; yabai -m space --focus 3
-shift + alt - 4 : yabai -m window --space  4; yabai -m space --focus 4
-shift + alt - 5 : yabai -m window --space  5; yabai -m space --focus 5
-shift + alt - 6 : yabai -m window --space  6; yabai -m space --focus 6
-shift + alt - 7 : yabai -m window --space  7; yabai -m space --focus 7
-shift + alt - 8 : yabai -m window --space  8; yabai -m space --focus 8
-shift + alt - 9 : yabai -m window --space  9; yabai -m space --focus 9
-shift + alt - 0 : yabai -m window --space  10; yabai -m space --focus 10
+lalt + rshift - 1 : yabai -m window --space  1; yabai -m space --focus 1; yabai -m window --focus $(yabai -m query --windows | jq 'map(select(.space == 1)) | first | .id') 
+lalt + rshift - 2 : yabai -m window --space  2; yabai -m space --focus 2; yabai -m window --focus $(yabai -m query --windows | jq 'map(select(.space == 2)) | first | .id') 
+lalt + rshift - 3 : yabai -m window --space  3; yabai -m space --focus 3; yabai -m window --focus $(yabai -m query --windows | jq 'map(select(.space == 3)) | first | .id') 
+lalt + rshift - 4 : yabai -m window --space  4; yabai -m space --focus 4; yabai -m window --focus $(yabai -m query --windows | jq 'map(select(.space == 4)) | first | .id') 
+lalt + rshift - 5 : yabai -m window --space  5; yabai -m space --focus 5; yabai -m window --focus $(yabai -m query --windows | jq 'map(select(.space == 5)) | first | .id') 
+lalt + rshift - 6 : yabai -m window --space  6; yabai -m space --focus 6; yabai -m window --focus $(yabai -m query --windows | jq 'map(select(.space == 6)) | first | .id') 
+lalt + rshift - 7 : yabai -m window --space  7; yabai -m space --focus 7; yabai -m window --focus $(yabai -m query --windows | jq 'map(select(.space == 7)) | first | .id') 
+lalt + rshift - 8 : yabai -m window --space  8; yabai -m space --focus 8; yabai -m window --focus $(yabai -m query --windows | jq 'map(select(.space == 8)) | first | .id') 
+lalt + rshift - 9 : yabai -m window --space  9; yabai -m space --focus 9; yabai -m window --focus $(yabai -m query --windows | jq 'map(select(.space == 9)) | first | .id') 
+lalt + rshift - 0 : yabai -m window --space  10; yabai -m space --focus 10; yabai -m window --focus $(yabai -m query --windows | jq 'map(select(.space == 10)) | first | .id') 
 
 
 # Disable cmd tab 
 cmd - 0x30 : echo 'Get used to!!'
-
-
-
 
 
 # ==========================================================================

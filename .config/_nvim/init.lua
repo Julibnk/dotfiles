@@ -1,5 +1,6 @@
 require('config.lazy')
 
+
 -- Options
 vim.opt.number = true
 vim.opt.relativenumber = true
