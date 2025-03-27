@@ -30,7 +30,7 @@ yabai -m config                                 \
     left_padding                 10             \
     right_padding                10             \
     window_gap                   10             \
-    layout                       stack            \
+    layout                       bsp            \
     mouse_modifier               fn             \
     mouse_action1                move           \
     mouse_action2                resize         \
@@ -62,6 +62,9 @@ yabai -m rule --add app="^Spotify$" space=^other
 
 # Ignore apps
 yabai -m rule --add app="^(Messages|System Settings|Calculator|App Store|Steam|Alfred|Activity Monitor|Strongbox|IINA)" manage=off
+
+# focus window after active space changes
+yabai -m signal --add event=space_changed action="yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id)"
 
 borders style=round active_color=0xffe1e3e4 inactive_color=0xff494d64 width=6.0 &
 # adjust_spaces() {

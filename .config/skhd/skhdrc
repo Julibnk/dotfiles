@@ -2,13 +2,16 @@
 
 lalt - b : open_and_move "Brave Browser"
 lalt - t : open_and_move "Ghostty"
-lalt - n : open_and_move "Notion"
+# lalt - n : open_and_move "Notion"
 lalt - m : open_and_move "Microsoft Outlook"
 lalt - s : open_and_move "Spotify"
-lalt - p : open_and_move "Postman"
+# lalt - p : open_and_move "Postman"
 lalt - d : open_and_move "DBeaver"
 lalt - o : open_and_move "Obsidian"
 lalt - c : open_and_move "Microsoft Teams"
+
+lalt - n : yabai -m window --space next; yabai -m space --focus next; 
+lalt - p : yabai -m window --space prev; yabai -m space --focus prev
 
 # Window management
 lalt - h : yabai -m window --focus west
@@ -37,7 +40,7 @@ lalt - i : hook_back
 # toggle window zoom
 # alt - d : yabai -m window --toggle zoom-parent
 lalt - z : yabai -m window --toggle zoom-fullscreen
-lalt - r : yabai -m space --rotate 90
+lalt - r : yabai -m space --rotate 270
 # toggle window split type
 # lalt - - : yabai -m window --toggle split
 
