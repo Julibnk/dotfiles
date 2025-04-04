@@ -39,26 +39,31 @@ yabai -m config                                 \
 yabai -m config --display 1 external_bar all:30:0
 
 # mission-control desktop labels
-yabai -m space 1 --label code
-yabai -m space 2 --label browser
-yabai -m space 3 --label work
-yabai -m space 4 --label util
+yabai -m space 1 --label browser
+yabai -m space 2 --label code
+yabai -m space 3 --label chat
+yabai -m space 4 --label notes
 yabai -m space 5 --label other
-yabai -m space 6 --label external
+yabai -m space 6 --label music
+yabai -m space 7 --label external
 
 # window rules
-yabai -m rule --add app="^Ghostty$" space=^code
 yabai -m rule --add app="^Brave Browser$" space=^browser
-yabai -m rule --add app="^Microsoft Outlook$" space=^work
-yabai -m rule --add app="^Microsoft Teams$" space=^work
-yabai -m rule --add app="^Notion$" space=^util
-yabai -m rule --add app="^Postman$" space=^util
-yabai -m rule --add app="^DBeaver$" space=^util
-yabai -m rule --add app="^Obsidian$" space=^util
-yabai -m rule --add app="^Spotify$" space=^other
+yabai -m rule --add app="^Ghostty$" space=^code
+yabai -m rule --add app="^Microsoft Teams$" space=^chat
+yabai -m rule --add app="^Obsidian$" space=^notes
+yabai -m rule --add app="^Postman$" space=^other
+yabai -m rule --add app="^DBeaver$" space=^other
+yabai -m rule --add app="^Microsoft Outlook$" space=^other
+yabai -m rule --add app="^Notion$" space=^other
+yabai -m rule --add app="^Spotify$" space=^music
 
 # specific space settings
-# yabai -m config --space work layout bsp
+yabai -m config --space chat layout stack
+yabai -m config --space other layout stack
+yabai -m config --space notes layout stack
+yabai -m config --space music layout stack
+
 
 # Ignore apps
 yabai -m rule --add app="^(Messages|System Settings|Calculator|App Store|Steam|Alfred|Activity Monitor|Strongbox|IINA)" manage=off

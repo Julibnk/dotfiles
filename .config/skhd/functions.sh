@@ -22,17 +22,19 @@ hook_back() {
         space="code"
     elif [[ $current_app == "Brave Browser" ]]; then
         space="browser"
-    elif [[ $current_app == "Microsoft Outlook" ]]; then
-        space="work"
     elif [[ $current_app == "Microsoft Teams" ]]; then
-        space="work"
+        space="chat"
+    elif [[ $current_app == "Obsidian" ]]; then
+        space="notes"
     elif [[ $current_app == "Notion" ]]; then
-        space="util"
-    elif [[ $current_app == "Postman" ]]; then
-        space="util"
-    elif [[ $current_app == "pgAdmin 4" ]]; then
-        space="util"
+        space="other"
     elif [[ $current_app == "Spotify" ]]; then
+        space="music"
+    elif [[ $current_app == "Postman" ]]; then
+        space="other"
+    elif [[ $current_app == "pgAdmin 4" ]]; then
+        space="other"
+    elif [[ $current_app == "Microsoft Outlook" ]]; then
         space="other"
     fi
     yabai -m window --space "$space"; yabai -m space --focus "$space";
