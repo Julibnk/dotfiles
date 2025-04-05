@@ -131,19 +131,43 @@ nvm alias default 22.13.0 > /dev/null
 
 # ---- FZF -----
 
-# Set up fzf key bindings and fuzzy completion
-# eval "$(fzf --zsh)"
+eval "$(fzf --zsh)"
 
-# -- Use fd instead of fzf --
+# Rebind ALT C to Cntrl f for cd
+bindkey '^f' fzf-cd-widget
 
-#export FZF_DEFAULT_COMMAND="fd --hidden --exclude .git"
-#export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-#export FZF_ALT_C_COMMAND="fd --type=d --hidden --exclude .git"
+export FZF_DEFAULT_COMMAND="fd --hidden --exclude .git"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd --type=d --hidden --exclude .git"
 
+export FZF_DEFAULT_OPTS="
+    --tmux 95% 
+    --padding 1 
+    --layout reverse 
+    --style minimal 
+    --preview 'bat --color always {}'"
+    
+show_file_or_dir_preview="
+if [ -d {} ]; 
+    then eza -a --color=always --long --no-filesize --icons=always --no-time --no-user --no-permissions {}; 
+    else bat -n --color=always {}; 
+fi"
+
+export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
+
+export FZF_ALT_C_OPTS="--preview 'eza -a --color=always --long --no-filesize --icons=always --no-time --no-user --no-permissions {}'"
+
+# CTRL-Y to copy the command into clipboard using pbcopy
+export FZF_CTRL_R_OPTS="
+  --preview ''
+  --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
+  --color header:italic
+  --header 'Press CTRL-Y to copy command into clipboard'"
 # Use fd (https://github.com/sharkdp/fd) for listing path candidates.
 # - The first argument to the function ($1) is the base path to start traversal
 # - See the source code (completion.{bash,zsh}) for the details.
-
+# bindkey '^D' fzf-cd-widget
+# bindkey '^f' fzf-file-widget
 #_fzf_compgen_path() {
 #  fd --hidden --exclude .git . "$1"
 #}
@@ -158,7 +182,6 @@ nvm alias default 22.13.0 > /dev/null
 
 
 # Integrate EZA - BAT and FZF
-# show_file_or_dir_preview="if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
 
 # export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
 # export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
