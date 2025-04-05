@@ -136,56 +136,37 @@ eval "$(fzf --zsh)"
 # Rebind ALT C to Cntrl f for cd
 bindkey '^f' fzf-cd-widget
 
+# Use fd instead fdf for search
 export FZF_DEFAULT_COMMAND="fd --hidden --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --exclude .git"
 
-export FZF_DEFAULT_OPTS="
-    --tmux 95% 
-    --padding 1 
-    --layout reverse 
-    --style minimal 
-    --preview 'bat --color always {}'"
-    
-show_file_or_dir_preview="
+FZF_PREVIEW="
 if [ -d {} ]; 
     then eza -a --color=always --long --no-filesize --icons=always --no-time --no-user --no-permissions {}; 
     else bat -n --color=always {}; 
 fi"
 
-export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
+# Default options
+export FZF_DEFAULT_OPTS="
+    --tmux 95% 
+    --padding 1 
+    --layout reverse 
+    --style minimal 
+    --preview '$FZF_PREVIEW'"
+    
 
-export FZF_ALT_C_OPTS="--preview 'eza -a --color=always --long --no-filesize --icons=always --no-time --no-user --no-permissions {}'"
+export FZF_CTRL_T_OPTS="--preview '$FZF_PREVIEW'"
 
-# CTRL-Y to copy the command into clipboard using pbcopy
+export FZF_ALT_C_OPTS="--preview ''"
+
 export FZF_CTRL_R_OPTS="
   --preview ''
   --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
   --color header:italic
   --header 'Press CTRL-Y to copy command into clipboard'"
-# Use fd (https://github.com/sharkdp/fd) for listing path candidates.
-# - The first argument to the function ($1) is the base path to start traversal
-# - See the source code (completion.{bash,zsh}) for the details.
-# bindkey '^D' fzf-cd-widget
-# bindkey '^f' fzf-file-widget
-#_fzf_compgen_path() {
-#  fd --hidden --exclude .git . "$1"
-#}
 
-# Use fd to generate the list for directory completion
-#_fzf_compgen_dir() {
-#  fd --type=d --hidden --exclude .git . "$1"
-#}
-
-# FZF git plugin
-# source ~/fzf-git.sh/fzf-git.sh
-
-
-# Integrate EZA - BAT and FZF
-
-# export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
-# export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
-
+# TODO Try configure someday
 # Advanced customization of fzf options via _fzf_comprun function
 # - The first argument to the function is the name of the command.
 # - You should make sure to pass the rest of the arguments to fzf.
@@ -201,15 +182,34 @@ export FZF_CTRL_R_OPTS="
 #   esac
 # }
 
+# FZF git plugin
+# source ~/fzf-git.sh/fzf-git.sh
+
+# Use fd (https://github.com/sharkdp/fd) for listing path candidates.
+# - The first argument to the function ($1) is the base path to start traversal
+# - See the source code (completion.{bash,zsh}) for the details.
+# bindkey '^D' fzf-cd-widget
+# bindkey '^f' fzf-file-widget
+#_fzf_compgen_path() {
+#  fd --hidden --exclude .git . "$1"
+#}
+
+# Use fd to generate the list for directory completion
+#_fzf_compgen_dir() {
+#  fd --type=d --hidden --exclude .git . "$1"
+#}
+
+
+
 alias vim='nvim'
 alias cat='bat'
 alias cd='z'
 alias rm='trash'
-alias ls='eza -a --color=always --long --git --no-filesize --icons=always --no-time --no-user'
+alias l='eza -a --color=always --long --git --no-filesize --icons=always --no-time --no-user'
 alias cl='clear'
+alias fd='fzf'
 alias lg='lazygit'
 alias ldc='lazydocker'
-alias zshrc='nvim ~/.zshrc'
 
 alias work='cd ~/dev/work/'
 alias github='cd ~/dev/github/'
