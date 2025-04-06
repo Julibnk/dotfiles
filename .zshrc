@@ -1,7 +1,3 @@
-#Pure theme
-autoload -U promptinit; promptinit
-prompt pure
-zstyle :prompt:pure:git:stash show yes
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -21,6 +17,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # TODO: Unistall p10k
+ZSH_THEME=""
 # ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
@@ -89,6 +86,10 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 
+#Pure theme
+autoload -U promptinit; promptinit
+prompt pure
+zstyle :prompt:pure:git:stash show yes
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -140,8 +141,6 @@ nvm alias default 22.13.0 > /dev/null
 
 eval "$(fzf --zsh)"
 
-# Rebind ALT C to Cntrl f for cd
-bindkey '^g' fzf-cd-widget
 # bindkey '^f' fzf-cd-widget
 
 # Use fd instead fdf for search
@@ -233,6 +232,10 @@ export VISUAL=nvim
 export EDITOR="$VISUAL"
 
 
+# --- BINDNGS --- #
+# Rebind ALT C to Cntrl f for cd
+bindkey '^g' fzf-cd-widget
+# bindkey '^f' yazi
 # To customize prompt, run `p10k configure` or edit ~/.dotfiles/zsh/.p10k.zsh.
 # TODO: Unistall p10k
 # [[ ! -f ~/.dotfiles/zsh/.p10k.zsh ]] || source ~/.dotfiles/zsh/.p10k.zsh
