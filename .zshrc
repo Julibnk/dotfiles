@@ -231,7 +231,7 @@ eval "$(zoxide init zsh)"
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
-
+# asdasda
 # --- BINDNGS --- #
 # Rebind ALT C to Cntrl f for cd
 bindkey '^g' fzf-cd-widget
