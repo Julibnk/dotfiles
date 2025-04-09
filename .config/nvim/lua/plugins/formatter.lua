@@ -13,7 +13,6 @@ return {
 		},
 	},
 	opts = {
-
 		formatters_by_ft = {
 			css = { "prettierd", "prettier" },
 			-- graphql = { 'prettierd', 'prettier' },
