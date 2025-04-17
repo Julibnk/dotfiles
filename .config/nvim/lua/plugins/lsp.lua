@@ -1,3 +1,4 @@
+-- NOTE: Right now i dont need nvim-lspconfig because the options are written under lsp folder
 return {
 	{
 		"neovim/nvim-lspconfig",
@@ -55,22 +56,22 @@ return {
 			capabilities =
 				vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities({}, false))
 
-			local servers = {
-				lua_ls = {
-					-- cmd = { ... },
-					-- filetypes = { ... },
-					-- capabilities = {},
-					settings = {
-						Lua = {
-							completion = {
-								callSnippet = "Replace",
-							},
-							-- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-							-- diagnostics = { disable = { 'missing-fields' } },
-						},
-					},
-				},
-			}
+			-- local servers = {
+			-- 	lua_ls = {
+			-- 		-- cmd = { ... },
+			-- 		-- filetypes = { ... },
+			-- 		-- capabilities = {},
+			-- 		settings = {
+			-- 			Lua = {
+			-- 				completion = {
+			-- 					callSnippet = "Replace",
+			-- 				},
+			-- 				-- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+			-- 				-- diagnostics = { disable = { 'missing-fields' } },
+			-- 			},
+			-- 		},
+			-- 	},
+			-- }
 		end,
 	},
 	-- {
