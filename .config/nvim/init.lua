@@ -1,17 +1,23 @@
-require('config.lazy')
-require('opts')
-require('mappings')
+require("config.lazy")
+require("opts")
+require("mappings")
 
 -- Autocomands
 -- Highlight when yanking text
-vim.api.nvim_create_autocmd({'TextYankPost'}, {
-	desc = 'Highlight yanked text',
-	group = vim.api.nvim_create_augroup('highlight', {clear = true}),
-	callback = function() vim.highlight.on_yank() end,
+vim.api.nvim_create_autocmd({ "TextYankPost" }, {
+	desc = "Highlight yanked text",
+	group = vim.api.nvim_create_augroup("highlight", { clear = true }),
+	callback = function()
+		vim.highlight.on_yank()
+	end,
 })
 
--- vim.api.nvim_create_user_command('Night', function() 
--- 	vim.colorscheme = 'kanawaga'
--- 	end, {})
+-- load Lsp configs
+local lsp_configs = {}
 
--- vim.colorscheme("kanawaga.dragon")
+for _, f in pairs(vim.api.nvim_get_runtime_file("lsp/*.lua", true)) do
+	local server_name = vim.fn.fnamemodify(f, ":t:r")
+	table.insert(lsp_configs, server_name)
+end
+
+vim.lsp.enable(lsp_configs)

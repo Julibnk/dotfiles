@@ -1,0 +1,4 @@
+- better ts errors
+- lsp
+- fzf as selectui
+- diagnostics

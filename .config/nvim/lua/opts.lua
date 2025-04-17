@@ -38,7 +38,7 @@ vim.opt.foldlevel = 99
 --  See `:help 'list'`
 --  and `:help 'listchars'`
 vim.opt.list = true
-vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+vim.opt.listchars = { tab = "> ", trail = "·", nbsp = "␣" }
 
 -- Show which line your cursor is on
 vim.opt.cursorline = true
