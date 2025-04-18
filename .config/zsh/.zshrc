@@ -273,7 +273,9 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 export PATH="$NVM_DIR/versions/node/$(nvm version)/bin:$PATH"
-#
+export MANPAGER="nvim +Man!"
+
+
 # asdasda
 # --- BINDNGS --- #
 # Rebind ALT C to Cntrl f for cd
