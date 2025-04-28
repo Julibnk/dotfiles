@@ -18,6 +18,7 @@ return {
 
 		{ "<leader>f.", "<cmd>FzfLua oldfiles<CR>" },
 		{ "<leader>fr", "<cmd>FzfLua resume<CR>" },
+		{ "<leader>fh", "<cmd>FzfLua helptags<CR>" },
 		{ "<leader>fc", "<cmd>FzfLua command_history<CR>" },
 		-- { "<leader>fg", "<cmd>FzfLua gitfiles<CR>" },
 	},
