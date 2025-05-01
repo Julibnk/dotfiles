@@ -2,8 +2,16 @@ return {
 	"ibhagwan/fzf-lua",
 	cmd = "FzfLua",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
+	-- setup = function(opts)
+	-- 	local fzf = require("fzf-lua")
+	-- 	fzf.register()
+	-- end,
 	opts = {
-		winiopts = { width = 0.9 },
+		winopts = { width = 0.9, height = 0.9, preview = { horizontal = "right:50%" } },
+		git = {
+			bcommits = { winopts = { preview = { layout = "vertical", vertical = "up:70%" } } },
+			commits = { winopts = { preview = { layout = "vertical", vertical = "up:70%" } } },
+		},
 	},
 	keys = {
 		{ "<leader>ff", "<cmd>FzfLua files cwd_prompt=true<CR>" },
@@ -17,12 +25,13 @@ return {
 		{ "<leader>fg", "<cmd>FzfLua live_grep<CR>" },
 		{ "<leader>/", "<cmd>FzfLua grep_curbuf<CR>" },
 		{ "<leader><space>", "<cmd>FzfLua buffers sort_mru=tru sort_lastused=true<cr>" },
-
 		{ "<leader>f.", "<cmd>FzfLua oldfiles<CR>" },
 		{ "<leader>fr", "<cmd>FzfLua resume<CR>" },
-		{ "<leader>fh", "<cmd>FzfLua hel<CR>" },
+		{ "<leader>fh", "<cmd>FzfLua helptags<CR>" },
 		{ "<leader>fc", "<cmd>FzfLua command_history<CR>" },
 		{ "<leader>q", "<cmd>FzfLua diagnostics_document<CR>" },
+		{ "<leader>gc", "<cmd>FzfLua git_commits<CR>" },
+		{ "<leader>gb", "<cmd>FzfLua git_bcommits<CR>" },
 		-- { "<leader>fg", "<cmd>FzfLua gitfiles<CR>" },
 	},
 }
