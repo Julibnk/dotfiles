@@ -2,7 +2,9 @@ return {
 	"ibhagwan/fzf-lua",
 	cmd = "FzfLua",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
-	opts = {},
+	opts = {
+		winiopts = { width = 0.9 },
+	},
 	keys = {
 		{ "<leader>ff", "<cmd>FzfLua files cwd_prompt=true<CR>" },
 		{
@@ -18,8 +20,9 @@ return {
 
 		{ "<leader>f.", "<cmd>FzfLua oldfiles<CR>" },
 		{ "<leader>fr", "<cmd>FzfLua resume<CR>" },
-		{ "<leader>fh", "<cmd>FzfLua helptags<CR>" },
+		{ "<leader>fh", "<cmd>FzfLua hel<CR>" },
 		{ "<leader>fc", "<cmd>FzfLua command_history<CR>" },
+		{ "<leader>q", "<cmd>FzfLua diagnostics_document<CR>" },
 		-- { "<leader>fg", "<cmd>FzfLua gitfiles<CR>" },
 	},
 }
