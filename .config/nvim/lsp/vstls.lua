@@ -1,6 +1,7 @@
 -- Install with: @vtsls/language-server
 
 local jsts_settings = {
+	updateImportsOnFileMove = "always",
 	suggest = { completeFunctionCalls = true },
 	inlayHints = {
 		functionLikeReturnTypes = { enabled = true },
@@ -27,7 +28,14 @@ local jsts_settings = {
 ---@type vim.lsp.Config
 return {
 	cmd = { "vtsls", "--stdio" },
-	filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+	filetypes = {
+		"javascript",
+		"javascriptreact",
+		"javascript.jsx",
+		"typescript",
+		"typescriptreact",
+		"typescript.tsx",
+	},
 	root_dir = function(bufnr, cb)
 		local fname = vim.uri_to_fname(vim.uri_from_bufnr(bufnr))
 
@@ -41,6 +49,11 @@ return {
 			cb(vim.fn.fnamemodify(ts_root, ":h"))
 		end
 	end,
+
+	on_init = function(client, init_result)
+		require("vtsls").lspconfig = client.settings
+	end,
+
 	settings = {
 		typescript = jsts_settings,
 		javascript = jsts_settings,
@@ -49,6 +62,7 @@ return {
 			-- 	globalTsdk = get_global_tsdk(),
 			-- },
 			-- Automatically use workspace version of TypeScript lib on startup.
+			enableMoveToFileCodeAction = true,
 			autoUseWorkspaceTsdk = true,
 			experimental = {
 				-- Inlay hint truncation.
