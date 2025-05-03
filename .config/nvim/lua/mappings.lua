@@ -20,3 +20,9 @@ vim.keymap.set("n", "<leader>bw", "<cmd>w<CR>", { desc = "[B]uffer [w]rite" })
 --Diagnostics
 -- vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open diagnostic" })
+
+-- Delete default maping for go to reference
+vim.keymap.del("n", "grr")
+vim.keymap.del({ "n", "x" }, "gra")
+vim.keymap.del("n", "grn")
+vim.keymap.del("n", "gri")
