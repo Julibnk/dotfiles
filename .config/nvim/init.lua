@@ -13,11 +13,13 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 })
 
 -- load Lsp configs
-local lsp_configs = {}
+local lsp_configs = { "bashls", "composels", "cssls", "dockerls", "lua_ls", "prisma-language-server", "vstls" }
 
-for _, f in pairs(vim.api.nvim_get_runtime_file("lsp/*.lua", true)) do
-	local server_name = vim.fn.fnamemodify(f, ":t:r")
-	table.insert(lsp_configs, server_name)
-end
+-- for _, f in pairs(vim.api.nvim_get_runtime_file("lsp/*.lua", true)) do
+-- 	local server_name = vim.fn.fnamemodify(f, ":t:r")
+-- 	table.insert(lsp_configs, server_name)
+-- end
+
+print(vim.inspect(lsp_configs))
 
 vim.lsp.enable(lsp_configs)
