@@ -11,7 +11,7 @@ return {
 		config = function()
 			vim.api.nvim_create_autocmd("LspAttach", {
 				callback = function(event)
-					local fzf_lua = require("fzf-lua")
+					-- local fzf_lua = require("fzf-lua")
 					-- Jump to the definition of the word under your cursor.
 					--  This is where a variable was first declared, or where a function is defined, etc.
 					--  To jump back, press <C-t>
@@ -20,10 +20,11 @@ return {
 						vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
 					end
 
-					map("gd", fzf_lua.lsp_definitions, "[G]oto [D]efinition")
+					map("gd", "<cmd>FzfLua lsp_definitions<CR>", "[G]oto [D]efinition")
 
-					map("gr", fzf_lua.lsp_references, "[G]oto [R]eferences")
+					map("gr", "<cmd>FzfLua lsp_references<CR>", "[G]oto [R]eferences")
 
+					map("<leader>ca", "<cmd>FzfLua lsp_code_actions<CR>", "[C]ode [A]ction", { "n", "x" })
 					-- map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
 					-- --  Useful when you're not sure what type a variable is and you want to see
 					-- --  the definition of its *type*, not where it was *defined*.
@@ -43,7 +44,7 @@ return {
 					map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
 					-- -- Execute a code action, usually your cursor needs to be on top of an error
 					-- -- or a suggestion from your LSP for this to activate.
-					map("<leader>ca", fzf_lua.lsp_code_actions, "[C]ode [A]ction", { "n", "x" })
+					-- map("<leader>ca", fzf_lua.lsp_code_actions, )
 					--
 					-- -- WARN: This is not Goto Definition, this is Goto Declaration.
 					-- --  For example, in C this would take you to the header.
