@@ -1,11 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-# TODO: Unistall p10k
-# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-# fi
-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -16,9 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# TODO: Unistall p10k
 ZSH_THEME=""
-# ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -82,51 +72,20 @@ ZSH_THEME=""
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git docker zsh-syntax-highlighting zsh-autosuggestions)
 
+# -- Oh my zsh
 source $ZSH/oh-my-zsh.sh
-# User configuration
 
 
-#Pure theme
+# ---- THEME ----
 autoload -U promptinit; promptinit
 prompt pure
 zstyle :prompt:pure:path color '#a6e3a1'
 zstyle :prompt:pure:git:arrow color '#f9e2af'
-# zstyle ':prompt:pure:path:prompt:error' color '#f38ba8'
-zstyle :prompt:pure:git:branch color '#fab387'
 zstyle :prompt:pure:virtualenv color '#74c7ec'
-#cba6f7 morado
-#f2cdcd flamingo
-#a6e3a1 Green
-#74c7ec Blue
-# export MANPATH="/usr/local/man:$MANPATH"
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
+# ---- CONDA ----
 #
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-# TODO: Unistall p10k
-# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# >>> conda initialize >>>
+# TODO check this and configure conda properly
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
@@ -141,7 +100,8 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-#Init nvm on startup
+# ---- NVM ----
+# init nvm on startup
 source $(brew --prefix nvm)/nvm.sh
 nvm alias default 22.13.0 > /dev/null
 
@@ -181,6 +141,15 @@ export FZF_CTRL_R_OPTS="
   --color header:italic
   --header 'Press CTRL-Y to copy command into clipboard'"
 
+# --- Extend  fzf zsh plugin to always start from HOME
+function custom-fzf-cd-widget() {
+  cd ~ 
+  fzf-cd-widget '@$'
+}
+zle -N custom-fzf-cd-widget        # create zsh widget from function
+
+#
+# j 
 # TODO Try configure someday
 # Advanced customization of fzf options via _fzf_comprun function
 # - The first argument to the function is the name of the command.
@@ -198,6 +167,7 @@ export FZF_CTRL_R_OPTS="
 # }
 
 # FZF git plugin
+# TODO check this
 # source ~/fzf-git.sh/fzf-git.sh
 
 # Use fd (https://github.com/sharkdp/fd) for listing path candidates.
@@ -214,6 +184,8 @@ export FZF_CTRL_R_OPTS="
 #  fd --type=d --hidden --exclude .git . "$1"
 #}
 
+
+# ---- ALIASES ----
 
 alias vim='nvim'
 alias cat='bat'
@@ -265,26 +237,30 @@ cursor_mode() {
 
 cursor_mode
 zmodload zsh/complist
+
+# ---- BINDNGS ----
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 
+
+# Rebind ALT C to Cntrl g for cd
+bindkey '^g' custom-fzf-cd-widget
+
+# ---- ENV variables ----
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 export PATH="$NVM_DIR/versions/node/$(nvm version)/bin:$PATH"
 export MANPAGER="nvim +Man!"
 
 
-# asdasda
-# --- BINDNGS --- #
-# Rebind ALT C to Cntrl f for cd
-bindkey '^g' fzf-cd-widget
-# bindkey '^f' yazi
+
 # To customize prompt, run `p10k configure` or edit ~/.dotfiles/zsh/.p10k.zsh.
 # TODO: Unistall p10k
 # [[ ! -f ~/.dotfiles/zsh/.p10k.zsh ]] || source ~/.dotfiles/zsh/.p10k.zsh
-#
+
+
 # NOTE: Increase keyboard spped
 # defaults write -g InitialKeyRepeat -int 10
 # defaults write -g KeyRepeat -int 1
