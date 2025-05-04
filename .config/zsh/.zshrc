@@ -111,10 +111,11 @@ eval "$(fzf --zsh)"
 
 # bindkey '^f' fzf-cd-widget
 
+FZF_EXCLUDED="--exclude .git --exclude Library --exclude Applications --exclude node_modules"
 # Use fd instead fdf for search
-export FZF_DEFAULT_COMMAND="fd --hidden --exclude .git"
+export FZF_DEFAULT_COMMAND="fd --hidden $FZF_EXCLUDED"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND="fd --type=d --hidden --exclude .git"
+export FZF_ALT_C_COMMAND="fd --type=d --hidden $FZF_EXCLUDED"
 
 FZF_PREVIEW="
 if [ -d {} ]; 
