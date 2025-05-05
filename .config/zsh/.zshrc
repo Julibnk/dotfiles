@@ -103,7 +103,7 @@ unset __conda_setup
 # ---- NVM ----
 # init nvm on startup
 source $(brew --prefix nvm)/nvm.sh
-nvm alias default 22.13.0 > /dev/null
+# nvm alias default 22.13.0 > /dev/null
 
 # ---- FZF -----
 
@@ -252,7 +252,7 @@ bindkey '^g' custom-fzf-cd-widget
 # ---- ENV variables ----
 export VISUAL=nvim
 export EDITOR="$VISUAL"
-export PATH="$NVM_DIR/versions/node/$(nvm version)/bin:$PATH"
+# export PATH="$NVM_DIR/versions/node/$(nvm version)/bin:$PATH"
 export MANPAGER="nvim +Man!"
 
 
