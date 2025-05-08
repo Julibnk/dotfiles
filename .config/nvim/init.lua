@@ -11,14 +11,17 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 		vim.highlight.on_yank()
 	end,
 })
-
--- load Lsp configs
-local lsp_configs =
-	{ "bashls", "composels", "cssls", "dockerls", "lua_ls", "prisma-language-server", "tailwindls", "vstls" }
-
--- for _, f in pairs(vim.api.nvim_get_runtime_file("lsp/*.lua", true)) do
--- 	local server_name = vim.fn.fnamemodify(f, ":t:r")
--- 	table.insert(lsp_configs, server_name)
--- end
-
-vim.lsp.enable(lsp_configs)
+vim.diagnostic.config({
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = "",
+			[vim.diagnostic.severity.WARN] = "",
+			[vim.diagnostic.severity.HINT] = "",
+			[vim.diagnostic.severity.INFO] = "",
+		},
+	},
+	severity_sort = true,
+	float = {
+		border = "single",
+	},
+})

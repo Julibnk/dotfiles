@@ -3,15 +3,12 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
-			"williamboman/mason.nvim",
-			"williamboman/mason-lspconfig.nvim",
 			"saghen/blink.cmp",
 			"ibhagwan/fzf-lua",
 		},
 		config = function()
 			vim.api.nvim_create_autocmd("LspAttach", {
 				callback = function(event)
-					-- local fzf_lua = require("fzf-lua")
 					-- Jump to the definition of the word under your cursor.
 					--  This is where a variable was first declared, or where a function is defined, etc.
 					--  To jump back, press <C-t>
@@ -24,8 +21,9 @@ return {
 
 					map("gr", "<cmd>FzfLua lsp_references<CR>", "[G]oto [R]eferences")
 
+					map("gI", "<cmd>FzfLua lsp_implementations<CR>", "[G]oto [R]eferences")
+
 					map("<leader>ca", "<cmd>FzfLua lsp_code_actions<CR>", "[C]ode [A]ction", { "n", "x" })
-					-- map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
 					-- --  Useful when you're not sure what type a variable is and you want to see
 					-- --  the definition of its *type*, not where it was *defined*.
 					-- map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
@@ -46,9 +44,11 @@ return {
 					-- -- or a suggestion from your LSP for this to activate.
 					-- map("<leader>ca", fzf_lua.lsp_code_actions, )
 					--
+
+					--
 					-- -- WARN: This is not Goto Definition, this is Goto Declaration.
 					-- --  For example, in C this would take you to the header.
-					-- map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+					-- map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 				end,
 			})
 
@@ -57,22 +57,24 @@ return {
 			capabilities =
 				vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities({}, false))
 
-			-- local servers = {
-			-- 	lua_ls = {
-			-- 		-- cmd = { ... },
-			-- 		-- filetypes = { ... },
-			-- 		-- capabilities = {},
-			-- 		settings = {
-			-- 			Lua = {
-			-- 				completion = {
-			-- 					callSnippet = "Replace",
-			-- 				},
-			-- 				-- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-			-- 				-- diagnostics = { disable = { 'missing-fields' } },
-			-- 			},
-			-- 		},
-			-- 	},
-			-- }
+			-- load Lsp configs
+			local lsp_configs = {
+				"bashls",
+				"composels",
+				"cssls",
+				"dockerls",
+				"lua_ls",
+				"prisma-language-server",
+				"tailwindls",
+				"vstls",
+			}
+
+			-- for _, f in pairs(vim.api.nvim_get_runtime_file("lsp/*.lua", true)) do
+			-- 	local server_name = vim.fn.fnamemodify(f, ":t:r")
+			-- 	table.insert(lsp_configs, server_name)
+			-- end
+
+			vim.lsp.enable(lsp_configs)
 		end,
 	},
 	-- {
