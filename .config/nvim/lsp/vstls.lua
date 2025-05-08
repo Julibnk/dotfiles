@@ -50,9 +50,10 @@ return {
 		end
 	end,
 
-	on_init = function(client, init_result)
-		require("vtsls").lspconfig = client.settings
-	end,
+	-- on_init = function(client, init_result)
+	-- 	print(vim.inspect(client.settings))
+	-- 	require("vtsls").lspconfig = client.settings
+	-- end,
 
 	settings = {
 		typescript = jsts_settings,

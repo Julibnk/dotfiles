@@ -149,6 +149,14 @@ function custom-fzf-cd-widget() {
 }
 zle -N custom-fzf-cd-widget        # create zsh widget from function
 
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
 #
 # j 
 # TODO Try configure someday
@@ -248,6 +256,7 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 
 # Rebind ALT C to Cntrl g for cd
 bindkey '^g' custom-fzf-cd-widget
+# bindkey '^f' fzf-cd-widget
 
 # ---- ENV variables ----
 export VISUAL=nvim

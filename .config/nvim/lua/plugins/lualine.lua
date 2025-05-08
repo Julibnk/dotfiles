@@ -24,7 +24,9 @@ return {
 		sections = {
 			lualine_a = { "mode" },
 			lualine_b = { "branch", "diagnostics" },
-			lualine_c = { "filename" },
+			lualine_c = { { "pretty_path", directories = {
+				max_depth = 4,
+			} } },
 			lualine_x = { "fileformat", "filetype" },
 			lualine_y = { "progress" },
 			lualine_z = { "location" },
