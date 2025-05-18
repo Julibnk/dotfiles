@@ -243,8 +243,7 @@
       "from": { "key_code": "f" },
       "to": [
         {
-          "key_code": "4",
-          "modifiers": ["shift"]
+          "key_code": "equal_sign"
         }
       ],
       "type": "basic"
@@ -260,7 +259,8 @@
       "from": { "key_code": "g" },
       "to": [
         {
-          "key_code": "equal_sign"
+          "key_code": "4",
+          "modifiers": ["shift"]
         }
       ],
       "type": "basic"
