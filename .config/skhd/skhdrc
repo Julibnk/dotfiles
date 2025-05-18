@@ -7,11 +7,11 @@ lalt - m : open_and_move "Microsoft Outlook"
 lalt - s : open_and_move "Spotify"
 # lalt - p : open_and_move "Postman"
 # lalt - d : open_and_move "DBeaver"
-lalt - n : open_and_move "Obsidian"
+lalt - o : open_and_move "Obsidian"
 lalt - c : open_and_move "Microsoft Teams"
 
-lalt - n : yabai -m window --space next; yabai -m space --focus next;
-lalt - p : yabai -m window --space prev; yabai -m space --focus prev;
+lalt - n : yabai -m window --focus next
+lalt - p : yabai -m window --focus prev
 
 # Window management
 # lalt - h : yabai -m window --focus west
@@ -32,7 +32,6 @@ lalt - 9 : yabai -m space --focus  9
 lalt - 0 : yabai -m space --focus  10
 
 # Change layout
-lalt - v : switch_yabai_layout
 #Send to external window
 lalt - x : yabai -m window --space 1; yabai -m space --focus 1 
 lalt - e : yabai -m window --space 7; yabai -m space --focus 7 
@@ -42,7 +41,7 @@ lalt - i : hook_back
 # alt - d : yabai -m window --toggle zoom-parent
 lalt - z : yabai -m window --toggle zoom-fullscreen
 lalt - r : yabai -m space --rotate 270
-# toggle window split type
+lalt - l : switch_yabai_layout
 # lalt - - : yabai -m window --toggle split
 
  # yabai -m query --windows | jq 'map(select(.space == 2)) | first | .id'
