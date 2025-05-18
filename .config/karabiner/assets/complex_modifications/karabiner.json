@@ -186,6 +186,23 @@
           "value": 1
         }
       ],
+      "from": { "key_code": "p" },
+      "to": [
+        {
+          "key_code": "2",
+          "modifiers": ["shift"]
+        }
+      ],
+      "type": "basic"
+    },
+    {
+      "conditions": [
+        {
+          "name": "spacebar_layer",
+          "type": "variable_if",
+          "value": 1
+        }
+      ],
       "from": { "key_code": "a" },
       "to": [
         {
@@ -341,7 +358,7 @@
           "value": 1
         }
       ],
-      "from": { "key_code": "x" },
+      "from": { "key_code": "c" },
       "to": [
         {
           "key_code": "comma",
@@ -359,7 +376,7 @@
           "value": 1
         }
       ],
-      "from": { "key_code": "c" },
+      "from": { "key_code": "v" },
       "to": [
         {
           "key_code": "period",
@@ -367,6 +384,40 @@
         }
       ],
 
+      "type": "basic"
+    },
+    {
+      "conditions": [
+        {
+          "name": "spacebar_layer",
+          "type": "variable_if",
+          "value": 1
+        }
+      ],
+      "from": { "key_code": "b" },
+      "to": [
+        {
+          "key_code": "backslash",
+          "modifiers": ["shift"]
+        }
+      ],
+      "type": "basic"
+    },
+    {
+      "conditions": [
+        {
+          "name": "spacebar_layer",
+          "type": "variable_if",
+          "value": 1
+        }
+      ],
+      "from": { "key_code": "n" },
+      "to": [
+        {
+          "key_code": "7",
+          "modifiers": ["shift"]
+        }
+      ],
       "type": "basic"
     }
   ],
