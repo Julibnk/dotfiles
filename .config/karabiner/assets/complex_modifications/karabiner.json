@@ -386,6 +386,7 @@
 
       "type": "basic"
     },
+
     {
       "conditions": [
         {
@@ -397,7 +398,7 @@
       "from": { "key_code": "b" },
       "to": [
         {
-          "key_code": "backslash",
+          "key_code": "7",
           "modifiers": ["shift"]
         }
       ],
@@ -414,7 +415,7 @@
       "from": { "key_code": "n" },
       "to": [
         {
-          "key_code": "7",
+          "key_code": "backslash",
           "modifiers": ["shift"]
         }
       ],
