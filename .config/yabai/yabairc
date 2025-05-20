@@ -71,7 +71,7 @@ yabai -m rule --add app="^(Messages|System Settings|Calculator|App Store|Steam|A
 # focus window after active space changes
 yabai -m signal --add event=space_changed action="yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id)"
 
-borders style=round active_color=0xffe1e3e4 inactive_color=0xff494d64 width=6.0 &
+borders style=round active_color=0xffe1e3e4 inactive_color=0xff494d64 width=4.0 &
 # adjust_spaces() {
 #   local desired_spaces=("$@")
 #   local display=1
