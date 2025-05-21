@@ -12,6 +12,7 @@ return {
 			"lua",
 			"luadoc",
 			"query",
+			"go",
 			"markdown",
 			"markdown_inline",
 			"prisma",
