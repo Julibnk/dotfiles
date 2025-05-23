@@ -7,7 +7,7 @@ lalt - m : open_and_move "Microsoft Outlook"
 lalt - s : open_and_move "Spotify"
 # lalt - p : open_and_move "Postman"
 # lalt - d : open_and_move "DBeaver"
-lalt - o : open_and_move "Obsidian"
+lalt - n : open_and_move "Obsidian"
 lalt - c : open_and_move "Microsoft Teams"
 
 lalt - n : yabai -m window --focus next
@@ -34,7 +34,7 @@ lalt - 0 : yabai -m space --focus  10
 # Change layout
 #Send to external window
 lalt - x : yabai -m window --space 1; yabai -m space --focus 1 
-lalt - e : yabai -m window --space 7; yabai -m space --focus 7 
+lalt - e : yabai -m window --space 7; yabai -m space --focus 8 
 lalt - i : hook_back
 
 # toggle window zoom
