@@ -1,5 +1,5 @@
 -- Keymaps
-vim.keymap.set("i", "jk", '<cmd>echo "Don`t do that"<CR>')
+vim.keymap.set("i", "jk", "<Esc>")
 
 vim.keymap.set("n", "<left>", '<cmd>echo "Don`t do that"<CR>')
 vim.keymap.set("n", "<right>", '<cmd>echo "Don`t do that"<CR>')
