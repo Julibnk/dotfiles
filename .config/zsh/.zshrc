@@ -100,6 +100,7 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+#
 # ---- NVM ----
 # init nvm on startup
 source $(brew --prefix nvm)/nvm.sh
@@ -149,6 +150,12 @@ function custom-fzf-cd-widget() {
 }
 zle -N custom-fzf-cd-widget        # create zsh widget from function
 
+# function fzf-open-file-widget() {
+#     open < fzf-file-widget
+# }
+#
+# zle -N fzf-open-file-widget
+
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"
@@ -157,7 +164,13 @@ function y() {
 	fi
 	rm -f -- "$tmp"
 }
-#
+zle -N y
+
+export FPATH="$XDG_CONFIG_HOME/tmux-sessionizer":$FPATH
+autoload -U tmux-sessionizer; 
+zle -N tmux-sessionizer
+
+
 # j 
 # TODO Try configure someday
 # Advanced customization of fzf options via _fzf_comprun function
@@ -249,20 +262,20 @@ zmodload zsh/complist
 
 # ---- BINDNGS ----
 bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'k' vi-up-line-or-history
+# bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
+# bindkey -M menuselect 'j' vi-down-line-or-history
 
 
 # Rebind ALT C to Cntrl g for cd
 bindkey '^g' custom-fzf-cd-widget
+bindkey '^f' fzf-file-widget
+# bindkey '^o' fzf-open-file-widget
+bindkey '^y' y
+bindkey '^t' tmux-sessionizer
 # bindkey '^f' fzf-cd-widget
 
 # ---- ENV variables ----
-export VISUAL=nvim
-export EDITOR="$VISUAL"
-# export PATH="$NVM_DIR/versions/node/$(nvm version)/bin:$PATH"
-export MANPAGER="nvim +Man!"
 
 
 
