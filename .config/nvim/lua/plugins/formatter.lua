@@ -24,6 +24,7 @@ return {
 			markdown = { "prettierd", "prettier" },
 			python = { "isort", "black" },
 			-- sql = { 'sql-formatter' },
+			prisma = { "prettierd", "prettier" },
 			typescript = { "prettierd", "prettier", "sql-formatter" },
 			typescriptreact = { "prettierd", "prettier" },
 			yaml = { "prettier" },
