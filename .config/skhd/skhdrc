@@ -2,12 +2,11 @@
 
 lalt - b : open_and_move "Brave Browser"
 lalt - t : open_and_move "Ghostty"
-# lalt - n : open_and_move "Notion"
 lalt - m : open_and_move "Microsoft Outlook"
 lalt - s : open_and_move "Spotify"
-# lalt - p : open_and_move "Postman"
-# lalt - d : open_and_move "DBeaver"
-lalt - n : open_and_move "Obsidian"
+# lalt - n : open_and_move " obsidian://open?vault=personal"
+lalt - p : open "obsidian://open?vault=personal" && yabai -m window --focus "$(yabai -m query --windows | jq ".[] | select(.app==\"Obsidian\").id")" ""
+lalt - n : open "obsidian://open?vault=work" && yabai -m window --focus "$(yabai -m query --windows | jq ".[] | select(.app==\"Obsidian\").id")" ""
 lalt - c : open_and_move "Microsoft Teams"
 
 lalt - n : yabai -m window --focus next
