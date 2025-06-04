@@ -1,6 +1,26 @@
+-- TODO: Force update lualine on harpoon events to avoid lag
+local function harpoon_section()
+	local ok, harpoon = pcall(require, "harpoon")
+	if ok then
+		local bufname_in_harpoon = string.gsub(vim.api.nvim_buf_get_name(0), vim.loop.cwd() .. "/", "")
+		local its_me, index = harpoon:list():get_by_value(bufname_in_harpoon)
+
+		-- { icon = " ", color = "warning" },
+		if its_me ~= nil then
+			return "󰐃 " .. index .. "/" .. harpoon:list():length() .. ""
+		end
+
+		if harpoon:list():length() == 0 then
+			return ""
+		end
+		return harpoon:list():length()
+	else
+		return nil
+	end
+end
 return {
 	"nvim-lualine/lualine.nvim",
-	dependencies = { "nvim-tree/nvim-web-devicons", "bwpge/lualine-pretty-path" },
+	dependencies = { "nvim-tree/nvim-web-devicons", "bwpge/lualine-pretty-path", "ThePrimeagen/harpoon" },
 	opts = {
 		options = {
 			icons_enabled = true,
@@ -24,10 +44,13 @@ return {
 		sections = {
 			lualine_a = { "mode" },
 			lualine_b = { "branch", "diagnostics" },
-			lualine_c = { { "pretty_path", directories = {
-				max_depth = 4,
-			} } },
-			lualine_x = { "fileformat", "filetype" },
+			lualine_c = {
+				{ "pretty_path", directories = {
+					max_depth = 4,
+				} },
+				{ harpoon_section, color = { fg = "#ffa500" } },
+			},
+			lualine_x = { "lsp_status", "fileformat", "filetype" },
 			lualine_y = { "progress" },
 			lualine_z = { "location" },
 		},
@@ -42,87 +65,5 @@ return {
 		tabline = {},
 		winbar = {},
 		inactive_winbar = {},
-		extensions = {},
 	},
-
-	-- opts = {
-	-- 	sections = {
-	-- lualine_a = {
-	-- 	{
-	-- 		"mode",
-	-- 		fmt = trunc(130, 3, 0, true),
-	-- 	},
-	-- },
-	-- lualine_b = {
-	-- 	{
-	-- 		"branch",
-	-- 		fmt = trunc(70, 15, 65, true),
-	-- 		separator = "",
-	-- 	},
-	--
-	-- 	{
-	-- 		"diff",
-	-- 		symbols = {
-	-- 			added = " ",
-	-- 			modified = " ",
-	-- 			removed = " ",
-	-- 		},
-	-- 		fmt = trunc(0, 0, 60, true),
-	-- 	},
-	-- 	{
-	-- 		"diagnostics",
-	-- 		-- symbols = { error = 'E', warn = 'W', info = 'I', hint = 'H' },
-	-- 		symbols = { error = " ", warn = " ", info = " ", hint = " " },
-	-- 	},
-	-- },
-	-- lualine_c = {
-	-- 	{
-	-- 		"pretty_path",
-	-- 		providers = {
-	-- 			-- default = require 'util/pretty_path_harpoon',
-	-- 		},
-	-- 		directories = {
-	-- 			max_depth = 4,
-	-- 		},
-	-- 		highlights = {
-	-- 			newfile = "LazyProgressDone",
-	-- 		},
-	-- 		separator = "",
-	-- 	},
-	-- },
-	-- lualine_x = {
-	-- 	{
-	-- 		lazy_status.updates,
-	-- 		cond = lazy_status.has_updates,
-	-- 		color = { fg = "#ff9e64" },
-	-- 		fmt = trunc(0, 0, 160, true), -- hide when window is < 100 columns
-	-- 		separator = "",
-	-- 	},
-	--
-	-- 	-- require('util.lualine').cmp_source('supermaven', '󰰣'),
-	--
-	-- 	{
-	-- 		lsp_status_all,
-	-- 		fmt = trunc(0, 8, 140, false),
-	-- 		separator = "",
-	-- 	},
-	-- 	{
-	-- 		encoding_only_if_not_utf8,
-	-- 		fmt = trunc(0, 0, 140, true), -- hide when window is < 80 columns
-	-- 		separator = "",
-	-- 	},
-	-- 	{
-	-- 		fileformat_only_if_not_unix,
-	-- 		fmt = trunc(0, 0, 140, true), -- hide when window is < 80 columns
-	-- 		separator = "",
-	-- 	},
-	-- },
-	-- lualine_y = {
-	-- 	{ "progress", fmt = trunc(0, 0, 40, true) },
-	-- },
-	-- lualine_z = {
-	-- 	{ "location", fmt = trunc(0, 0, 80, true) },
-	-- },
-	-- 	},
-	-- },
 }
