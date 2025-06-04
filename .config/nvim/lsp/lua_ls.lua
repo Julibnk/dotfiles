@@ -55,6 +55,15 @@
 -- 		},
 -- 	},
 -- })
+-- vim.env.XDG_DATA_HOME
+
+-- Delete my config folder from the library to avoid mixing lazy modules and personal plugins
+local runtime_files = vim.api.nvim_get_runtime_file("", true)
+for k, v in ipairs(runtime_files) do
+	if v == vim.fn.stdpath("config") then
+		table.remove(runtime_files, k)
+	end
+end
 -- ```
 --
 -- See `lua-language-server`'s [documentation](https://luals.github.io/wiki/settings/) for an explanation of the above fields:
@@ -101,7 +110,7 @@ return {
 				-- 	-- "${3rd}/busted/library",
 				-- },
 				-- or pull in all of 'runtimepath'. NOTE: this is a lot slower and will cause issues when working on your own configuration (see https://github.com/neovim/nvim-lspconfig/issues/3189)
-				library = vim.api.nvim_get_runtime_file("", true),
+				library = runtime_files,
 			},
 		})
 	end,
