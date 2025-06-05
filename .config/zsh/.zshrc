@@ -70,7 +70,7 @@ ZSH_THEME=""
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(git docker aws zsh-syntax-highlighting zsh-autosuggestions)
 
 # -- Oh my zsh
 source $ZSH/oh-my-zsh.sh
@@ -100,17 +100,11 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-#
 # ---- NVM ----
-# init nvm on startup
 source $(brew --prefix nvm)/nvm.sh
-# nvm alias default 22.13.0 > /dev/null
 
 # ---- FZF -----
-
 eval "$(fzf --zsh)"
-
-# bindkey '^f' fzf-cd-widget
 
 FZF_EXCLUDED="--exclude .git --exclude Library --exclude Applications --exclude node_modules"
 # Use fd instead fdf for search
@@ -124,7 +118,6 @@ if [ -d {} ];
     else bat -n --color=always {}; 
 fi"
 
-# Default options
 export FZF_DEFAULT_OPTS="
     --tmux 95% 
     --padding 1 
@@ -143,15 +136,9 @@ export FZF_CTRL_R_OPTS="
   --color header:italic
   --header 'Press CTRL-Y to copy command into clipboard'"
 
-# --- Extend  fzf zsh plugin to always start from HOME
-function custom-fzf-cd-widget() {
-  cd ~ 
-  fzf-cd-widget '@$'
-}
-zle -N custom-fzf-cd-widget        # create zsh widget from function
 
 # function fzf-open-file-widget() {
-#     open < fzf-file-widget
+#     fzf-file-widget | open
 # }
 #
 # zle -N fzf-open-file-widget
@@ -171,7 +158,11 @@ autoload -U tmux-sessionizer;
 zle -N tmux-sessionizer
 
 
+# FZF git plugin
+# TODO check this
+# source $XDG_CONFIG_HOME/fzf-git/fzf-git.sh
 # j 
+#
 # TODO Try configure someday
 # Advanced customization of fzf options via _fzf_comprun function
 # - The first argument to the function is the name of the command.
@@ -188,9 +179,6 @@ zle -N tmux-sessionizer
 #   esac
 # }
 
-# FZF git plugin
-# TODO check this
-# source ~/fzf-git.sh/fzf-git.sh
 
 # Use fd (https://github.com/sharkdp/fd) for listing path candidates.
 # - The first argument to the function ($1) is the base path to start traversal
@@ -268,12 +256,10 @@ bindkey -M menuselect 'l' vi-forward-char
 
 
 # Rebind ALT C to Cntrl g for cd
-bindkey '^g' custom-fzf-cd-widget
+bindkey '^g' fzf-cd-widget
 bindkey '^f' fzf-file-widget
-# bindkey '^o' fzf-open-file-widget
 bindkey '^y' y
 bindkey '^t' tmux-sessionizer
-# bindkey '^f' fzf-cd-widget
 
 # ---- ENV variables ----
 
