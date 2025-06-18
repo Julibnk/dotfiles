@@ -8,6 +8,7 @@ lalt - s : open_and_move "Spotify"
 lalt - p : open "obsidian://open?vault=personal" && yabai -m window --focus "$(yabai -m query --windows | jq ".[] | select(.app==\"Obsidian\").id")" ""
 lalt - n : open "obsidian://open?vault=work" && yabai -m window --focus "$(yabai -m query --windows | jq ".[] | select(.app==\"Obsidian\").id")" ""
 lalt - c : open_and_move "Microsoft Teams"
+lalt - d : open_and_move "DBeaver"
 
 lalt - n : yabai -m window --focus next
 lalt - p : yabai -m window --focus prev

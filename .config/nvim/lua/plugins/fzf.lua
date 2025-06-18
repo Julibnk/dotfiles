@@ -8,6 +8,9 @@ return {
 	-- end,
 	opts = {
 		winopts = { width = 0.9, height = 0.9, preview = { horizontal = "right:50%" } },
+		files = {
+			-- no_ignore = true,-- respect ".gitignore"  by default
+		},
 		git = {
 			bcommits = { winopts = { preview = { layout = "vertical", vertical = "up:70%" } } },
 			commits = { winopts = { preview = { layout = "vertical", vertical = "up:70%" } } },
