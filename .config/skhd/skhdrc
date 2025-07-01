@@ -34,7 +34,7 @@ lalt - 0 : yabai -m space --focus  10
 # Change layout
 #Send to external window
 lalt - x : yabai -m window --space 1; yabai -m space --focus 1 
-lalt - e : yabai -m window --space 7; yabai -m space --focus 8 
+lalt - e : yabai -m window --space 8; yabai -m space --focus 8 
 lalt - i : hook_back
 
 # toggle window zoom

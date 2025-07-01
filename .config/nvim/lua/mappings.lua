@@ -15,6 +15,7 @@ vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right win
 --Buffers
 vim.keymap.set("n", "<leader>bd", "<cmd>bd!<CR>", { desc = "[B]uffer [b]elete" })
 vim.keymap.set("n", "<leader>bw", "<cmd>w<CR>", { desc = "[B]uffer [w]rite" })
+vim.keymap.set("n", "<leader>br", "<cmd>e<CR>", { desc = "[B]uffer [r]eload" })
 
 --Diagnostics
 -- vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })

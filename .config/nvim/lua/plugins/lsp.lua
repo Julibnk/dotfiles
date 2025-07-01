@@ -19,11 +19,14 @@ return {
 
 					map("gd", "<cmd>FzfLua lsp_definitions<CR>", "[G]oto [D]efinition")
 
+					map("gD", "<cmd>FzfLua lsp_typedefs<CR>", "[G]oto type [D]efinition")
+
 					map("gr", "<cmd>FzfLua lsp_references<CR>", "[G]oto [R]eferences")
 
 					map("gI", "<cmd>FzfLua lsp_implementations<CR>", "[G]oto [R]eferences")
 
 					map("<leader>ca", "<cmd>FzfLua lsp_code_actions<CR>", "[C]ode [A]ction", { "n", "x" })
+
 					-- --  Useful when you're not sure what type a variable is and you want to see
 					-- --  the definition of its *type*, not where it was *defined*.
 					-- map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
@@ -34,7 +37,8 @@ return {
 					--
 					-- -- Fuzzy find all the symbols in your current workspace.
 					-- --  Similar to document symbols, except searches over your entire project.
-					-- map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+					map("<leader>ws", "<cmd>FzfLua lsp_workspace_symbols<CR>", "[W]orkspace [S]ymbols")
+
 					map("<leader>K", vim.lsp.buf.hover, "Hover docs")
 					--
 					-- -- Rename the variable under your cursor.

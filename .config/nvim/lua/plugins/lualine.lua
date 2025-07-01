@@ -18,6 +18,7 @@ local function harpoon_section()
 		return nil
 	end
 end
+
 return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons", "bwpge/lualine-pretty-path", "ThePrimeagen/harpoon" },

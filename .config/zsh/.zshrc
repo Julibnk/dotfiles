@@ -70,10 +70,14 @@ ZSH_THEME=""
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker aws zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(git docker aws zsh-syntax-highlighting zsh-autosuggestions fzf-tab)
 
 # -- Oh my zsh
 source $ZSH/oh-my-zsh.sh
+
+
+autoload -U compinit; compinit
+_comp_options+=(globdots) # With hidden files
 
 
 # ---- THEME ----
@@ -106,7 +110,10 @@ source $(brew --prefix nvm)/nvm.sh
 # ---- FZF -----
 eval "$(fzf --zsh)"
 
-FZF_EXCLUDED="--exclude .git --exclude Library --exclude Applications --exclude node_modules"
+# --- FZF TAB inside tmux popups ---
+zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+
+FZF_EXCLUDED="--exclude .git --exclude Library --exclude Applications --exclude node_modules --exclude .Trash"
 # Use fd instead fdf for search
 export FZF_DEFAULT_COMMAND="fd --hidden $FZF_EXCLUDED"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -143,12 +150,12 @@ export FZF_CTRL_R_OPTS="
 #
 # zle -N fzf-open-file-widget
 
+#TODO: This breaks fzf plugin for some reason
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"
-	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		builtin cd -- "$cwd"
-	fi
+	IFS= read -r -d '' cwd < "$tmp"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
 	rm -f -- "$tmp"
 }
 zle -N y
@@ -258,7 +265,7 @@ bindkey -M menuselect 'l' vi-forward-char
 # Rebind ALT C to Cntrl g for cd
 bindkey '^g' fzf-cd-widget
 bindkey '^f' fzf-file-widget
-bindkey '^y' y
+# bindkey '^y' y
 bindkey '^t' tmux-sessionizer
 
 # ---- ENV variables ----
