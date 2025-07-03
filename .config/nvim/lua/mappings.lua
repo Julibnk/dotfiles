@@ -17,9 +17,16 @@ vim.keymap.set("n", "<leader>bd", "<cmd>bd!<CR>", { desc = "[B]uffer [b]elete" }
 vim.keymap.set("n", "<leader>bw", "<cmd>w<CR>", { desc = "[B]uffer [w]rite" })
 vim.keymap.set("n", "<leader>br", "<cmd>e<CR>", { desc = "[B]uffer [r]eload" })
 
+--Paste
+vim.keymap.set("n", "<leader>p", '"0p', { desc = "[p]ut 0 register" })
+vim.keymap.set("n", "<leader>P", '"0P', { desc = "[P]ut 0 register" })
 --Diagnostics
 -- vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open diagnostic" })
+
+--Quickfix list
+vim.keymap.set("n", "<C-n>", "<cmd>cne<CR>", { desc = "Move next quickfix list item" })
+vim.keymap.set("n", "<C-p>", "<cmd>cp<CR>", { desc = "Move focus to the lowwe window" })
 
 -- Delete default maping for go to reference
 vim.keymap.del("n", "grr")
