@@ -19,9 +19,32 @@ local function harpoon_section()
 	end
 end
 
+local function is_recording()
+	local reg = vim.fn.reg_recording()
+	if reg == "" then
+		return ""
+	end -- not recording
+	return "macro " .. reg
+end
+
+local function mode_fmt(mode)
+	local width = vim.fn.winwidth(0)
+	if width <= 88 then
+		return string.sub(mode, 1, 1)
+	end
+	return mode
+end
+
+local function responsive_disable(content)
+	local width = vim.fn.winwidth(0)
+	if width <= 88 then
+		return ""
+	end
+	return content
+end
 return {
 	"nvim-lualine/lualine.nvim",
-	dependencies = { "nvim-tree/nvim-web-devicons", "bwpge/lualine-pretty-path", "ThePrimeagen/harpoon" },
+	dependencies = { "nvim-tree/nvim-web-devicons", "ThePrimeagen/harpoon" },
 	opts = {
 		options = {
 			icons_enabled = true,
@@ -43,15 +66,18 @@ return {
 			},
 		},
 		sections = {
-			lualine_a = { "mode" },
+			lualine_a = { { "mode", fmt = mode_fmt } },
 			lualine_b = { "branch", "diagnostics" },
 			lualine_c = {
-				{ "pretty_path", directories = {
-					max_depth = 4,
-				} },
+				{ "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
+				{ "filename", path = 4 },
 				{ harpoon_section, color = { fg = "#ffa500" } },
+				{ is_recording, color = { fg = "#ffa500" } },
 			},
-			lualine_x = { "lsp_status", "fileformat", "filetype" },
+			lualine_x = {
+				{ "lsp_status", ignore_lsp = { "tailwindls" }, fmt = responsive_disable },
+				{ "filetype", fmt = responsive_disable },
+			},
 			lualine_y = { "progress" },
 			lualine_z = { "location" },
 		},
@@ -59,7 +85,7 @@ return {
 			lualine_a = {},
 			lualine_b = {},
 			lualine_c = { "filename" },
-			lualine_x = { "location" },
+			lualine_x = { "location", "fileformat" },
 			lualine_y = {},
 			lualine_z = {},
 		},

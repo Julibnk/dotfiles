@@ -12,6 +12,8 @@ return {
 			desc = "[F]ormat buffer",
 		},
 	},
+	---@module "conform"
+	---@type conform.setupOpts
 	opts = {
 		formatters_by_ft = {
 			css = { "prettierd", "prettier" },

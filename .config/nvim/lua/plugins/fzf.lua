@@ -5,7 +5,9 @@ return {
 	-- setup = function(opts)
 	-- 	local fzf = require("fzf-lua")
 	-- 	fzf.register()
+
 	-- end,
+	---@module 'fzf-lua'
 	opts = function()
 		local actions = require("fzf-lua.actions")
 		return {
