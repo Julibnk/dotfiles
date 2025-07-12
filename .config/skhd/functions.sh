@@ -42,15 +42,24 @@ hook_back() {
     yabai -m window --space "$space"; yabai -m space --focus "$space";
  }
 
-#FIX:doesnt work 
 focus_prev() {
     current_stack=$(yabai -m query --windows --space | jq '.[0].["stack-index"]')
     win_total=$(yabai -m query --windows --space | jq '. | length')
 
-    # if [[ "$current_stack" == "1" ]]; then 
-        # yabai -m window --focus "stack.${win_total}"
-    # else
-        yabai -m window --focus stack.next
-    # fi
+    if [[ "$current_stack" == "1" ]]; then 
+        yabai -m window --focus stack.last
+    else
+        yabai -m window --focus stack.prev
+    fi
+}
 
+focus_next() {
+    current_stack=$(yabai -m query --windows --space | jq '.[0].["stack-index"]')
+    win_total=$(yabai -m query --windows --space | jq '. | length')
+
+    if [[ "$current_stack" == "$win_total" ]]; then 
+        yabai -m window --focus stack.first
+    else
+        yabai -m window --focus stack.next
+    fi
 }
