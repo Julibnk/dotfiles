@@ -42,6 +42,7 @@ local function responsive_disable(content)
 	end
 	return content
 end
+
 return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons", "ThePrimeagen/harpoon" },
