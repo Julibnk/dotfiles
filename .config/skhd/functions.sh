@@ -1,6 +1,6 @@
 #!/bin/bash
 open_and_move() {
-open -a "$1" && yabai -m window --focus "$(yabai -m query --windows | jq ".[] | select(.app==\"$1\").id")"
+    open -a "$1" && yabai -m window --focus "$(yabai -m query --windows | jq "[.[] | select(.app==\"$1\")][0].id")"
 }
 
 switch_yabai_layout() {
@@ -40,3 +40,15 @@ hook_back() {
     yabai -m window --space "$space"; yabai -m space --focus "$space";
  }
 
+#FIX:doesnt work 
+focus_prev() {
+    current_stack=$(yabai -m query --windows --space | jq '.[0].["stack-index"]')
+    win_total=$(yabai -m query --windows --space | jq '. | length')
+
+    # if [[ "$current_stack" == "1" ]]; then 
+        # yabai -m window --focus "stack.${win_total}"
+    # else
+        yabai -m window --focus stack.next
+    # fi
+
+}
