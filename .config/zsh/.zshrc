@@ -213,6 +213,8 @@ alias cl='clear'
 alias fd='fzf'
 alias lg='lazygit'
 alias ldc='lazydocker'
+alias grep='rg --hidden'
+alias g='grep'
 
 alias work='cd ~/dev/work/'
 alias github='cd ~/dev/github/'
