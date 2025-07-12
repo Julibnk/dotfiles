@@ -8,6 +8,7 @@ return {
 
 	-- end,
 	---@module 'fzf-lua'
+	---@type
 	opts = function()
 		local actions = require("fzf-lua.actions")
 		return {
@@ -18,6 +19,11 @@ return {
 			git = {
 				bcommits = { winopts = { preview = { layout = "vertical", vertical = "up:70%" } } },
 				commits = { winopts = { preview = { layout = "vertical", vertical = "up:70%" } } },
+			},
+			grep = {
+				silent = true,
+				rg_opts = '--column --no-heading --color=always --smart-case --max-columns=4096 -e -g "!.git"',
+				hidden = true,
 			},
 			diagnostics = {
 				-- Remove the dashed line between diagnostic items.
