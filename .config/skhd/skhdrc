@@ -1,37 +1,30 @@
 #!/bin/bash
 
-lalt - b : open_and_move "Brave Browser"
-lalt - t : open_and_move "Ghostty"
+lalt - 1 : open_and_move "Zen"
+lalt - 2 : open_and_move "Ghostty"
+lalt - c : open_and_move "Microsoft Teams"
 lalt - m : open_and_move "Microsoft Outlook"
 lalt - s : open_and_move "Spotify"
 # lalt - n : open_and_move " obsidian://open?vault=personal"
 lalt - p : open "obsidian://open?vault=personal" && yabai -m window --focus "$(yabai -m query --windows | jq ".[] | select(.app==\"Obsidian\").id")" ""
 lalt - n : open "obsidian://open?vault=work" && yabai -m window --focus "$(yabai -m query --windows | jq ".[] | select(.app==\"Obsidian\").id")" ""
-lalt - c : open_and_move "Microsoft Teams"
 lalt - d : open_and_move "DBeaver"
 
-lalt - n : yabai -m window --focus next
-lalt - p : yabai -m window --focus prev
-
-# Window management
-# lalt - h : yabai -m window --focus west
-# lalt - j : yabai -m window --focus south
-# lalt - k : yabai -m window --focus north
-# lalt - l : yabai -m window --focus east
+# lalt - n : yabai -m window --focus next
+# lalt - p : yabai -m window --focus prev
 
 # Move between spaces
-lalt - 1 : yabai -m space --focus  1
-lalt - 2 : yabai -m space --focus  2
-lalt - 3 : yabai -m space --focus  3
-lalt - 4 : yabai -m space --focus  4
-lalt - 5 : yabai -m space --focus  5
-lalt - 6 : yabai -m space --focus  6
-lalt - 7 : yabai -m space --focus  7
-lalt - 8 : yabai -m space --focus  8
-lalt - 9 : yabai -m space --focus  9
-lalt - 0 : yabai -m space --focus  10
+# lalt - 1 : yabai -m space --focus  1
+# lalt - 2 : yabai -m space --focus  2
+# lalt - 3 : yabai -m space --focus  3
+# lalt - 4 : yabai -m space --focus  4
+# lalt - 5 : yabai -m space --focus  5
+# lalt - 6 : yabai -m space --focus  6
+# lalt - 7 : yabai -m space --focus  7
+# lalt - 8 : yabai -m space --focus  8
+# lalt - 9 : yabai -m space --focus  9
+# lalt - 0 : yabai -m space --focus  10
 
-# Change layout
 #Send to external window
 lalt - x : yabai -m window --space 1; yabai -m space --focus 1 
 lalt - e : yabai -m window --space 8; yabai -m space --focus 8 
@@ -43,8 +36,11 @@ lalt - i : hook_back
 # lalt - z : yabai -m window --toggle zoom-fullscreen
 lalt - r : yabai -m space --rotate 270
 # lalt - h : yabai -m window --focus prev
+lalt - h : yabai -m space --focus prev
 lalt - j : yabai -m window --focus stack.next
 lalt - k : yabai -m window --focus stack.prev
+lalt - l : yabai -m space --focus next
+#
 # lalt - l : yabai -m window --focus next
 lalt - z : switch_yabai_layout
 # lalt - - : yabai -m window --toggle split
