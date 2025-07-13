@@ -21,15 +21,15 @@ launchctl unload -F /System/Library/LaunchAgents/com.apple.OSDUIHelper.plist > /
 # Setting up the general bar appearance of the bar
 bar=(
   corner_radius=0
-  height=33
-  # color=$BAR_COLOR
+  height=35
+  color=$BAR_COLOR
   # border_width=2
-  border_color=$BAR_BORDER_COLOR
+  # border_color=$BAR_BORDER_COLOR
   shadow=off
   position=top
   sticky=on
   y_offset=0
-  margin=6
+  # margin=6
   topmost=window
 )
 
@@ -37,17 +37,17 @@ bar=(
 # Setting up default values
 defaults=(
   updates=when_shown
-  icon.font="$FONT:Bold:14.0"
+  icon.font="$FONT:Bold:15.0"
   icon.color=$ICON_COLOR
   icon.padding_left=$PADDINGS
   icon.padding_right=$PADDINGS
-  label.font="$FONT:Semibold:13.0"
+  label.font="$FONT:Semibold:15.0"
   label.color=$LABEL_COLOR
   label.padding_left=$PADDINGS
   label.padding_right=$PADDINGS
   padding_right=$PADDINGS
   padding_left=$PADDINGS
-  background.height=26
+  background.height=35
   background.corner_radius=0
   background.border_width=2
   popup.background.border_width=2
@@ -60,6 +60,15 @@ defaults=(
 
 sketchybar  --bar "${bar[@]}" --default "${defaults[@]}"
 
+# Apple Logo
+sketchybar --add item apple.logo left \
+           --set apple.logo icon=$APPLE \
+                           icon.font="SF Pro:Black:16.0" \
+                           # icon.color=$ACCENT_SECONDARY \
+                           padding_right=12 \
+                           padding_left=4 \
+                           label.drawing=off \
+                           click_script="$PLUGIN_DIR/apple.sh"
 # Left
 source "$ITEM_DIR/spaces.sh"
 source "$ITEM_DIR/yabai.sh"
