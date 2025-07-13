@@ -16,13 +16,13 @@ export KANAGAWA_BLUE=0xff29526e
 export KANAGAWA_LIGHT_BLUE=0xff82c0af
 export KANAGAWA_DARK_BLUE=0xff171f40
 
-export KANAGAWA_YELLOW=0xff82c0af
+export KANAGAWA_YELLOW=0xffbfa95b
 export KANAGAWA_LIGHT_YELLOW=0xffd4c787
 export KANAGAWA_DARK_YELLOW=0xff7f745b
 # General bar colors
 #
 export BAR_COLOR=$KANAGAWA_BLUE
-export BAR_BORDER_COLOR=0xff494d64 #0xa024273a
+export BAR_BORDER_COLOR=$WHITE
 export ICON_COLOR=$WHITE # Color of all icons
 export LABEL_COLOR=$WHITE # Color of all labels
 export BACKGROUND_1=0x603c3e4f
