@@ -28,7 +28,13 @@ vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open diagn
 vim.keymap.set("n", "<C-n>", "<cmd>cne<CR>", { desc = "Move next quickfix list item" })
 vim.keymap.set("n", "<C-p>", "<cmd>cp<CR>", { desc = "Move focus to the lowwe window" })
 
--- Delete default maping for go to reference
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Half page down centered" })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Half page up centered" })
+
+vim.keymap.set("n", "n", "uzzzv", { desc = "Next search result centerd" })
+vim.keymap.set("n", "U", "Uzzzv", { desc = "Prev search result centerd" })
+
+-- Delete default mapings for go to reference
 vim.keymap.del("n", "grr")
 vim.keymap.del({ "n", "x" }, "gra")
 vim.keymap.del("n", "grn")
