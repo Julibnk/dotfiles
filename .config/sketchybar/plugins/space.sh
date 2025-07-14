@@ -2,7 +2,7 @@
 
 update() {
   source "$CONFIG_DIR/colors.sh"
-  COLOR=$KANAGAWA_BLUE
+  COLOR=$TRANSPARENT
   if [ "$SELECTED" = "true" ]; then
     COLOR=$KANAGAWA_DARK_YELLOW
   fi

@@ -24,7 +24,7 @@ do
     label.highlight_color=$WHITE
     label.font="sketchybar-app-font:Regular:16.0"
     label.y_offset=-1
-    background.color=$KANAGAWA_BLUE
+    background.color=$TRANSPARENT
     # background.color=$BACKGROUND_1
     # background.border_color=$BACKGROUND_2
     background.drawing=off
