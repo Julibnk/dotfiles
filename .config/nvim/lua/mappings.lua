@@ -31,8 +31,8 @@ vim.keymap.set("n", "<C-p>", "<cmd>cp<CR>", { desc = "Move focus to the lowwe wi
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Half page down centered" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Half page up centered" })
 
-vim.keymap.set("n", "n", "uzzzv", { desc = "Next search result centerd" })
-vim.keymap.set("n", "U", "Uzzzv", { desc = "Prev search result centerd" })
+vim.keymap.set("n", "n", "nzzzv", { desc = "Next search result centerd" })
+vim.keymap.set("n", "N", "Nzzzv", { desc = "Prev search result centerd" })
 
 -- Delete default mapings for go to reference
 vim.keymap.del("n", "grr")
