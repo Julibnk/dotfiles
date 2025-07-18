@@ -1,5 +1,6 @@
 #!/usr/bin/env sh
 
+#After a restart execute this
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 sudo yabai --load-sa
 
@@ -49,9 +50,10 @@ yabai -m space 8 --label external
 
 # window rules
 yabai -m rule --add app="^Zen$" space=^browser
+yabai -m rule --add app="^Brave Browser$" space=^browser
 yabai -m rule --add app="^Ghostty$" space=^code
 yabai -m rule --add app="^Microsoft Teams$" space=^chat
-yabai -m rule --add app="^Obsidian$" space=^notes
+# yabai -m rule --add app="^Obsidian$" space=^notes
 yabai -m rule --add app="^Postman$" space=^other
 yabai -m rule --add app="^DBeaver$" space=^other
 yabai -m rule --add app="^Preview$" space=^other
@@ -59,6 +61,7 @@ yabai -m rule --add app="^Finder$" space=^other
 yabai -m rule --add app="^Microsoft Outlook$" space=^other
 yabai -m rule --add app="^Notion$" space=^other
 yabai -m rule --add app="^Spotify$" space=^music
+yabai -m rule --add app="^Strongbox$" space=^music
 
 # specific space settings
 # yabai -m config --space chat layout stack

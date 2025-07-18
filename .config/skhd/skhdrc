@@ -1,60 +1,68 @@
 #!/bin/bash
-
-lalt - 1 : open_and_move "Zen"
-lalt - 2 : open_and_move "Ghostty"
-# lalt - c : open_and_move "Microsoft Teams"
-# lalt - m : open_and_move "Microsoft Outlook"
-lalt - s : open_and_move "Spotify"
+alt - z : open_and_move "Zen"
+alt - b : open_and_move "Brave Browser"
+alt - t : open_and_move "Ghostty"
+alt - c : open_and_move "Microsoft Teams"
+alt - m : open_and_move "Microsoft Outlook"
+alt - s : open_and_move "Spotify"
 # lalt - n : open_and_move " obsidian://open?vault=personal"
-lalt - p : open "obsidian://open?vault=personal" && yabai -m window --focus "$(yabai -m query --windows | jq ".[] | select(.app==\"Obsidian\").id")" ""
-lalt - n : open "obsidian://open?vault=work" && yabai -m window --focus "$(yabai -m query --windows | jq ".[] | select(.app==\"Obsidian\").id")" ""
+alt - p : yabai -m space --focus  5 && open "obsidian://open?vault=work"
+alt - n : yabai -m space --focus  6 && open "obsidian://open?vault=personal"
+#
+# alt - p : open "obsidian://open?vault=personal" && yabai -m window --focus "$(yabai -m query --windows | jq ".[] | select(.app==\"Obsidian\").id")" ""
+# alt - n : open "obsidian://open?vault=work" && yabai -m window --focus "$(yabai -m query --windows | jq ".[] | select(.app==\"Obsidian\").id")" ""
 # lalt - d : open_and_move "DBeaver"
 
 # lalt - n : yabai -m window --focus next
 # lalt - p : yabai -m window --focus prev
 
 # Move between spaces
-# lalt - 1 : yabai -m space --focus  1
-# lalt - 2 : yabai -m space --focus  2
-# lalt - 3 : yabai -m space --focus  3
-# lalt - 4 : yabai -m space --focus  4
-# lalt - 5 : yabai -m space --focus  5
-# lalt - 6 : yabai -m space --focus  6
-# lalt - 7 : yabai -m space --focus  7
-# lalt - 8 : yabai -m space --focus  8
-# lalt - 9 : yabai -m space --focus  9
-# lalt - 0 : yabai -m space --focus  10
+# alt - 1 : yabai -m space --focus  1
+# alt - 2 : yabai -m space --focus  2
+# alt - 3 : yabai -m space --focus  3
+# alt - 4 : yabai -m space --focus  4
+# alt - 5 : yabai -m space --focus  5
+# alt - 6 : yabai -m space --focus  6
+# alt - 7 : yabai -m space --focus  7
+# alt - 8 : yabai -m space --focus  8
+# alt - 9 : yabai -m space --focus  9
+# alt - 0 : yabai -m space --focus  10
 
 #Send to external window
-lalt - x : yabai -m window --space 1; yabai -m space --focus 1 
-lalt - e : yabai -m window --space 8; yabai -m space --focus 8 
-lalt - i : hook_back
+alt - e : yabai -m window --space 8; yabai -m space --focus 8 
+alt - i : hook_back
 
-lalt - r : yabai -m space --rotate 270
+alt - o : yabai -m window --focus recent
+alt - r : yabai -m space --rotate 270
 
 #Space navigation vimlike
-lalt - h : yabai -m space --focus prev
-lalt - j : focus_next
-lalt - k : focus_prev
-lalt - l : yabai -m space --focus next
+alt - h : yabai -m space --focus prev
+alt - j : focus_next
+alt - k : focus_prev
+alt - l : yabai -m space --focus next
 #
 # lalt - l : yabai -m window --focus next
-lalt - z : switch_yabai_layout
+lalt - v : switch_yabai_layout
 # lalt - - : yabai -m window --toggle split
 
  # yabai -m query --windows | jq 'map(select(.space == 2)) | first | .id'
 # send window to desktop and follow focus
-lalt + shift - 1 : yabai -m window --space  1; yabai -m space --focus 1;  
-lalt + shift - 2 : yabai -m window --space  2; yabai -m space --focus 2;
-lalt + shift - 3 : yabai -m window --space  3; yabai -m space --focus 3;
-lalt + shift - 4 : yabai -m window --space  4; yabai -m space --focus 4;
-lalt + shift - 5 : yabai -m window --space  5; yabai -m space --focus 5;
-lalt + shift - 6 : yabai -m window --space  6; yabai -m space --focus 6;
-lalt + shift - 7 : yabai -m window --space  7; yabai -m space --focus 7;
-lalt + shift - 8 : yabai -m window --space  8; yabai -m space --focus 8;
-lalt + shift - 9 : yabai -m window --space  9; yabai -m space --focus 9;
-lalt + shift - 0 : yabai -m window --space  10; yabai -m space --focus 10;
+alt - 1 : yabai -m window --space  1; yabai -m space --focus 1;  
+alt - 2 : yabai -m window --space  2; yabai -m space --focus 2;
+alt - 3 : yabai -m window --space  3; yabai -m space --focus 3;
+alt - 4 : yabai -m window --space  4; yabai -m space --focus 4;
+alt - 5 : yabai -m window --space  5; yabai -m space --focus 5;
+alt - 6 : yabai -m window --space  6; yabai -m space --focus 6;
+alt - 7 : yabai -m window --space  7; yabai -m space --focus 7;
+alt - 8 : yabai -m window --space  8; yabai -m space --focus 8;
+alt - 9 : yabai -m window --space  9; yabai -m space --focus 9;
+alt - 0 : yabai -m window --space  10; yabai -m space --focus 10;
 
+# make floating window fill left-half of screen
+shift + alt - left   : yabai -m window --grid 1:2:0:0:1:1
+
+# make floating window fill right-half of screen
+shift + alt - right  : yabai -m window --grid 1:2:1:0:1:1
 
 # Disable cmd tab 
 cmd - 0x30 : echo 'Get used to!!'

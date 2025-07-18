@@ -3,6 +3,18 @@ open_and_move() {
     open -a "$1" && yabai -m window --focus "$(yabai -m query --windows | jq "[.[] | select(.app==\"$1\")][0].id")"
 }
 
+# FIX: fixfixfixfix
+#
+# open_browser() {
+#     brave_id = $(yabai -m query --windows | jq "[.[] | select(.app==\"Brave Browser\")][0].id")
+#
+#     if [ -z "$brave_id" ]; then
+#         open -a "Brave Browser" && yabai -m window --focus "$(yabai -m query --windows | jq "[.[] | select(.app==\"Brave Browser\")][0].id")"
+#     else;
+#         open -a "Zen" && yabai -m window --focus "$(yabai -m query --windows | jq "[.[] | select(.app==\"Zen\")][0].id")"
+#     fi
+# }
+
 switch_yabai_layout() {
     current_layout=$(yabai -m query --spaces --space | jq -r '.type')
 
