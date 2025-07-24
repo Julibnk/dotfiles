@@ -55,23 +55,50 @@ hook_back() {
  }
 
 focus_prev() {
-    current_stack=$(yabai -m query --windows --space | jq '.[0].["stack-index"]')
-    win_total=$(yabai -m query --windows --space | jq '. | length')
 
-    if [[ "$current_stack" == "1" ]]; then 
-        yabai -m window --focus stack.last
+    space_type=$(yabai -m query --spaces --space | jq '.["type"]')
+
+    if [[ "$space_type" == "\"stack\"" ]]; then
+        current_stack=$(yabai -m query --windows --space | jq '.[0].["stack-index"]')
+        win_total=$(yabai -m query --windows --space | jq '. | length')
+
+        if [[ "$current_stack" == "1" ]]; then 
+            yabai -m window --focus stack.last
+        else
+            yabai -m window --focus stack.prev
+        fi
     else
-        yabai -m window --focus stack.prev
+       first_window=$(yabai -m query --spaces --window | jq '.[0].["first-window"]')
+       current_window=$(yabai -m query --windows --window | jq '.["id"]')
+
+       if [[ "$first_window" == "$current_window" ]]; then 
+         yabai -m window --focus last
+       else
+         yabai -m window --focus prev
+       fi
     fi
 }
 
 focus_next() {
-    current_stack=$(yabai -m query --windows --space | jq '.[0].["stack-index"]')
-    win_total=$(yabai -m query --windows --space | jq '. | length')
+    space_type=$(yabai -m query --spaces --space | jq '.["type"]')
 
-    if [[ "$current_stack" == "$win_total" ]]; then 
-        yabai -m window --focus stack.first
+    if [[ "$space_type" == "\"stack\"" ]]; then
+        current_stack=$(yabai -m query --windows --space | jq '.[0].["stack-index"]')
+        win_total=$(yabai -m query --windows --space | jq '. | length')
+
+        if [[ "$current_stack" == "$win_total" ]]; then 
+            yabai -m window --focus stack.first
+        else
+            yabai -m window --focus stack.next
+        fi
     else
-        yabai -m window --focus stack.next
+       first_window=$(yabai -m query --spaces --window | jq '.[0].["last-window"]')
+       current_window=$(yabai -m query --windows --window | jq '.["id"]')
+
+       if [[ "$first_window" == "$current_window" ]]; then 
+         yabai -m window --focus first
+       else
+         yabai -m window --focus next
+       fi
     fi
 }

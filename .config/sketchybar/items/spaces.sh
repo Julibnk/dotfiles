@@ -18,7 +18,7 @@ do
     icon.padding_right=10
     padding_left=0
     padding_right=0
-    label.padding_right=0
+    label.padding_right=10
     icon.highlight_color=$WHITE
     label.color=$GREY
     label.highlight_color=$WHITE
