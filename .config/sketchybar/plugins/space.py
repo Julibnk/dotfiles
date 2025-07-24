@@ -171,7 +171,7 @@ for app in apps:
     spaces[app['space']] = spaces.get(app['space'], {})
     spaces[app['space']][app['app']] = spaces[app['space']].get(app['app'], 0) + 1
 
-args = ' '.join([f'--set space.{space}  label.drawing=on' for space, apps in spaces.items()])
+args = ' '.join([f'--set space.{space}    label.drawing=on' for space, apps in spaces.items()])
 default_args = "--set spaces_bracket drawing=off --set '/space\..*/' background.drawing=on --animate sin 10"
 
 args2 = ''

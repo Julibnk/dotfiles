@@ -7,8 +7,6 @@ return {
 	-- 	fzf.register()
 
 	-- end,
-	---@module 'fzf-lua'
-	---@type
 	opts = function()
 		local actions = require("fzf-lua.actions")
 		return {
@@ -76,5 +74,7 @@ return {
 		{ "<leader>Q", "<cmd>FzfLua diagnostics_workspace<CR>" },
 		{ "<leader>gc", "<cmd>FzfLua git_commits<CR>" },
 		{ "<leader>gb", "<cmd>FzfLua git_bcommits<CR>" },
+		{ "<leader>fw", "<cmd>FzfLua grep_cword<CR>" },
+		{ "<leader>fW", "<cmd>FzfLua grep_cWORD<CR>" },
 	},
 }

@@ -9,8 +9,6 @@ update() {
   sketchybar --set $NAME icon.highlight=$SELECTED \
                          label.highlight=$SELECTED \
                          background.color=$COLOR
-  icon.
-
                          # background.border_color=$COLOR
 }
 
