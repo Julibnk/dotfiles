@@ -1,0 +1,16 @@
+- [ ] nvim
+  - [ ] fidget
+  - [ ] checkhealth deprecated
+  - [ ] tsc output to quickfix
+  - [ ] nvim checkamte
+    - [ ] leaderT to find and open todo list
+  - [ ] snacks - scrach
+    - [ ] scratch?
+    - [ ] check integration with checkmate
+
+- [ ] como se navega por zsh pa arriba
+- [ ] keycron
+  - [ ] cambiar fisiciamente el cntrl derecho
+  - [ ] mapearlo para skhd
+  - [ ] remove delete from mappings
+  - [ ] remap \` and ~ to space: and space "" remap \ to m

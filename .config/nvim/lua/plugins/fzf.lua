@@ -8,6 +8,8 @@ return {
 
 	-- end,
 	opts = function()
+		local fzf = require("fzf-lua")
+		fzf.register_ui_select()
 		local actions = require("fzf-lua.actions")
 		return {
 			winopts = { width = 0.9, height = 0.9, preview = { horizontal = "right:50%" } },

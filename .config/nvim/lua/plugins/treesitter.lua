@@ -21,6 +21,7 @@ return {
 			"typescript",
 			"tsx",
 			"vim",
+			"sql",
 			"vimdoc",
 			"xml",
 		},

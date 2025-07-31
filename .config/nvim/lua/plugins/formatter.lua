@@ -30,6 +30,7 @@ return {
 			typescript = { "prettierd", "prettier", "sql-formatter" },
 			typescriptreact = { "prettierd", "prettier" },
 			yaml = { "prettier" },
+			xml = { "xmlformatter" },
 			-- liquid = { 'prettier' },
 		},
 		format_on_save = {
