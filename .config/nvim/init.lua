@@ -12,6 +12,21 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 	end,
 })
 
+vim.api.nvim_create_user_command("TscQuickfix", function()
+	local tmpfile = vim.fn.tempname()
+	local cmd = "tsc --noEmit > " .. tmpfile .. " 2>&1"
+	os.execute(cmd)
+
+	local lines = vim.fn.readfile(tmpfile)
+	local efm = "%f(%l\\,%c): %t%m"
+
+	local qfitems = vim.fn.getqflist({ lines = lines, efm = efm }).items
+
+	vim.fn.setqflist(qfitems, "r")
+
+	vim.cmd("copen")
+end, {})
+
 vim.diagnostic.config({
 	signs = {
 		text = {
