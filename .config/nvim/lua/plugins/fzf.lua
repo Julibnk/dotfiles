@@ -27,6 +27,7 @@ return {
 			},
 			diagnostics = {
 				-- Remove the dashed line between diagnostic items.
+				severity_only = vim.diagnostic.severity.ERROR,
 				actions = {
 					["ctrl-e"] = {
 						fn = function(_, opts)

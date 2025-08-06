@@ -69,7 +69,6 @@ return {
 				"dockerls",
 				"lua_ls",
 				"gopls",
-				"sqls",
 				"prisma-language-server",
 				"tailwindls",
 				"vstls",
