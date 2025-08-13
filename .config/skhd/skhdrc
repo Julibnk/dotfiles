@@ -6,18 +6,12 @@ alt - c : open_and_move "Microsoft Teams"
 alt - m : open_and_move "Microsoft Outlook"
 alt - s : open_and_move "Spotify"
 alt - d : open_and_move "Discord"
+shift + alt - n : open_and_move "Notion"
 # lalt - n : open_and_move " obsidian://open?vault=personal"
 # alt - n : yabai -m space --focus  4 && open "obsidian://open?vault=work"
 # alt - p : yabai -m space --focus  4 && open "obsidian://open?vault=personal"
-alt - p : open "obsidian://open?vault=personal" && yabai -m window --focus "$(yabai -m query --windows | jq ".[] | select(.app==\"Obsidian\").id")" ""
-alt - n : open "obsidian://open?vault=work" && yabai -m window --focus "$(yabai -m query --windows | jq ".[] | select(.app==\"Obsidian\").id")" ""
-#
 # alt - p : open "obsidian://open?vault=personal" && yabai -m window --focus "$(yabai -m query --windows | jq ".[] | select(.app==\"Obsidian\").id")" ""
-# alt - n : open "obsidian://open?vault=work" && yabai -m window --focus "$(yabai -m query --windows | jq ".[] | select(.app==\"Obsidian\").id")" ""
-# lalt - d : open_and_move "DBeaver"
-
-# lalt - n : yabai -m window --focus next
-# lalt - p : yabai -m window --focus prev
+alt - n : open "obsidian://open?vault=work" && yabai -m window --focus "$(yabai -m query --windows | jq ".[] | select(.app==\"Obsidian\").id")" ""
 
 # Move between spaces
 alt - 1 : yabai -m space --focus  1

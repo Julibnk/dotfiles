@@ -216,12 +216,6 @@ alias ldc='lazydocker'
 alias grep='rg --hidden'
 alias g='grep'
 
-alias work='cd ~/dev/work/'
-alias github='cd ~/dev/github/'
-alias dotfiles='cd ~/dotfiles'
-alias drive="cd ~/Google Drive/My Drive"
-alias onedrive="cd ~/OneDrive - Strategic Platform"
-alias downloads="cd ~/Downloads"
 
 # Init zoxide
 eval "$(zoxide init zsh)"
