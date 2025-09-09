@@ -1,4 +1,5 @@
 - [ ] nvim
+  - [ ] fix or delete sqls
   - [ ] fidget
   - [ ] checkhealth deprecated
   - [ ] tsc output to quickfix

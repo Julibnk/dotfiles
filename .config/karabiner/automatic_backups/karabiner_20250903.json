@@ -511,15 +511,6 @@
                             "to": [{ "key_code": "non_us_backslash" }]
                         }
                     ]
-                },
-                {
-                    "disable_built_in_keyboard_if_exists": true,
-                    "identifiers": {
-                        "is_keyboard": true,
-                        "is_pointing_device": true,
-                        "product_id": 2608,
-                        "vendor_id": 13364
-                    }
                 }
             ],
             "name": "Default profile",

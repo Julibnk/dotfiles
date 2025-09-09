@@ -113,6 +113,7 @@ eval "$(fzf --zsh)"
 # --- FZF TAB inside tmux popups ---
 zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 
+
 FZF_EXCLUDED="--exclude .git --exclude Library --exclude Applications --exclude node_modules --exclude .Trash"
 # Use fd instead fdf for search
 export FZF_DEFAULT_COMMAND="fd --hidden $FZF_EXCLUDED"
@@ -253,9 +254,7 @@ zmodload zsh/complist
 
 # ---- BINDNGS ----
 bindkey -M menuselect 'h' vi-backward-char
-# bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
-# bindkey -M menuselect 'j' vi-down-line-or-history
 
 
 # Rebind ALT C to Cntrl g for cd

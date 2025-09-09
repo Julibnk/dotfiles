@@ -6,7 +6,7 @@ return {
 			{
 				"-",
 				function()
-					oil.open(nil, { preview = { vertical = true, split = "belowright" } })
+					oil.open(nil, {})
 				end,
 				desc = "Open Oil",
 			},
