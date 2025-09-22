@@ -65,6 +65,7 @@ return {
 			local lsp_configs = {
 				"bashls",
 				"composels",
+				"clangd",
 				"cssls",
 				"dockerls",
 				"lua_ls",

@@ -23,6 +23,7 @@ return {
 			grep = {
 				silent = true,
 				rg_opts = '--column --no-heading --color=always --smart-case --max-columns=4096 -e -g "!.git"',
+				winopts = { preview = { horizontal = "right:60%" } },
 				hidden = true,
 			},
 			diagnostics = {
