@@ -17,8 +17,8 @@ return {
 				-- no_ignore = true,-- respect ".gitignore"  by default
 			},
 			git = {
-				bcommits = { winopts = { preview = { layout = "vertical", vertical = "up:70%" } } },
-				commits = { winopts = { preview = { layout = "vertical", vertical = "up:70%" } } },
+				bcommits = { winopts = { preview = { layout = "horizontal", horizontal = "right:70%" } } },
+				commits = { winopts = { preview = { layout = "horizontal", horizontal = "right:70%" } } },
 			},
 			grep = {
 				silent = true,
