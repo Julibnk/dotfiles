@@ -1,6 +1,10 @@
 #!/bin/bash
 open_and_move() {
-    open -a "$1" && yabai -m window --focus "$(yabai -m query --windows | jq "[.[] | select(.app==\"$1\")][0].id")"
+if [ -n "$2" ]; then
+    open -a "$1" && yabai -m window --focus "$(yabai -m query --windows | jq "[.[] | select(.app==\"$2\") | select(.\"is-floating\"==false)][0].id")"
+else 
+    open -a "$1" && yabai -m window --focus "$(yabai -m query --windows | jq "[.[] | select(.app==\"$1\") | select(.\"is-floating\"==false)][0].id")"
+fi
 }
 
 # FIX: fixfixfixfix
