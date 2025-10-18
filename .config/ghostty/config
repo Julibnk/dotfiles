@@ -1,4 +1,5 @@
 font-size = 16
+new-window-current-directory = true
 confirm-close = false
 # theme = catppucin-mocha
 # adjust-cell-heigh = 35%
