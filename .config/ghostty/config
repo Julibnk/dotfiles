@@ -1,4 +1,6 @@
-font-size = 15
+font-size = 16
+confirm-close = false
 # theme = catppucin-mocha
 # adjust-cell-heigh = 35%
+window-decoration = none
 
