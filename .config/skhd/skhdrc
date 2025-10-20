@@ -1,7 +1,7 @@
 #!/bin/bash
 alt - z : open_and_move "Zen"
 alt - b : open_and_move "Brave Browser"
-alt - t : open_and_move "Ghostty"
+alt - t : open_and_move "kitty"
 alt - c : open_and_move "Microsoft Teams"
 alt - m : open_and_move "Microsoft Outlook"
 alt - s : open_and_move "Spotify"

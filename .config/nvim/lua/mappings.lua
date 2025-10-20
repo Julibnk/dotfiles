@@ -15,7 +15,7 @@ vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right win
 --Buffers
 vim.keymap.set("n", "<leader>bd", "<cmd>bd!<CR>", { desc = "[B]uffer [b]elete" })
 vim.keymap.set("n", "<leader>bw", "<cmd>w<CR>", { desc = "[B]uffer [w]rite" })
-vim.keymap.set("n", "<leader>br", "<cmd>e<CR>", { desc = "[B]uffer [r]eload" })
+-- vim.keymap.set("n", "<leader>br", "<cmd>e<CR>", { desc = "[B]uffer [r]eload" })
 
 --Paste
 vim.keymap.set("n", "<leader>p", '"0p', { desc = "[p]ut 0 register" })

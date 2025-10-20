@@ -36,6 +36,8 @@ hook_back() {
     space=5
     if [[ $current_app == "Ghostty" ]]; then
         space="code"
+    elif [[ $current_app == "kitty" ]]; then
+        space="code"
     elif [[ $current_app == "Zen" ]]; then
         space="browser"
     elif [[ $current_app == "Brave Browser" ]]; then

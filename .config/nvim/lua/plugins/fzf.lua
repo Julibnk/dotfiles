@@ -72,6 +72,8 @@ return {
 		{ "<leader>fr", "<cmd>FzfLua resume<CR>" },
 		{ "<leader>fh", "<cmd>FzfLua helptags<CR>" },
 		{ "<leader>fc", "<cmd>FzfLua command_history<CR>" },
+		{ "<leader>fs", "<cmd>FzfLua lsp_document_symbols<CR>" },
+		{ "<leader>fS", "<cmd>FzfLua lsp_workspace_symbols<CR>" },
 		-- { "<leader>fq", "<cmd>FzfLua quickfix<CR>" },
 		-- { "<leader>fQ", "<cmd>FzfLua quickfix_stack<CR>" },
 		{ "<leader>q", "<cmd>FzfLua diagnostics_document<CR>" },
