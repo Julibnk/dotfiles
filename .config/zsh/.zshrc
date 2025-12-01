@@ -105,7 +105,11 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 # ---- NVM ----
-source $(brew --prefix nvm)/nvm.sh
+# export NVM_DIR="$HOME/.nvm"
+export NVM_DIR="$XDG_CONFIG_HOME/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# source $(brew --prefix nvm)/nvm.sh
 
 # ---- FZF -----
 eval "$(fzf --zsh)"
@@ -209,7 +213,8 @@ alias vim='nvim'
 alias cat='bat'
 alias cd='z'
 alias rm='trash'
-alias l='eza -a --color=always --long --git --no-filesize --icons=always --no-time --no-user'
+alias l='eza -a --color=always --long --no-filesize --icons=always --no-time --no-user'
+alias ls='eza -a --color=always --long --no-filesize --icons=always --no-time --no-user'
 alias cl='clear'
 alias fd='fzf'
 alias lg='lazygit'
@@ -276,3 +281,9 @@ bindkey '^t' tmux-sessionizer
 # defaults write -g InitialKeyRepeat -int 10
 # defaults write -g KeyRepeat -int 1
 # defaults write -g ApplePressAndHoldEnabled -bool false
+# p
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-8.jdk/Contents/Home
+export PATH="$JAVA_HOME/bin:$PATH"
+
+source "$XDG_CONFIG_HOME/skhd/functions.sh"
+
