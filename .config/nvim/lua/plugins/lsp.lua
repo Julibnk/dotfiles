@@ -70,6 +70,7 @@ return {
 				"dockerls",
 				"lua_ls",
 				"gopls",
+				"basedpyright",
 				"prisma-language-server",
 				"tailwindls",
 				"vstls",

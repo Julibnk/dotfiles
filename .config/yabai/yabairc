@@ -45,7 +45,7 @@ yabai -m space 2 --label code
 yabai -m space 3 --label chat
 yabai -m space 4 --label notes
 yabai -m space 5 --label other
-yabai -m space 6 --label auxiliar
+yabai -m space 6 --label split
 yabai -m space 7 --label music
 yabai -m space 8 --label external
 

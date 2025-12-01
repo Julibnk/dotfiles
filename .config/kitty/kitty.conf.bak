@@ -6,6 +6,8 @@
 #: individual font faces and even specify special fonts for particular
 #: characters.
 
+# font_family Monolisa Nerd Font Mono
+# italic_font Maple Mono NF Italic
 # font_family      monospace
 # bold_font        auto
 # italic_font      auto
@@ -156,8 +158,8 @@ font_size 16.0
 #: font glyph is rendered and the baseline at which the glyph is
 #: placed in the cell. For example::
 
-#:     modify_font cell_width 80%
-#:     modify_font cell_height -2px
+# modify_font cell_width 95%
+# modify_font cell_height 1.2
 #:     modify_font baseline 3
 
 #: Note that modifying the baseline will automatically adjust the
@@ -193,7 +195,7 @@ font_size 16.0
 #: the gaps. Changing this option dynamically via reloading the config
 #: or remote control is undefined.
 
-# text_composition_strategy platform
+text_composition_strategy legacy
 
 #: Control how kitty composites text glyphs onto the background color.
 #: The default value of platform tries for text rendering as close to
@@ -1149,7 +1151,7 @@ font_size 16.0
 #: Fade the text in inactive windows by the specified amount (a number
 #: between zero and one, with zero being fully faded).
 
-# hide_window_decorations no
+hide_window_decorations yes
 
 #: Hide the window decorations (title-bar and window borders) with
 #: yes. On macOS, titlebar-only and titlebar-and-corners can be used
@@ -1225,7 +1227,7 @@ font_size 16.0
 #: insensitive, from the set 0-9A-Z\-=[];',./\\`. Specify your
 #: preference as a string of characters.
 
-# confirm_os_window_close -1
+confirm_os_window_close 0
 
 #: Ask for confirmation when closing an OS window or a tab with at
 #: least this number of kitty windows in it by window manager (e.g.
@@ -1450,7 +1452,7 @@ font_size 16.0
 
 #: The foreground and background colors.
 
-# background_opacity 1.0
+# background_opacity 1
 
 #: The opacity of the background. A number between zero and one, where
 #: one is opaque and zero is fully transparent. This will only work if
@@ -1725,7 +1727,7 @@ font_size 16.0
 #: See rc_custom_auth <https://sw.kovidgoyal.net/kitty/remote-
 #: control/#rc-custom-auth> for details.
 
-# allow_remote_control no
+#allow_remote_control no
 
 #: Allow other programs to control kitty. If you turn this on, other
 #: programs can control all aspects of kitty, including sending text
@@ -2143,6 +2145,7 @@ font_size 16.0
 #: by reloading the config is not supported.
 
 # macos_colorspace srgb
+macos_colorspace displayp3
 
 #: The colorspace in which to interpret terminal colors. The default
 #: of srgb will cause colors to match those seen in web browsers. The
@@ -2414,7 +2417,7 @@ font_size 16.0
 
 # map kitty_mod+n new_os_window
 # map cmd+n       new_os_window
-
+map cmd+n launch --type=os-window --cwd=current
 #::  Works like new_window above, except that it opens a top-level OS
 #::  window. In particular you can use new_os_window_with_cwd to open
 #::  a window with the current working directory.
@@ -2923,3 +2926,9 @@ font_size 16.0
 #: }}}
 
 #: }}}
+
+
+# BEGIN_KITTY_THEME
+# Kanagawa_dragon
+include current-theme.conf
+# END_KITTY_THEME

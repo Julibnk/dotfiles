@@ -20,6 +20,9 @@
 [mergetool]
   prompt = false
 
+[interactive]
+  diffFilter = "delta --color-only"
+
 [diff]
   colorMoved = default
 
@@ -27,7 +30,7 @@
 [delta]
   navigate = true
   line-numbers = true
-  side-by-side = true
+  side-by-side = false
 
 [delta "interactive"]
     keep-plus-minus-markers = true
@@ -40,5 +43,6 @@
     hunk-header-file-style = red
     hunk-header-line-number-style = "#067a00"
     hunk-header-style = file line-number syntax
+
 [pull]
 	rebase = true

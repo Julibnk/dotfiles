@@ -51,3 +51,10 @@ vim.opt.cursorline = true
 vim.opt.showmode = false
 
 vim.opt.cmdheight = 0 -- Height of the command bar
+
+-- vim.opt.guicursor = "n:block,i:block,v:block"
+
+vim.opt.guicursor = {
+	"n-v:block-Cursor/lCursor",
+	"i-c-ci-ve:block-TermCursor",
+}
