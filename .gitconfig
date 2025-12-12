@@ -7,7 +7,7 @@
   defaultBranch = main
 
 [core]
-  pager = delta
+  pager = "diff-so-fancy | less --tabs=4 -RF"
   editor = nvim
 
 [merge]
@@ -21,7 +21,7 @@
   prompt = false
 
 [interactive]
-  diffFilter = "delta --color-only"
+  diffFilter = "diff-so-fancy --patch"
 
 [diff]
   colorMoved = default
