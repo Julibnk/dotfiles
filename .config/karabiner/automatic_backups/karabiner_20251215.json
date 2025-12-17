@@ -277,23 +277,6 @@
                                         "value": 1
                                     }
                                 ],
-                                "from": { "key_code": "p" },
-                                "to": [
-                                    {
-                                        "key_code": "non_us_backslash",
-                                        "modifiers": ["shift"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "spacebar_layer",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
                                 "from": { "key_code": "a" },
                                 "to": [
                                     {
@@ -451,18 +434,6 @@
                                         "modifiers": ["shift"]
                                     }
                                 ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "spacebar_layer",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": { "key_code": "v" },
-                                "to": [{ "key_code": "non_us_backslash" }],
                                 "type": "basic"
                             },
                             {

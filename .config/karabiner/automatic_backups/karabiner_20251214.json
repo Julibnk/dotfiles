@@ -280,7 +280,7 @@
                                 "from": { "key_code": "p" },
                                 "to": [
                                     {
-                                        "key_code": "non_us_backslash",
+                                        "key_code": "2",
                                         "modifiers": ["shift"]
                                     }
                                 ],
@@ -403,20 +403,8 @@
                                         "value": 1
                                     }
                                 ],
-                                "from": { "key_code": "c" },
-                                "to": [{ "key_code": "backslash" }],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "spacebar_layer",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
                                 "from": { "key_code": "k" },
-                                "to": [{ "key_code": "hyphen" }],
+                                "to": [{ "key_code": "delete_or_backspace" }],
                                 "type": "basic"
                             },
                             {
@@ -428,9 +416,21 @@
                                     }
                                 ],
                                 "from": { "key_code": "l" },
+                                "to": [{ "key_code": "return_or_enter" }],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "spacebar_layer",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": { "key_code": "x" },
                                 "to": [
                                     {
-                                        "key_code": "equal_sign",
+                                        "key_code": "comma",
                                         "modifiers": ["shift"]
                                     }
                                 ],
@@ -462,7 +462,7 @@
                                     }
                                 ],
                                 "from": { "key_code": "v" },
-                                "to": [{ "key_code": "non_us_backslash" }],
+                                "to": [{ "key_code": "hyphen" }],
                                 "type": "basic"
                             },
                             {
@@ -508,12 +508,7 @@
                                     }
                                 ],
                                 "from": { "key_code": "m" },
-                                "to": [
-                                    {
-                                        "key_code": "2",
-                                        "modifiers": ["shift"]
-                                    }
-                                ],
+                                "to": [{ "key_code": "backslash" }],
                                 "type": "basic"
                             }
                         ],
