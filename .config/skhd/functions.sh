@@ -1,23 +1,42 @@
 #!/bin/bash
 open_and_move() {
-if [ -n "$2" ]; then
-    open -a "$1" && yabai -m window --focus "$(yabai -m query --windows | jq "[.[] | select(.app==\"$2\") | select(.\"is-floating\"==false)][0].id")"
-else 
-    open -a "$1" && yabai -m window --focus "$(yabai -m query --windows | jq "[.[] | select(.app==\"$1\") | select(.\"is-floating\"==false)][0].id")"
-fi
-}
+    #$1 macos app app
+    #$2 (optional) app name when its started .app in yabai
 
-# FIX: fixfixfixfix
-#
-# open_browser() {
-#     brave_id = $(yabai -m query --windows | jq "[.[] | select(.app==\"Brave Browser\")][0].id")
-#
-#     if [ -z "$brave_id" ]; then
-#         open -a "Brave Browser" && yabai -m window --focus "$(yabai -m query --windows | jq "[.[] | select(.app==\"Brave Browser\")][0].id")"
-#     else;
-#         open -a "Zen" && yabai -m window --focus "$(yabai -m query --windows | jq "[.[] | select(.app==\"Zen\")][0].id")"
-#     fi
-# }
+    focused_app=$(yabai -m query --windows | jq -r '.[] | select(.["has-focus"] == true)')
+    fapp_id=$(jq -r '.id' <<< "$focused_app")
+    fapp_name=$(jq -r '.app' <<< "$focused_app")
+
+    if [ -n "$2" ]; then
+        app_name=$2
+    else 
+        app_name=$1
+    fi
+
+    #destiny app instances
+    app_instances=$(yabai -m query --windows | jq -r "[.[] | select(.app==\"$app_name\") | select(.\"is-floating\"==false)] | sort_by(.id)")
+    len=$(jq '. | length' <<< "$app_instances")
+
+
+    if [[ "$app_name" != "$fapp_name" || "$len" == "1" ]]; then 
+        #the app is not the same or there is only one instance, so index 0
+        echo "different app or just one instance"
+        app_indx=0
+    else 
+
+        echo "more than one instance"
+        fapp_index=$(jq --arg id "$fapp_id" 'map(.id) | index($id|tonumber)' <<< "$app_instances")
+        len=$((len - 1))
+        if [[ $fapp_index -eq $len ]]; then
+            app_indx=0
+        else
+            app_indx=$((fapp_index + 1))
+        fi
+        echo $app_indx
+    fi
+
+    open -a "$1" && yabai -m window --focus "$(jq ".[$app_indx].id" <<< "$app_instances")"
+}
 
 switch_yabai_layout() {
     current_layout=$(yabai -m query --spaces --space | jq -r '.type')
