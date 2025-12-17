@@ -111,6 +111,14 @@ export NVM_DIR="$XDG_CONFIG_HOME/nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 # source $(brew --prefix nvm)/nvm.sh
 
+
+# ---- PNPM ----
+export PNPM_HOME="/Users/julibnk/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
 # ---- FZF -----
 eval "$(fzf --zsh)"
 
@@ -210,6 +218,7 @@ zle -N tmux-sessionizer
 # ---- ALIASES ----
 
 alias vim='nvim'
+alias v='nvim'
 alias cat='bat'
 alias cd='z'
 alias rm='trash'
@@ -281,9 +290,7 @@ bindkey '^t' tmux-sessionizer
 # defaults write -g InitialKeyRepeat -int 10
 # defaults write -g KeyRepeat -int 1
 # defaults write -g ApplePressAndHoldEnabled -bool false
-# p
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-8.jdk/Contents/Home
+export JAVA_HOME=/opt/homebrew/opt/openjdk/libexec/openjdk.jdk/Contents/Home
+# export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-8.jdk/Contents/Home
 export PATH="$JAVA_HOME/bin:$PATH"
-
-source "$XDG_CONFIG_HOME/skhd/functions.sh"
 

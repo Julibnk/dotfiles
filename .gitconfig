@@ -26,6 +26,12 @@
 [diff]
   colorMoved = default
 
+[branch]
+    sort = -committerdate
+
+[column]
+    ui = auto
+
 # DELTA
 [delta]
   navigate = true

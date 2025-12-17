@@ -44,7 +44,7 @@ alt - k : focus_prev
 alt - l : yabai -m space --focus next
 #
 # lalt - l : yabai -m window --focus next
-lalt - v : switch_yabai_layout
+alt - v : switch_yabai_layout
 # lalt - - : yabai -m window --toggle split
 
  # yabai -m query --windows | jq 'map(select(.space == 2)) | first | .id'

@@ -15,3 +15,4 @@ export EDITOR="$VISUAL"
 export MANPAGER="nvim +Man!"
 export PAGER="bat"
 
+source "$XDG_CONFIG_HOME/skhd/functions.sh"
