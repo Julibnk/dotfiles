@@ -14,7 +14,7 @@ open_and_move() {
     fi
 
     #destiny app instances
-    app_instances=$(yabai -m query --windows | jq -r "[.[] | select(.app==\"$app_name\") | select(.\"is-floating\"==false)] | sort_by(.id)")
+    app_instances=$(yabai -m query --windows | jq -r "[.[] | select(.app==\"$app_name\") | select(.\"is-floating\"==false and .\"can-move\"==true)] | sort_by(.id)")
     len=$(jq '. | length' <<< "$app_instances")
 
 
