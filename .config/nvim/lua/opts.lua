@@ -30,7 +30,7 @@ vim.schedule(function()
 end)
 
 vim.opt.signcolumn = "yes"
--- vim.opt.colorcolumn = '80'
+vim.opt.colorcolumn = "80"
 
 -- Folds
 vim.opt.foldmethod = "expr"

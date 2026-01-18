@@ -16,6 +16,7 @@ return {
 	---@type conform.setupOpts
 	opts = {
 		formatters_by_ft = {
+			htmlangular = { "prettierd", "prettier" },
 			css = { "prettierd", "prettier" },
 			-- graphql = { 'prettierd', 'prettier' },
 			html = { "prettierd", "prettier" },

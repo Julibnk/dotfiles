@@ -2,7 +2,7 @@
 alt - z : open_and_move "Zen"
 alt - b : open_and_move "Brave Browser"
 alt - t : open_and_move "kitty"
-alt - c : open_and_move "Microsoft Teams"
+alt - c : open_and_move "Microsoft Teams" "Microsoft Teams (PWA)"
 alt - m : open_and_move "Microsoft Outlook"
 alt - d : open_and_move "DBeaver" "DBeaver Community"
 alt - s : open_and_move "Spotify"

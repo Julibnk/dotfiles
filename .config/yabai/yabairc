@@ -58,6 +58,7 @@ yabai -m rule --add app="^kitty$" space=^code
 
 yabai -m rule --add app="^Microsoft Outlook$" space=^chat
 yabai -m rule --add app="^Microsoft Teams$" space=^chat
+yabai -m rule --add app="^Microsoft Teams (PWA)$" space=^chat
 
 yabai -m rule --add app="^Postman$" space=^other
 yabai -m rule --add app="^DBeaver$" space=^other
