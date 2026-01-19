@@ -1,14 +1,17 @@
+#NOTE: Profiling startup
+# zmodload zsh/zprof
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+# export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME=""
+# ZSH_THEME=""
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -70,14 +73,31 @@ ZSH_THEME=""
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker aws zsh-syntax-highlighting zsh-autosuggestions fzf-tab)
+# plugins=(git docker aws zsh-syntax-highlighting zsh-autosuggestions fzf-tab)
 
 # -- Oh my zsh
-source $ZSH/oh-my-zsh.sh
-
-
+# source $ZSH/oh-my-zsh.sh
+# manually manage plugins
 autoload -U compinit; compinit
 _comp_options+=(globdots) # With hidden files
+
+ZSH_PLUGIN_HOME=$XDG_DATA_HOME/zsh/plugins
+repos=(
+  qoomon/zsh-lazyload #https://ellie.wtf/notes/profiling-zsh
+  zdharma-continuum/fast-syntax-highlighting
+  zsh-users/zsh-autosuggestions
+  zsh-users/zsh-history-substring-search
+  Aloxaf/fzf-tab
+)
+
+for plugin in $repos; do
+  if ! [[ -d $ZSH_PLUGIN_HOME/$plugin ]]; then
+    git clone https://github.com/$plugin $ZSH_PLUGIN_HOME/$plugin
+  fi
+  source $ZSH_PLUGIN_HOME/$plugin/${plugin:t}.plugin.zsh
+done
+
+
 
 
 # ---- THEME ----
@@ -91,7 +111,7 @@ zstyle :prompt:pure:virtualenv color '#74c7ec'
 #
 # TODO check this and configure conda properly
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('lazyload' '/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
@@ -106,10 +126,17 @@ unset __conda_setup
 
 # ---- NVM ----
 # export NVM_DIR="$HOME/.nvm"
+
 export NVM_DIR="$XDG_CONFIG_HOME/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-# source $(brew --prefix nvm)/nvm.sh
+# This loads nvm
+if [ -s "$NVM_DIR/nvm.sh" ]; then 
+   lazyload nvm -- "source $NVM_DIR/nvm.sh" 
+fi 
+
+# This loads nvm bash_completion
+if [ -s "$NVM_DIR/bash_completion" ]; then 
+    lazyload nvm -- "source $NVM_DIR/bash_completion"  
+fi
 
 
 # ---- PNPM ----
@@ -230,6 +257,7 @@ alias lg='lazygit'
 alias ldc='lazydocker'
 alias grep='rg --hidden'
 alias g='grep'
+alias air='~/go/bin/air'
 
 
 # Init zoxide
@@ -294,3 +322,5 @@ export JAVA_HOME=/opt/homebrew/opt/openjdk/libexec/openjdk.jdk/Contents/Home
 # export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-8.jdk/Contents/Home
 export PATH="$JAVA_HOME/bin:$PATH"
 
+#NOTE: Profiling startup
+# zprof
