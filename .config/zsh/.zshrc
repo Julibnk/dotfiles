@@ -1,3 +1,4 @@
+#!/bin/zsh
 #NOTE: Profiling startup
 # zmodload zsh/zprof
 
@@ -204,6 +205,16 @@ export FPATH="$XDG_CONFIG_HOME/tmux-sessionizer":$FPATH
 autoload -U tmux-sessionizer; 
 zle -N tmux-sessionizer
 
+# find-in-file - usage: fif <SEARCH_TERM>
+fif() {
+  if [ ! "$#" -gt 0 ]; then
+    echo "Need a string to search for!";
+    return 1;
+  fi
+  rg --files-with-matches --no-messages "$1" | fzf --preview "rg --ignore-case --pretty --context 10 '$1' {}"
+}
+zle -N fif
+
 
 # FZF git plugin
 # TODO check this
@@ -244,8 +255,10 @@ zle -N tmux-sessionizer
 
 # ---- ALIASES ----
 
+alias ..='cd ..'
 alias vim='nvim'
 alias v='nvim'
+alias t='tmux a'
 alias cat='bat'
 alias cd='z'
 alias rm='trash'
@@ -300,10 +313,10 @@ bindkey -M menuselect 'l' vi-forward-char
 
 
 # Rebind ALT C to Cntrl g for cd
-bindkey '^g' fzf-cd-widget
+bindkey '^t' fzf-cd-widget
 bindkey '^f' fzf-file-widget
 # bindkey '^y' y
-bindkey '^t' tmux-sessionizer
+# bindkey '^t' tmux-sessionizer
 
 # ---- ENV variables ----
 
@@ -321,6 +334,11 @@ bindkey '^t' tmux-sessionizer
 export JAVA_HOME=/opt/homebrew/opt/openjdk/libexec/openjdk.jdk/Contents/Home
 # export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-8.jdk/Contents/Home
 export PATH="$JAVA_HOME/bin:$PATH"
+
+export HISTFILE="$ZDOTDIR/.zsh_history"    # History filepath
+export HISTSIZE=10000                   # Maximum events for internal history
+export SAVEHIST=10000                   # Maximum events in history file
+setopt append_history
 
 #NOTE: Profiling startup
 # zprof
