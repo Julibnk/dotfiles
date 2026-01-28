@@ -133,6 +133,8 @@ export NVM_DIR="$XDG_CONFIG_HOME/nvm"
 if [ -s "$NVM_DIR/nvm.sh" ]; then 
    lazyload nvm -- "source $NVM_DIR/nvm.sh" 
    lazyload node -- "source $NVM_DIR/nvm.sh" 
+   lazyload npx -- "source $NVM_DIR/nvm.sh" 
+   lazyload npm -- "source $NVM_DIR/nvm.sh" 
 fi 
 
 # This loads nvm bash_completion
