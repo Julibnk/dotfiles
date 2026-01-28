@@ -132,6 +132,7 @@ export NVM_DIR="$XDG_CONFIG_HOME/nvm"
 # This loads nvm
 if [ -s "$NVM_DIR/nvm.sh" ]; then 
    lazyload nvm -- "source $NVM_DIR/nvm.sh" 
+   lazyload node -- "source $NVM_DIR/nvm.sh" 
 fi 
 
 # This loads nvm bash_completion
@@ -256,6 +257,7 @@ zle -N fif
 # ---- ALIASES ----
 
 alias ..='cd ..'
+alias -- -='cd -'
 alias vim='nvim'
 alias v='nvim'
 alias t='tmux a'
@@ -313,8 +315,8 @@ bindkey -M menuselect 'l' vi-forward-char
 
 
 # Rebind ALT C to Cntrl g for cd
-bindkey '^t' fzf-cd-widget
-bindkey '^f' fzf-file-widget
+bindkey '^g' fzf-cd-widget
+bindkey '^h' fzf-file-widget
 # bindkey '^y' y
 # bindkey '^t' tmux-sessionizer
 
@@ -339,6 +341,5 @@ export HISTFILE="$ZDOTDIR/.zsh_history"    # History filepath
 export HISTSIZE=10000                   # Maximum events for internal history
 export SAVEHIST=10000                   # Maximum events in history file
 setopt append_history
-
 #NOTE: Profiling startup
 # zprof
