@@ -129,12 +129,11 @@ unset __conda_setup
 # export NVM_DIR="$HOME/.nvm"
 
 export NVM_DIR="$XDG_CONFIG_HOME/nvm"
+export PATH="$NVM_DIR/versions/node/$(node -v 2>/dev/null || cat $NVM_DIR/alias/default)/bin:$PATH"
+
 # This loads nvm
 if [ -s "$NVM_DIR/nvm.sh" ]; then 
    lazyload nvm -- "source $NVM_DIR/nvm.sh" 
-   lazyload node -- "source $NVM_DIR/nvm.sh" 
-   lazyload npx -- "source $NVM_DIR/nvm.sh" 
-   lazyload npm -- "source $NVM_DIR/nvm.sh" 
 fi 
 
 # This loads nvm bash_completion
@@ -267,9 +266,9 @@ alias cat='bat'
 alias cd='z'
 alias rm='trash'
 alias l='eza -a --color=always --long --no-filesize --icons=always --no-time --no-user'
-alias ls='eza -a --color=always --long --no-filesize --icons=always --no-time --no-user'
+alias ls='eza'
 alias cl='clear'
-alias fd='fzf'
+# alias fd='fzf'
 alias lg='lazygit'
 alias ldc='lazydocker'
 alias grep='rg --hidden'
@@ -317,8 +316,8 @@ bindkey -M menuselect 'l' vi-forward-char
 
 
 # Rebind ALT C to Cntrl g for cd
-bindkey '^g' fzf-cd-widget
-bindkey '^h' fzf-file-widget
+bindkey '^f' fzf-cd-widget
+# bindkey '^h' fzf-file-widget
 # bindkey '^y' y
 # bindkey '^t' tmux-sessionizer
 

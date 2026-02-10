@@ -4,7 +4,7 @@ update() {
   source "$CONFIG_DIR/colors.sh"
   COLOR=$TRANSPARENT
   if [ "$SELECTED" = "true" ]; then
-    COLOR=$KANAGAWA_DARK_YELLOW
+    COLOR=$ORANGE_NEW
   fi
   sketchybar --set $NAME icon.highlight=$SELECTED \
                          label.highlight=$SELECTED \

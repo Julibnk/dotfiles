@@ -20,16 +20,16 @@ launchctl unload -F /System/Library/LaunchAgents/com.apple.OSDUIHelper.plist > /
 
 # Setting up the general bar appearance of the bar
 bar=(
-  corner_radius=10
-  height=34
+  corner_radius=0
+  height=32
   color=$BAR_COLOR
-  border_width=2
+  border_width=0
   border_color=$BAR_BORDER_COLOR
   shadow=off
   position=top
   sticky=on
-  y_offset=3
-  margin=6
+  y_offset=0
+  margin=0
   topmost=window
 )
 
@@ -41,15 +41,19 @@ defaults=(
   icon.color=$ICON_COLOR
   icon.padding_left=$PADDINGS
   icon.padding_right=$PADDINGS
+
   label.font="$FONT:Semibold:15.0"
   label.color=$LABEL_COLOR
   label.padding_left=$PADDINGS
   label.padding_right=$PADDINGS
+
   padding_right=$PADDINGS
   padding_left=$PADDINGS
+
   background.height=32
   background.corner_radius=0
   background.border_width=2
+
   popup.background.border_width=2
   popup.background.corner_radius=9
   popup.background.border_color=$POPUP_BORDER_COLOR
@@ -58,7 +62,7 @@ defaults=(
   popup.background.shadow.drawing=on
 )
 
-sketchybar  --bar "${bar[@]}" --default "${defaults[@]}"
+sketchybar --bar "${bar[@]}" --default "${defaults[@]}"
 
 # Apple Logo
 # sketchybar --add item apple.logo left \

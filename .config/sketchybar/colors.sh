@@ -21,7 +21,9 @@ export KANAGAWA_LIGHT_YELLOW=0xffd4c787
 export KANAGAWA_DARK_YELLOW=0xff7f745b
 # General bar colors
 #
-export BAR_COLOR=$KANAGAWA_BLUE
+#
+export ORANGE_NEW=0xffD65E0D
+export BAR_COLOR=0xff404040
 export BAR_BORDER_COLOR=$WHITE
 export ICON_COLOR=$WHITE # Color of all icons
 export LABEL_COLOR=$WHITE # Color of all labels
