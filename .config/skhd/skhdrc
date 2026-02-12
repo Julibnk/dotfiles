@@ -1,11 +1,12 @@
 #!/bin/bash
-alt - z : open_and_move "Zen"
+# alt - z : open_and_move "Zen"
 alt - b : open_and_move "Brave Browser"
 alt - t : open_and_move "kitty"
 alt - c : open_and_move "Microsoft Teams" "Microsoft Teams (PWA)"
 alt - m : open_and_move "Microsoft Outlook"
-alt - d : open_and_move "DBeaver" "DBeaver Community"
-alt - s : open_and_move "Spotify"
+
+# alt - d : open_and_move "DBeaver" "DBeaver Community"
+# alt - s : open_and_move "Spotify"
 shift + alt - d : open_and_move "Discord"
 shift + alt - n : open_and_move "Notion"
 # lalt - n : open_and_move " obsidian://open?vault=personal"
@@ -14,6 +15,15 @@ shift + alt - n : open_and_move "Notion"
 # alt - p : open "obsidian://open?vault=personal" && yabai -m window --focus "$(yabai -m query --windows | jq ".[] | select(.app==\"Obsidian\").id")" ""
 alt - n : open "obsidian://open?vault=work" && yabai -m window --focus "$(yabai -m query --windows | jq ".[] | select(.app==\"Obsidian\").id")" ""
 # alt - s : yabai -m window --space "split" && yabai -m space --focus "split";
+
+alt - a : open_terminal "kitty" 0
+alt - s : open_terminal "kitty" 1
+alt - d : open_terminal "kitty" 2 
+alt - f : open_terminal "kitty" 3
+# alt - a : open_and_move "kitty"
+# alt - s : open_and_move "kitty"
+# alt - d : open_and_move "kitty"
+# alt - f : open_and_move "kitty"
 
 # Move between spaces
 alt - 1 : yabai -m space --focus  1
@@ -28,7 +38,6 @@ alt - 9 : yabai -m space --focus  9
 alt - 0 : yabai -m space --focus  10
 
 #Send to external window
-alt - a : yabai -m window --space 6; yabai -m space --focus 6 
 
 #Send to external window
 alt - e : yabai -m window --space 8; yabai -m space --focus 8 

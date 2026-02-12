@@ -168,8 +168,9 @@ def to_formatted_icons(apps):
 spaces = {}
 apps = json.loads(os.popen('yabai -m query --windows').read())
 for app in apps:
-    spaces[app['space']] = spaces.get(app['space'], {})
-    spaces[app['space']][app['app']] = spaces[app['space']].get(app['app'], 0) + 1
+    if not app['is-floating'] and app['can-move']:
+        spaces[app['space']] = spaces.get(app['space'], {})
+        spaces[app['space']][app['app']] = spaces[app['space']].get(app['app'], 0) + 1
 
 args = ' '.join([f'--set space.{space}  label="{to_formatted_icons(apps)}"  label.drawing=on' for space, apps in spaces.items()])
 default_args = "--set spaces_bracket drawing=off --set '/space\..*/' background.drawing=on --animate sin 10"

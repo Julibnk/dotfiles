@@ -38,7 +38,27 @@ open_and_move() {
     open -a "$1" && yabai -m window --focus "$(jq ".[$app_indx].id" <<< "$app_instances")"
 }
 
+open_terminal() {
+    #$1 macos app app
+    #$2 instance number
+
+    app_name=$1
+    app_indx=$2
+
+    app_instances=$(yabai -m query --windows | jq -r "[.[] | select(.app==\"$app_name\") | select(.\"is-floating\"==false and .\"can-move\"==true)] | sort_by(.id)")
+    len=$(jq '. | length' <<< "$app_instances")
+
+    if [[ "$len" -le "$app_indx"  ]] then 
+        open -a "$1" -n
+        app_instances=$(yabai -m query --windows | jq -r "[.[] | select(.app==\"$app_name\") | select(.\"is-floating\"==false and .\"can-move\"==true)] | sort_by(.id)")
+        yabai -m window --focus "$(jq ".[$app_indx].id" <<< "$app_instances")"
+    else 
+        open -a "$1" && yabai -m window --focus "$(jq ".[$app_indx].id" <<< "$app_instances")"
+    fi
+}
+
 switch_yabai_layout() {
+
     current_layout=$(yabai -m query --spaces --space | jq -r '.type')
 
     if [ "$current_layout" = "bsp" ]; then
