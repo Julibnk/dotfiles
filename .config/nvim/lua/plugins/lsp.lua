@@ -63,7 +63,8 @@ return {
 
 			-- load Lsp configs
 			local lsp_configs = {
-				"angularls",
+				-- "angularls",
+				"astrols",
 				"bashls",
 				"composels",
 				"clangd",
