@@ -48,13 +48,24 @@ open_terminal() {
     app_instances=$(yabai -m query --windows | jq -r "[.[] | select(.app==\"$app_name\") | select(.\"is-floating\"==false and .\"can-move\"==true)] | sort_by(.id)")
     len=$(jq '. | length' <<< "$app_instances")
 
-    if [[ "$len" -le "$app_indx"  ]] then 
+    if [[ "$len" -le "$app_indx" ]] then
         open -a "$1" -n
-        app_instances=$(yabai -m query --windows | jq -r "[.[] | select(.app==\"$app_name\") | select(.\"is-floating\"==false and .\"can-move\"==true)] | sort_by(.id)")
+        # Wait for yabai to register the new window
+        for i in $(seq 1 20); do
+            sleep 0.1
+            app_instances=$(yabai -m query --windows | jq -r "[.[] | select(.app==\"$app_name\") | select(.\"is-floating\"==false and .\"can-move\"==true)] | sort_by(.id)")
+            new_len=$(jq '. | length' <<< "$app_instances")
+            [[ "$new_len" -gt "$len" ]] && break
+        done
         yabai -m window --focus "$(jq ".[$app_indx].id" <<< "$app_instances")"
-    else 
-        open -a "$1" && yabai -m window --focus "$(jq ".[$app_indx].id" <<< "$app_instances")"
+    else
+        yabai -m window --focus "$(jq ".[$app_indx].id" <<< "$app_instances")"
     fi
+
+    # Update kitty letter in all tmux sessions
+    for session in $(tmux list-sessions -F '#S' 2>/dev/null); do
+        tmux run-shell -t "$session" "~/.tmux/kitty-letter.sh" 2>/dev/null &
+    done
 }
 
 switch_yabai_layout() {
