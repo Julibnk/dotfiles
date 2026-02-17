@@ -104,9 +104,22 @@ done
 # ---- THEME ----
 autoload -U promptinit; promptinit
 prompt pure
-zstyle :prompt:pure:path color '#a6e3a1'
-zstyle :prompt:pure:git:arrow color '#f9e2af'
-zstyle :prompt:pure:virtualenv color '#74c7ec'
+zstyle :prompt:pure:path color '#87a987'
+zstyle :prompt:pure:prompt:success color '#7AA89F'
+zstyle :prompt:pure:prompt:error color '#E46876'
+zstyle :prompt:pure:prompt:continuation color '#A4A7A4'
+zstyle :prompt:pure:git:branch color '#938AA9'
+zstyle :prompt:pure:git:branch:cached color '#E46876'
+zstyle :prompt:pure:git:arrow color '#E6C384'
+zstyle :prompt:pure:git:dirty color '#E6C384'
+zstyle :prompt:pure:git:action color '#E6C384'
+zstyle :prompt:pure:git:stash color '#7FB4CA'
+zstyle :prompt:pure:execution_time color '#b6927b'
+zstyle :prompt:pure:host color '#A4A7A4'
+zstyle :prompt:pure:user color '#7FB4CA'
+zstyle :prompt:pure:user:root color '#E46876'
+zstyle :prompt:pure:suspended_jobs color '#E46876'
+zstyle :prompt:pure:virtualenv color '#7FB4CA'
 
 # ---- CONDA ----
 #
