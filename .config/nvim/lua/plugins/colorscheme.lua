@@ -3,10 +3,20 @@ return {
 		"webhooked/kanso.nvim",
 		lazy = false,
 		priority = 1000,
+		opts = {
+			-- background = {
+			-- 	dark = "zen",
+			-- },
+		},
 		config = function()
-			vim.api.nvim_create_user_command("GMorning", function()
-				vim.cmd([[colorscheme kanso-pearl]])
-			end, {})
+			require("kanso").setup({
+				foreground = {
+					dark = "saturated",
+					light = "saturated",
+				},
+				minimal = true,
+			})
+			vim.cmd("colorscheme kanso-zen")
 		end,
 	},
 	{
@@ -14,13 +24,7 @@ return {
 		lazy = false,
 		priority = 1000,
 		config = function()
-			vim.cmd("colorscheme kanagawa")
-			vim.api.nvim_create_user_command("GNight", function()
-				vim.cmd([[colorscheme kanagawa]])
-			end, {})
-			-- vim.api.nvim_create_user_command("GMorning", function()
-			-- 	vim.cmd([[colorscheme kanagawa-lotus]])
-			-- end, {})
+			-- vim.cmd("colorscheme kanagawa")
 		end,
 	},
 }
