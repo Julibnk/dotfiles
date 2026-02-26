@@ -1,19 +1,19 @@
 #!/bin/bash
 # alt - z : open_and_move "Zen"
-alt - b : open_and_move "Brave Browser"
 # alt - t : open_and_move "kitty"
+alt - g : open_and_move "Brave Browser"
 alt - t : open_and_move "Microsoft Teams" "Microsoft Teams (PWA)"
 alt - m : open_and_move "Microsoft Outlook"
+shift + alt - d : open_and_move "Discord"
+shift + alt - n : open_and_move "Notion"
+alt - n : open "obsidian://open?vault=work" && yabai -m window --focus "$(yabai -m query --windows | jq ".[] | select(.app==\"Obsidian\").id")" ""
 
 # alt - d : open_and_move "DBeaver" "DBeaver Community"
 # alt - s : open_and_move "Spotify"
-shift + alt - d : open_and_move "Discord"
-shift + alt - n : open_and_move "Notion"
 # lalt - n : open_and_move " obsidian://open?vault=personal"
 # alt - n : yabai -m space --focus  4 && open "obsidian://open?vault=work"
 # alt - p : yabai -m space --focus  4 && open "obsidian://open?vault=personal"
 # alt - p : open "obsidian://open?vault=personal" && yabai -m window --focus "$(yabai -m query --windows | jq ".[] | select(.app==\"Obsidian\").id")" ""
-alt - n : open "obsidian://open?vault=work" && yabai -m window --focus "$(yabai -m query --windows | jq ".[] | select(.app==\"Obsidian\").id")" ""
 # alt - s : yabai -m window --space "split" && yabai -m space --focus "split";
 
 alt - a : open_terminal "kitty" 0
