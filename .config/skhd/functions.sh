@@ -35,7 +35,20 @@ open_and_move() {
         echo $app_indx
     fi
 
-    open -a "$1" && yabai -m window --focus "$(jq ".[$app_indx].id" <<< "$app_instances")"
+    if [[ "$len" == "0" ]]; then
+        # App not running, open it (yabai rules will handle space placement)
+        open -a "$1"
+    else
+        # App already running, focus the target window directly
+        target_id=$(jq ".[$app_indx].id" <<< "$app_instances")
+        target_space=$(jq ".[$app_indx].space" <<< "$app_instances")
+        current_space=$(yabai -m query --spaces --space | jq '.index')
+
+        if [[ "$target_space" != "$current_space" ]]; then
+            yabai -m space --focus "$target_space"
+        fi
+        yabai -m window --focus "$target_id"
+    fi
 }
 
 open_terminal() {

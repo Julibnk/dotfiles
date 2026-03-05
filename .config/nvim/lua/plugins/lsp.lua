@@ -69,6 +69,7 @@ return {
 				"composels",
 				"clangd",
 				"cssls",
+				"css-modules",
 				"dockerls",
 				"lua_ls",
 				"gopls",

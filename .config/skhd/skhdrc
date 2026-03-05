@@ -1,12 +1,18 @@
 #!/bin/bash
 # alt - z : open_and_move "Zen"
 # alt - t : open_and_move "kitty"
+alt - a : open_terminal "kitty" 0
+alt - s : open_terminal "kitty" 1
+alt - d : open_terminal "kitty" 2 
+alt - f : open_terminal "kitty" 3
 alt - g : open_and_move "Brave Browser"
-alt - t : open_and_move "Microsoft Teams" "Microsoft Teams (PWA)"
-alt - m : open_and_move "Microsoft Outlook"
-shift + alt - d : open_and_move "Discord"
-shift + alt - n : open_and_move "Notion"
-alt - n : open "obsidian://open?vault=work" && yabai -m window --focus "$(yabai -m query --windows | jq ".[] | select(.app==\"Obsidian\").id")" ""
+
+alt - h : open_and_move "Microsoft Teams" "Microsoft Teams (PWA)"
+alt - j : open "obsidian://open?vault=work" && yabai -m window --focus "$(yabai -m query --windows | jq ".[] | select(.app==\"Obsidian\").id")" ""
+alt - k : open_and_move "Notion"
+alt - l : open_and_move "Microsoft Outlook"
+# shift + alt - d : open_and_move "Discord"
+# shift + alt - k : open_and_move "Notion"
 
 # alt - d : open_and_move "DBeaver" "DBeaver Community"
 # alt - s : open_and_move "Spotify"
@@ -16,10 +22,6 @@ alt - n : open "obsidian://open?vault=work" && yabai -m window --focus "$(yabai 
 # alt - p : open "obsidian://open?vault=personal" && yabai -m window --focus "$(yabai -m query --windows | jq ".[] | select(.app==\"Obsidian\").id")" ""
 # alt - s : yabai -m window --space "split" && yabai -m space --focus "split";
 
-alt - a : open_terminal "kitty" 0
-alt - s : open_terminal "kitty" 1
-alt - d : open_terminal "kitty" 2 
-alt - f : open_terminal "kitty" 3
 # alt - a : open_and_move "kitty"
 # alt - s : open_and_move "kitty"
 # alt - d : open_and_move "kitty"
@@ -47,10 +49,10 @@ alt - o : yabai -m window --focus recent
 alt - r : yabai -m space --rotate 270
 
 #Space navigation vimlike
-alt - h : yabai -m space --focus prev
-alt - j : focus_next
-alt - k : focus_prev
-alt - l : yabai -m space --focus next
+# alt - p : yabai -m space --focus prev
+alt - n : focus_next
+alt - p : focus_prev
+# alt - n : yabai -m space --focus next
 #
 # lalt - l : yabai -m window --focus next
 alt - v : switch_yabai_layout

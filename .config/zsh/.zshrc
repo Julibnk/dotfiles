@@ -107,7 +107,7 @@ prompt pure
 zstyle :prompt:pure:path color '#87a987'
 zstyle :prompt:pure:prompt:success color '#7AA89F'
 zstyle :prompt:pure:prompt:error color '#E46876'
-zstyle :prompt:pure:prompt:continuation color '#A4A7A4'
+zstyle :prompt:pure:prompt:continuation color '#393B44'
 zstyle :prompt:pure:git:branch color '#938AA9'
 zstyle :prompt:pure:git:branch:cached color '#E46876'
 zstyle :prompt:pure:git:arrow color '#E6C384'
