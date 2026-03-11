@@ -69,7 +69,7 @@ return {
 				"composels",
 				"clangd",
 				"cssls",
-				"css-modules",
+				-- "css-modules",
 				"dockerls",
 				"lua_ls",
 				"gopls",
@@ -77,6 +77,7 @@ return {
 				"prisma-language-server",
 				"tailwindls",
 				"vstls",
+				"phpactor",
 			}
 
 			-- for _, f in pairs(vim.api.nvim_get_runtime_file("lsp/*.lua", true)) do
@@ -87,9 +88,4 @@ return {
 			vim.lsp.enable(lsp_configs)
 		end,
 	},
-	-- {
-	-- 	"pmizio/typescript-tools.nvim",
-	-- 	dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-	-- 	opts = {},
-	-- },
 }
