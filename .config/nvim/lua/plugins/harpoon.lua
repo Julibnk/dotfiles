@@ -11,9 +11,9 @@ return {
 			},
 		})
 		local map = vim.keymap.set
-		map("n", "<leader>hh", function()
-			harpoon.ui:toggle_quick_menu(harpoon:list())
-		end)
+		-- map("n", "<leader>hh", function()
+		-- 	harpoon.ui:toggle_quick_menu(harpoon:list())
+		-- end)
 		-- map("n", "<leader>r", function()
 		-- 	harpoon:list():remove()
 		-- end)

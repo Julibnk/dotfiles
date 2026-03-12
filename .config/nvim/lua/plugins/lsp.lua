@@ -17,42 +17,39 @@ return {
 						vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
 					end
 
-					map("gd", "<cmd>FzfLua lsp_definitions<CR>", "[G]oto [D]efinition")
+					local fzf = require("fzf-lua")
 
-					map("gD", "<cmd>FzfLua lsp_typedefs<CR>", "[G]oto type [D]efinition")
+					map("gd", function()
+						fzf.lsp_definitions({ jump1 = true })
+					end, "[G]oto [D]efinition")
 
-					map("gr", "<cmd>FzfLua lsp_references<CR>", "[G]oto [R]eferences")
+					map("gt", function()
+						fzf.lsp_typedefs()
+					end, "[G]oto [t]ype definition")
 
-					map("gI", "<cmd>FzfLua lsp_implementations<CR>", "[G]oto [R]eferences")
+					map("gD", function()
+						fzf.lsp_declarations()
+					end, "[G]oto [D]efinition")
 
-					map("<leader>ca", "<cmd>FzfLua lsp_code_actions<CR>", "[C]ode [A]ction", { "n", "x" })
+					map("gr", function()
+						fzf.lsp_references({ ignore_current_line = true })
+					end, "[G]oto [R]eferences")
 
-					-- --  Useful when you're not sure what type a variable is and you want to see
-					-- --  the definition of its *type*, not where it was *defined*.
-					-- map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
-					--
-					-- -- Fuzzy find all the symbols in your current document.
-					-- --  Symbols are tings like variables, functions, types, etc.
-					-- map('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-					--
-					-- -- Fuzzy find all the symbols in your current workspace.
-					-- --  Similar to document symbols, except searches over your entire project.
-					map("<leader>ws", "<cmd>FzfLua lsp_workspace_symbols<CR>", "[W]orkspace [S]ymbols")
+					map("gi", function()
+						fzf.lsp_implementations()
+					end, "[G]oto [R]eferences")
+
+					map("<leader>ca", function()
+						fzf.lsp_code_actions()
+					end, "[C]ode [A]ction", { "n", "x" })
+
+					map("<leader>ws", function()
+						fzf.lsp_workspace_symbols()
+					end, "[W]orkspace [S]ymbols")
 
 					map("<leader>K", vim.lsp.buf.hover, "Hover docs")
-					--
-					-- -- Rename the variable under your cursor.
-					-- --  Most Language Servers support renaming across files, etc.
-					map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-					-- -- Execute a code action, usually your cursor needs to be on top of an error
-					-- -- or a suggestion from your LSP for this to activate.
-					-- map("<leader>ca", fzf_lua.lsp_code_actions, )
-					--
 
-					--
-					-- -- WARN: This is not Goto Definition, this is Goto Declaration.
-					-- --  For example, in C this would take you to the header.
-					-- map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+					map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
 				end,
 			})
 

@@ -289,6 +289,9 @@ alias g='grep'
 alias air='~/go/bin/air'
 
 
+alias gl='git log --all --color --oneline --decorate --abbrev-commit'
+
+
 # Init zoxide
 eval "$(zoxide init zsh)"
 
