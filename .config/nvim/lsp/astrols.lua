@@ -43,7 +43,7 @@
 --- ```
 --- The path can also be passed via a variable, like `vim.g.tsdk = "${pkgs.typescript}/lib/node_modules/typescript/lib"` and then used in the Lua Neovim config.
 
-local util = require("lspconfig.util")
+-- local util = require("lspconfig.util")
 
 ---@type vim.lsp.Config
 return {
@@ -53,9 +53,9 @@ return {
 	init_options = {
 		typescript = {},
 	},
-	before_init = function(_, config)
-		if config.init_options and config.init_options.typescript and not config.init_options.typescript.tsdk then
-			config.init_options.typescript.tsdk = util.get_typescript_server_path(config.root_dir)
-		end
-	end,
+	-- before_init = function(_, config)
+	-- 	if config.init_options and config.init_options.typescript and not config.init_options.typescript.tsdk then
+	-- 		config.init_options.typescript.tsdk = util.get_typescript_server_path(config.root_dir)
+	-- 	end
+	-- end,
 }

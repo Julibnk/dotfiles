@@ -1,6 +1,7 @@
 require("config.lazy")
 require("opts")
 require("mappings")
+require("lsp")
 
 -- Autocomands
 -- Highlight when yanking text
