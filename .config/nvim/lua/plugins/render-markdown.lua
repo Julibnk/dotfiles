@@ -6,6 +6,10 @@ return {
 	---@module 'render-markdown'
 	---@type render.md.UserConfig
 	opts = {
+
+		completions = {
+			lsp = { enabled = true },
+		},
 		heading = {
 			border = true,
 			-- position = "inline",

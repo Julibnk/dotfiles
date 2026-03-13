@@ -4,8 +4,8 @@
 alt - a : open_terminal "kitty" 0
 alt - s : open_terminal "kitty" 1
 alt - d : open_terminal "kitty" 2 
-# alt - f : open_terminal "kitty" 3
 alt - f : open_and_move "Brave Browser"
+alt - g : yabai -m window --focus recent
 
 alt - h : open_and_move "Microsoft Teams" "Microsoft Teams (PWA)"
 alt - j : open "obsidian://open?vault=work" && yabai -m window --focus "$(yabai -m query --windows | jq ".[] | select(.app==\"Obsidian\").id")" ""
@@ -39,13 +39,11 @@ alt - 8 : yabai -m space --focus  8
 alt - 9 : yabai -m space --focus  9
 alt - 0 : yabai -m space --focus  10
 
-#Send to external window
 
-#Send to external window
 alt - e : yabai -m window --space 8; yabai -m space --focus 8 
 alt - i : hook_back
 
-alt - o : yabai -m window --focus recent
+# alt - o : yabai -m window --focus recent
 alt - r : yabai -m space --rotate 270
 
 #Space navigation vimlike

@@ -13,6 +13,7 @@ return {
 			-- { "-", "<cmd>Oil<cr>", desc = "Open Oil" },
 		}
 	end,
+	---@class oil.Config
 	opts = {
 		default_file_explorer = true,
 		keymaps = {
@@ -21,7 +22,6 @@ return {
 			["l"] = { "actions.select" },
 		},
 		view_options = {
-			-- Show files and directories that start with "."
 			show_hidden = true,
 		},
 	},

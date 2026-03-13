@@ -15,6 +15,7 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 vim.api.nvim_create_user_command("TscQuickfix", function()
 	local tmpfile = vim.fn.tempname()
 	local cmd = "tsc --noEmit > " .. tmpfile .. " 2>&1"
+	print("Running tsc...")
 	os.execute(cmd)
 
 	local lines = vim.fn.readfile(tmpfile)
