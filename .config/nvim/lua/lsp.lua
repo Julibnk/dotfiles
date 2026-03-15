@@ -58,7 +58,7 @@ local lsp_configs = {
 	"basedpyright",
 	"prisma-language-server",
 	"tailwindls",
-	"vstls",
+	"vtsls",
 	"phpactor",
 }
 

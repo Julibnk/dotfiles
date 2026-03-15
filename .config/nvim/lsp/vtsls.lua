@@ -4,10 +4,19 @@ local jsts_settings = {
 	updateImportsOnFileMove = "always",
 	suggest = { completeFunctionCalls = true },
 	inlayHints = {
-		functionLikeReturnTypes = { enabled = true },
 		parameterNames = { enabled = "literals" },
+		parameterTypes = { enabled = true },
 		variableTypes = { enabled = true },
+		propertyDeclarationTypes = { enabled = true },
+		functionLikeReturnTypes = { enabled = true },
+		enumMemberValues = { enabled = true },
 	},
+	-- inlayHints = {
+	--
+	-- 	functionLikeReturnTypes = { enabled = true },
+	-- 	parameterNames = { enabled = "literals" },
+	-- 	variableTypes = { enabled = true },
+	-- },
 }
 
 -- local function get_global_tsdk()
@@ -25,6 +34,7 @@ local jsts_settings = {
 -- 	end
 -- end
 
+---@module vim
 ---@type vim.lsp.Config
 return {
 	cmd = { "vtsls", "--stdio" },
