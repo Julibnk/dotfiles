@@ -1,5 +1,4 @@
 -- Install with: @vtsls/language-server
-
 local jsts_settings = {
 	updateImportsOnFileMove = "always",
 	suggest = { completeFunctionCalls = true },
@@ -11,6 +10,10 @@ local jsts_settings = {
 		functionLikeReturnTypes = { enabled = true },
 		enumMemberValues = { enabled = true },
 	},
+
+	preferences = {
+		includePackageJsonAutoImports = "on",
+	},
 	-- inlayHints = {
 	--
 	-- 	functionLikeReturnTypes = { enabled = true },
@@ -18,21 +21,6 @@ local jsts_settings = {
 	-- 	variableTypes = { enabled = true },
 	-- },
 }
-
--- local function get_global_tsdk()
--- 	-- Use VS Code's bundled copy if available.
--- 	local vscode_tsdk_path = "/Applications/%s/Contents/Resources/app/extensions/node_modules/typescript/lib"
--- 	local vscode_tsdk = vscode_tsdk_path:format("Visual Studio Code.app")
--- 	local vscode_insiders_tsdk = vscode_tsdk_path:format("Visual Studio Code - Insiders.app")
---
--- 	if vim.fn.isdirectory(vscode_tsdk) == 1 then
--- 		return vscode_tsdk
--- 	elseif vim.fn.isdirectory(vscode_insiders_tsdk) == 1 then
--- 		return vscode_insiders_tsdk
--- 	else
--- 		return nil
--- 	end
--- end
 
 ---@module vim
 ---@type vim.lsp.Config
