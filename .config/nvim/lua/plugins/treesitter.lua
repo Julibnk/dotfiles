@@ -1,11 +1,11 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
-	lazy = false,
-	branch = "main",
+	main = "nvim-treesitter.configs", -- Sets main module to use for opts
+	branch = "master",
 	opts = {
 		-- A list ttof parser names, or "all" (the listed parsers MUST always be installed)
-		tnsure_installed = {
+		ensure_installed = {
 			"bash",
 			"html",
 			"json",
