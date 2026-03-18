@@ -13,6 +13,13 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 	end,
 })
 
+vim.api.nvim_create_user_command("CmdLog", function(opts)
+	local output = vim.fn.execute(opts.args)
+	vim.cmd("new")
+	vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.split(output, "\n"))
+	vim.bo.buftype = "nofile"
+end, { nargs = "+", complete = "command" })
+
 vim.api.nvim_create_user_command("TscQuickfix", function()
 	local tmpfile = vim.fn.tempname()
 	local cmd = "tsc --noEmit > " .. tmpfile .. " 2>&1"
