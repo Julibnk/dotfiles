@@ -40,8 +40,8 @@ yabai -m config                                 \
 yabai -m config --display 1 external_bar all:30:0
 
 # mission-control desktop labels
-yabai -m space 1 --label code
-yabai -m space 2 --label browser
+yabai -m space 1 --label browser
+yabai -m space 2 --label code
 yabai -m space 3 --label chat
 yabai -m space 4 --label notes
 yabai -m space 5 --label other
