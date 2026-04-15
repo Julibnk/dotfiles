@@ -18,6 +18,8 @@ vim.opt.expandtab = true
 
 vim.opt.undofile = true
 
+vim.opt.winborder = "single"
+
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
 

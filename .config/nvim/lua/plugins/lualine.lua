@@ -27,6 +27,17 @@ local function is_recording()
 	return "macro " .. reg
 end
 
+local function is_dap_session_active()
+	local dap = require("dap")
+	if #dap.sessions() > 1 then
+		return "[  " .. #dap.sessions() .. "]"
+	end
+	if dap.session() ~= nil then
+		return "[  " .. dap.session().config.name .. "]"
+	end
+	return ""
+end
+
 local function mode_fmt(mode)
 	local width = vim.fn.winwidth(0)
 	if width <= 88 then
@@ -76,6 +87,7 @@ return {
 				{ is_recording, color = { fg = "#ffa500" } },
 			},
 			lualine_x = {
+				{ is_dap_session_active, color = "DiagnosticError" },
 				{ "lsp_status", ignore_lsp = { "tailwindls" }, fmt = responsive_disable },
 				{ "filetype", fmt = responsive_disable },
 			},
@@ -93,5 +105,6 @@ return {
 		tabline = {},
 		winbar = {},
 		inactive_winbar = {},
+		extensions = { "quickfix", "oil" },
 	},
 }

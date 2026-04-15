@@ -2,6 +2,9 @@ require("config.lazy")
 require("opts")
 require("mappings")
 require("lsp")
+require("vim._core.ui2").enable()
+
+vim.cmd("packadd nvim.undotree")
 
 -- Autocomands
 -- Highlight when yanking text
@@ -50,3 +53,12 @@ vim.diagnostic.config({
 		border = "single",
 	},
 })
+
+--DAP  Stop sign
+vim.api.nvim_set_hl(0, "debugSignPC", { fg = "#43242b" })
+
+vim.fn.sign_define("DapBreakpointCondition", { text = " ", texthl = "SignColumn", linehl = "@comment.warning" })
+vim.fn.sign_define("DapBreakpoint", { text = " ", texthl = "DapUIWatchesError", linehl = "@comment.error" })
+vim.fn.sign_define("DapStopped", { text = " ", texthl = "debugSignPC", linehl = "debugPC" })
+vim.fn.sign_define("DapLogPoint", { text = " ", texthl = "SignColumn" })
+vim.fn.sign_define("DapBreakpointRejected", { text = " ", texthl = "SignColumn" })

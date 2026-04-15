@@ -20,6 +20,8 @@ return {
 			["h"] = { "actions.parent" },
 			["-"] = { "actions.close" },
 			["l"] = { "actions.select" },
+			["<C-h>"] = false,
+			["<C-l>"] = false,
 		},
 		view_options = {
 			show_hidden = true,

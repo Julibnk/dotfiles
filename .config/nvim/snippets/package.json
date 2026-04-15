@@ -1,0 +1,116 @@
+{
+  "contributes": {
+    "snippets": [
+      {
+        "language": [
+          "plaintext",
+          "markdown",
+          "tex",
+          "html",
+          "global",
+          "all"
+        ],
+        "path": "./global.json"
+      },
+      {
+        "language": [
+          "shellscript",
+          "shell",
+          "sh",
+          "zsh"
+        ],
+        "path": "./shell/shell.json"
+      },
+      {
+        "language": "shelldoc",
+        "path": "./shell/shelldoc.json"
+      },
+      {
+        "language": [
+          "markdown",
+          "rmd"
+        ],
+        "path": "./markdown.json"
+      },
+      {
+        "language": [
+          "html",
+          "jade",
+          "pug",
+          "eruby",
+          "javascriptreact",
+          "htmldjango",
+          "astro",
+          "blade"
+        ],
+        "path": "./html.json"
+      },
+      {
+        "language": [
+          "css",
+          "scss",
+          "sass",
+          "less",
+          "stylus"
+        ],
+        "path": "./css.json"
+      },
+      {
+        "language": [
+          "javascript",
+          "javascriptreact",
+          "vue",
+          "svelte"
+        ],
+        "path": "./javascript/javascript.json"
+      },
+      {
+        "language": "jsdoc",
+        "path": "./javascript/jsdoc.json"
+      },
+      {
+        "language": "tsdoc",
+        "path": "./javascript/tsdoc.json"
+      },
+      {
+        "language": [
+          "typescript",
+          "typescriptreact"
+        ],
+        "path": "./javascript/typescript.json"
+      },
+      {
+        "language": "javascriptreact",
+        "path": "./javascript/react.json"
+      },
+      {
+        "language": "python",
+        "path": "./python/python.json"
+      },
+      {
+        "language": "python",
+        "path": "./python/comprehension.json"
+      },
+      {
+        "language": "python",
+        "path": "./python/unittest.json"
+      },
+      {
+        "language": "python",
+        "path": "./python/debug.json"
+      },
+      {
+        "language": "pydoc",
+        "path": "./python/pydoc.json"
+      },
+      {
+        "language": "yaml",
+        "path": "./docker/docker-compose.json"
+      },
+      {
+        "language": "dockerfile",
+        "path": "./docker/docker_file.json"
+      }
+    ]
+  }
+}
