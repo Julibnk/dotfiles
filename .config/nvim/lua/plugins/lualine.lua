@@ -1,22 +1,18 @@
--- TODO: Force update lualine on harpoon events to avoid lag
 local function harpoon_section()
 	local ok, harpoon = pcall(require, "harpoon")
 	if ok then
 		local bufname_in_harpoon = string.gsub(vim.api.nvim_buf_get_name(0), vim.loop.cwd() .. "/", "")
-		local its_me, index = harpoon:list():get_by_value(bufname_in_harpoon)
+		local its_me = harpoon:list():get_by_value(bufname_in_harpoon)
+		local len = #harpoon:list().items
 
 		-- { icon = " ", color = "warning" },
 		if its_me ~= nil then
-			return "󰐃 " .. index .. "/" .. harpoon:list():length() .. ""
+			return len .. " 󰐃"
 		end
 
-		if harpoon:list():length() == 0 then
-			return ""
-		end
-		return harpoon:list():length()
-	else
-		return nil
+		return len
 	end
+	return ""
 end
 
 local function is_recording()
@@ -83,8 +79,8 @@ return {
 			lualine_c = {
 				{ "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
 				{ "filename", path = 4 },
-				{ harpoon_section, color = { fg = "#ffa500" } },
-				{ is_recording, color = { fg = "#ffa500" } },
+				{ harpoon_section, color = { fg = "#f2f1ef" } },
+				{ is_recording, color = { fg = "#f2f1ef" } },
 			},
 			lualine_x = {
 				{ is_dap_session_active, color = "DiagnosticError" },

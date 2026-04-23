@@ -4,6 +4,7 @@ return {
 	dependencies = { "nvim-lua/plenary.nvim" },
 	config = function()
 		local harpoon = require("harpoon")
+		local Path = require("plenary.path")
 		harpoon:setup({
 			settings = {
 				save_on_toggle = true,
@@ -11,13 +12,20 @@ return {
 			},
 		})
 		local map = vim.keymap.set
-		-- map("n", "<leader>hh", function()
-		-- 	harpoon.ui:toggle_quick_menu(harpoon:list())
-		-- end)
-		-- map("n", "<leader>r", function()
-		-- 	harpoon:list():remove()
-		-- end)
-		map("n", "<leader>a", function()
+		map("n", "<leader>hh", function()
+			harpoon.ui:toggle_quick_menu(harpoon:list())
+		end)
+		map("n", "<leader>M", function()
+			local function normalize_path(buf_name, root)
+				return Path:new(buf_name):make_relative(root)
+			end
+			local bufname = normalize_path(vim.api.nvim_buf_get_name(0), harpoon:list().config.get_root_dir())
+			local item = harpoon:list():get_by_value(bufname)
+			if item ~= nil then
+				harpoon:list():remove(item)
+			end
+		end)
+		map("n", "<leader>m", function()
 			harpoon:list():add()
 		end)
 		map("n", "<leader>1", function()

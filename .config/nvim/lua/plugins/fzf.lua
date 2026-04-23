@@ -106,48 +106,48 @@ return {
 				require("fzf-lua").marks()
 			end,
 		},
-		{
-			"<leader>hh",
-			function()
-				local harpoon = require("harpoon")
-				local fzf = require("fzf-lua")
-				local list = harpoon:list()
-				local items = {}
-				for i = 1, list:length() do
-					local item = list:get(i)
-					if item and item.value and item.value ~= "" then
-						table.insert(items, string.format("%d: %s", i, item.value)) -- skip empty lines if deletion didn't functional properly
-					end
-				end
-				fzf.fzf_exec(items, {
-					prompt = "Harpoon Files> ",
-					winopts = {
-						width = 0.6,
-						height = 0.6,
-					},
-
-					fzf_opts = {
-						["--preview"] = "bat --style=numbers --color=always $(echo {} | sed 's/^\\([0-9]\\+\\): //')",
-					},
-					actions = {
-						["default"] = function(selected)
-							local idx = tonumber(selected[1]:match("^(%d+):"))
-							if idx then
-								list:select(idx)
-							end
-						end,
-						["ctrl-x"] = function(selected)
-							local idx = tonumber(selected[1]:match("^(%d+):"))
-							if idx then
-								local item = list:get(idx)
-								list:remove(item)
-							end
-						end,
-					},
-				})
-			end,
-			desc = "Harpoon FZF Menu",
-		},
+		-- {
+		-- 	"<leader>hh",
+		-- 	function()
+		-- 		local harpoon = require("harpoon")
+		-- 		local fzf = require("fzf-lua")
+		-- 		local list = harpoon:list()
+		-- 		local items = {}
+		-- 		for i = 1, list:length() do
+		-- 			local item = list:get(i)
+		-- 			if item and item.value and item.value ~= "" then
+		-- 				table.insert(items, string.format("%d: %s", i, item.value)) -- skip empty lines if deletion didn't functional properly
+		-- 			end
+		-- 		end
+		-- 		fzf.fzf_exec(items, {
+		-- 			prompt = "Harpoon Files> ",
+		-- 			winopts = {
+		-- 				width = 0.6,
+		-- 				height = 0.6,
+		-- 			},
+		--
+		-- 			fzf_opts = {
+		-- 				["--preview"] = "bat --style=numbers --color=always $(echo {} | sed 's/^\\([0-9]\\+\\): //')",
+		-- 			},
+		-- 			actions = {
+		-- 				["default"] = function(selected)
+		-- 					local idx = tonumber(selected[1]:match("^(%d+):"))
+		-- 					if idx then
+		-- 						list:select(idx)
+		-- 					end
+		-- 				end,
+		-- 				["ctrl-x"] = function(selected)
+		-- 					local idx = tonumber(selected[1]:match("^(%d+):"))
+		-- 					if idx then
+		-- 						local item = list:get(idx)
+		-- 						list:remove(item)
+		-- 					end
+		-- 				end,
+		-- 			},
+		-- 		})
+		-- 	end,
+		-- 	desc = "Harpoon FZF Menu",
+		-- },
 		{ "<leader>f.", "<cmd>FzfLua oldfiles<CR>" },
 		{ "<leader>fr", "<cmd>FzfLua resume<CR>" },
 		{ "<leader>fh", "<cmd>FzfLua helptags<CR>" },
