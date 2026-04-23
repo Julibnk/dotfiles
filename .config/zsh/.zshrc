@@ -121,6 +121,7 @@ zstyle :prompt:pure:user:root color '#E46876'
 zstyle :prompt:pure:suspended_jobs color '#E46876'
 zstyle :prompt:pure:virtualenv color '#7FB4CA'
 
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#5c6066'
 # ---- CONDA ----
 #
 # TODO check this and configure conda properly
@@ -350,6 +351,7 @@ bindkey '^f' fzf-cd-widget
 # defaults write -g InitialKeyRepeat -int 10
 # defaults write -g KeyRepeat -int 1
 # defaults write -g ApplePressAndHoldEnabled -bool false
+
 export JAVA_HOME=/opt/homebrew/opt/openjdk/libexec/openjdk.jdk/Contents/Home
 # export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-8.jdk/Contents/Home
 export PATH="$JAVA_HOME/bin:$PATH"
@@ -357,6 +359,9 @@ export PATH="$JAVA_HOME/bin:$PATH"
 export HISTFILE="$ZDOTDIR/.zsh_history"    # History filepath
 export HISTSIZE=10000                   # Maximum events for internal history
 export SAVEHIST=10000                   # Maximum events in history file
+
+export OPENCODE_EXPERIMENTAL_LSP_TOOL=true 
 setopt append_history
+
 #NOTE: Profiling startup
 # zprof

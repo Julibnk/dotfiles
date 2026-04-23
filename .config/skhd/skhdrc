@@ -1,12 +1,12 @@
 #!/bin/bash
 # alt - z : open_and_move "Zen"
 # alt - t : open_and_move "kitty"
-# alt - a : open_terminal "kitty" 0
-# alt - s : open_terminal "kitty" 1
+alt - f : open_terminal "kitty" 0
+alt - d : open_terminal "kitty" 1
 # alt - d : open_terminal "kitty" 2 
 alt - a : yabai -m window --focus recent
-alt - f : open_and_move "Brave Browser"
-alt - g : open_and_move "kitty"
+# alt - f : open_and_move "kitty"
+alt - g : open_and_move "Brave Browser"
 
 alt - h : open_and_move "Microsoft Teams" "Microsoft Teams (PWA)"
 alt - j : open "obsidian://open?vault=work" && yabai -m window --focus "$(yabai -m query --windows | jq ".[] | select(.app==\"Obsidian\").id")" ""
