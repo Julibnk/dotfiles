@@ -51,6 +51,7 @@ local lsp_configs = {
 	"composels",
 	"clangd",
 	"cssls",
+	"omnisharp",
 	-- "css-modules",
 	"dockerls",
 	"lua_ls",

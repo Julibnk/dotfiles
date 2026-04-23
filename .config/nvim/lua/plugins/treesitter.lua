@@ -18,8 +18,10 @@ local ft = {
 	"vimdoc",
 	"xml",
 }
+
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = ft,
+
+	pattern = vim.tbl_deep_extend("force", ft, { "cs" }),
 	callback = function()
 		vim.treesitter.start()
 	end,
@@ -30,7 +32,8 @@ return {
 	-- main = "nvim-treesitter.configs", -- Sets main module to use for opts
 	branch = "main",
 	config = function()
+		local parsers = vim.tbl_deep_extend("force", ft, { "c_sharp" })
 		local treesitter = require("nvim-treesitter")
-		treesitter.install(ft)
+		treesitter.install(parsers)
 	end,
 }

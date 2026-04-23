@@ -181,9 +181,18 @@ return {
 					if config.mode == "remote" and config.request == "attach" then
 						callback({
 							type = "server",
-							host = config.host or "127.0.0.1",
-							port = config.port or "38697",
+							port = "${port}",
+							-- executable = {
+							-- 	command = "dlv",
+							-- 	args = { "dap", "attach", tonumber(config.processId) },
+							-- 	detached = vim.fn.has("win32") == 0,
+							-- },
 						})
+						-- callback({
+						-- 	type = "server",
+						-- 	host = config.host or "127.0.0.1",
+						-- 	port = config.port or "38697",
+						-- })
 					else
 						callback({
 							type = "server",
@@ -224,25 +233,26 @@ return {
 				go = {
 					{
 						type = "delve",
-						name = "Debug",
+						name = "GO-Debug curr. file",
 						request = "launch",
 						program = "${file}",
 						dlvToolPath = delvePath,
 					},
 					{
 						type = "delve",
-						name = "Debug test", -- configuration for debugging test files
+						name = "GO-Debug pick file",
 						request = "launch",
-						mode = "test",
-						program = "${file}",
+						program = "${command:pickProcess}",
 						dlvToolPath = delvePath,
 					},
 					{
 						type = "delve",
-						name = "Debug test (go.mod)",
-						request = "launch",
-						mode = "test",
-						program = "./${relativeFileDirname}",
+						name = "GO-attach delve",
+						request = "attach",
+						processId = "${command:pickProcess}",
+						-- processId = function()
+						-- 	return tonumber(vim.fn.input("processId: "))
+						-- end,
 						dlvToolPath = delvePath,
 					},
 				},
