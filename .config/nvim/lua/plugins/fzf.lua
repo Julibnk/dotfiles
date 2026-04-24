@@ -87,7 +87,7 @@ return {
 			end,
 		},
 		{
-			"<leader><space>",
+			"<leader>fb",
 			function()
 				require("fzf-lua").buffers({
 					sort_lastused = true,

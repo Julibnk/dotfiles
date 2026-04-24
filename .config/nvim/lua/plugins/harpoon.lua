@@ -12,7 +12,7 @@ return {
 			},
 		})
 		local map = vim.keymap.set
-		map("n", "<leader>hh", function()
+		map("n", "<leader><space>", function()
 			harpoon.ui:toggle_quick_menu(harpoon:list())
 		end)
 		map("n", "<leader>M", function()

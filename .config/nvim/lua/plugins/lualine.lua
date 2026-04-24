@@ -1,7 +1,7 @@
 local function harpoon_section()
 	local ok, harpoon = pcall(require, "harpoon")
 	if ok then
-		local bufname_in_harpoon = string.gsub(vim.api.nvim_buf_get_name(0), vim.loop.cwd() .. "/", "")
+		local bufname_in_harpoon = string.gsub(vim.api.nvim_buf_get_name(0), vim.pesc(vim.loop.cwd() .. "/"), "")
 		local its_me = harpoon:list():get_by_value(bufname_in_harpoon)
 		local len = #harpoon:list().items
 
