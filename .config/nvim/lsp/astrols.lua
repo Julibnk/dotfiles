@@ -51,7 +51,9 @@ return {
 	filetypes = { "astro" },
 	root_markers = { "package.json", "tsconfig.json", "jsconfig.json", ".git" },
 	init_options = {
-		typescript = {},
+		typescript = {
+			tsdk = os.getenv("NVM_DIR") .. "/versions/node/v22.22.2/lib/node_modules/typescript/lib", --${pkgs.typescript}/lib/node_modules/typescript/lib,
+		},
 	},
 	-- before_init = function(_, config)
 	-- 	if config.init_options and config.init_options.typescript and not config.init_options.typescript.tsdk then

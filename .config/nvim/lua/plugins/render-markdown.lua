@@ -11,7 +11,7 @@ return {
 			lsp = { enabled = true },
 		},
 		heading = {
-			border = true,
+			border = false,
 			-- position = "inline",
 			-- width = "block",
 			-- min_width = 60,

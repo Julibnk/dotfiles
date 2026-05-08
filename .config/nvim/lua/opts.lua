@@ -45,6 +45,7 @@ vim.opt.foldlevel = 99
 --  and `:help 'listchars'`
 -- vim.opt.list = true
 -- vim.opt.listchars = { tab = "> ", trail = "·", nbsp = "␣" }
+vim.opt.shortmess:append("W")
 
 -- Show which line your cursor is on
 vim.opt.cursorline = true
@@ -53,6 +54,7 @@ vim.opt.cursorline = true
 vim.opt.showmode = false
 
 vim.opt.cmdheight = 0 -- Height of the command bar
+vim.opt.makeprg = "task"
 
 -- vim.opt.guicursor = "n:block,i:block,v:block"
 

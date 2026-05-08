@@ -46,7 +46,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 local lsp_configs = {
 	-- "angularls",
-	-- "astrols",
+	"astrols",
 	"bashls",
 	"composels",
 	"clangd",
