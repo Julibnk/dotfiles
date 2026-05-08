@@ -143,7 +143,7 @@ unset __conda_setup
 # export NVM_DIR="$HOME/.nvm"
 
 export NVM_DIR="$XDG_CONFIG_HOME/nvm"
-export PATH="$NVM_DIR/versions/node/$(node -v 2>/dev/null || cat $NVM_DIR/alias/default)/bin:$PATH"
+export PATH="$NVM_DIR/versions/node/$(cat $NVM_DIR/alias/default || node -v 2>/dev/null)/bin:$PATH"
 
 # This loads nvm
 if [ -s "$NVM_DIR/nvm.sh" ]; then 
@@ -361,7 +361,10 @@ export HISTSIZE=10000                   # Maximum events for internal history
 export SAVEHIST=10000                   # Maximum events in history file
 
 export OPENCODE_EXPERIMENTAL_LSP_TOOL=true 
-setopt append_history
+setopt share_history          # Share history across all sessions in real-time
+setopt hist_ignore_all_dups   # Remove older duplicate when new entry is added
+setopt hist_ignore_space      # Don't save commands that start with a space
+setopt hist_reduce_blanks     # Remove extra blanks from commands
 
 #NOTE: Profiling startup
 # zprof
