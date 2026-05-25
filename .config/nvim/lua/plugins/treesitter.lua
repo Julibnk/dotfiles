@@ -12,8 +12,6 @@ local ft = {
 	"prisma",
 	"javascript",
 	"typescript",
-	"typescriptreact",
-	"javascriptreact",
 	"vim",
 	"sql",
 	"vimdoc",
@@ -24,7 +22,7 @@ local ft = {
 
 vim.api.nvim_create_autocmd("FileType", {
 
-	pattern = vim.tbl_deep_extend("force", ft, { "cs" }),
+	pattern = vim.tbl_deep_extend("force", ft, { "cs", "typescriptreact", "javascriptreact" }),
 	callback = function()
 		vim.treesitter.start()
 	end,
@@ -35,7 +33,7 @@ return {
 	-- main = "nvim-treesitter.configs", -- Sets main module to use for opts
 	branch = "main",
 	config = function()
-		local parsers = vim.tbl_deep_extend("force", ft, { "c_sharp" })
+		local parsers = vim.tbl_deep_extend("force", ft, { "c_sharp", "tsx", "jsx" })
 		local treesitter = require("nvim-treesitter")
 		treesitter.install(parsers)
 	end,
