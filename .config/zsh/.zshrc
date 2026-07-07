@@ -104,22 +104,22 @@ done
 # ---- THEME ----
 autoload -U promptinit; promptinit
 prompt pure
-zstyle :prompt:pure:path color '#87a987'
-zstyle :prompt:pure:prompt:success color '#7AA89F'
-zstyle :prompt:pure:prompt:error color '#E46876'
-zstyle :prompt:pure:prompt:continuation color '#393B44'
-zstyle :prompt:pure:git:branch color '#938AA9'
-zstyle :prompt:pure:git:branch:cached color '#E46876'
-zstyle :prompt:pure:git:arrow color '#E6C384'
-zstyle :prompt:pure:git:dirty color '#E6C384'
-zstyle :prompt:pure:git:action color '#E6C384'
-zstyle :prompt:pure:git:stash color '#7FB4CA'
-zstyle :prompt:pure:execution_time color '#b6927b'
+zstyle :prompt:pure:path color '#76B276'
+zstyle :prompt:pure:prompt:success color '#64B193'
+zstyle :prompt:pure:prompt:error color '#F2525C' # 
+zstyle :prompt:pure:prompt:continuation color '#393B44' #
+zstyle :prompt:pure:git:branch color '#8687B4'
+zstyle :prompt:pure:git:branch:cached color '#F2525C'
+zstyle :prompt:pure:git:arrow color '#F0C269'
+zstyle :prompt:pure:git:dirty color '#F0C269'
+zstyle :prompt:pure:git:action color '#F0C269'
+zstyle :prompt:pure:git:stash color '#66BED9'
+zstyle :prompt:pure:execution_time color '#BF8664'
 zstyle :prompt:pure:host color '#A4A7A4'
-zstyle :prompt:pure:user color '#7FB4CA'
-zstyle :prompt:pure:user:root color '#E46876'
-zstyle :prompt:pure:suspended_jobs color '#E46876'
-zstyle :prompt:pure:virtualenv color '#7FB4CA'
+zstyle :prompt:pure:user color '#66BED9'
+zstyle :prompt:pure:user:root color '#F2525C'
+zstyle :prompt:pure:suspended_jobs color '#F2525C'
+zstyle :prompt:pure:virtualenv color '#66BED9'
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#5c6066'
 # ---- CONDA ----
@@ -291,6 +291,10 @@ alias air='~/go/bin/air'
 
 
 alias gl='git log --all --color --oneline --decorate --abbrev-commit'
+
+alias gb='git branch --no-column -v'
+alias gba='git branch --all --no-column -v'
+alias gbr='git branch -r --no-column -v'
 
 
 # Init zoxide
