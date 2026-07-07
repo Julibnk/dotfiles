@@ -8,6 +8,7 @@ local ft = {
 	"query",
 	"go",
 	"markdown",
+	"dockerfile",
 	"markdown_inline",
 	"prisma",
 	"javascript",

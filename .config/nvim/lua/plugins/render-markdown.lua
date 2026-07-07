@@ -13,8 +13,8 @@ return {
 		heading = {
 			border = false,
 			-- position = "inline",
-			-- width = "block",
-			-- min_width = 60,
+			width = "block",
+			min_width = 80,
 			backgrounds = {
 				"RenderMarkdownH2Bg",
 				"RenderMarkdownH1Bg",
