@@ -1,0 +1,23 @@
+{
+  "name": "Kanso Zen",
+  "base": "dark",
+  "overrides": {
+    "text": "#C5C9C7",
+    "secondaryText": "#75797F",
+    "inverseText": "#090E13",
+    "suggestion": "#75797F",
+    "claude": "#C4746E",
+    "permission": "#7FB4CA",
+    "planMode": "#6A9589",
+    "thinking": "#938AA9",
+    "bashBorder": "#7890B3",
+    "success": "#98BB6C",
+    "error": "#C34043",
+    "warning": "#DCA561",
+    "autoAccept": "#98BB6C",
+    "diffAdded": "#2B3328",
+    "diffRemoved": "#43242B",
+    "diffAddedWord": "#3A4A33",
+    "diffRemovedWord": "#5A2E33"
+  }
+}
