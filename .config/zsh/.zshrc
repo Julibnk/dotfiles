@@ -143,7 +143,7 @@ unset __conda_setup
 # export NVM_DIR="$HOME/.nvm"
 
 export NVM_DIR="$XDG_CONFIG_HOME/nvm"
-export PATH="$NVM_DIR/versions/node/$(cat $NVM_DIR/alias/default || node -v 2>/dev/null)/bin:$PATH"
+export PATH="$NVM_DIR/versions/node/v$(cat $NVM_DIR/alias/default 2>/dev/null | sed 's/^v//')/bin:$PATH"
 
 # This loads nvm
 if [ -s "$NVM_DIR/nvm.sh" ]; then 
@@ -289,12 +289,26 @@ alias grep='rg --hidden'
 alias g='grep'
 alias air='~/go/bin/air'
 
-
 alias gl='git log --all --color --oneline --decorate --abbrev-commit'
 
 alias gb='git branch --no-column -v'
 alias gba='git branch --all --no-column -v'
 alias gbr='git branch -r --no-column -v'
+
+
+# --- Claude code & desktop config ---
+
+#NOTE: If you set manually CLAUDE_CONFIG_DIR Claude doesn't follow symlinks - 
+#so for my personal account I will use the default claude command with my config symlinked to
+#dotfiles, and for work account must use clw BUT I need to replicate manually 
+#every change from the symlinked files
+alias clw="CLAUDE_CONFIG_DIR=$HOME/.claude_work claude"
+
+#NOTE: Claude desktop uses ~/Library/Application Support/Claude for the config
+#so this is the final picture
+# - personal cc account ~/.claude (symlinked relevant files to ~/dotfiles)
+# - octane11 cc account ~/.claude 
+# - octane11 Claude desktop account ~/Library/Application Support/Claude 
 
 
 # Init zoxide
@@ -372,3 +386,11 @@ setopt hist_reduce_blanks     # Remove extra blanks from commands
 
 #NOTE: Profiling startup
 # zprof
+#
+
+#TODO: Fix this paths
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/julibnk/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/julibnk/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/julibnk/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/julibnk/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
