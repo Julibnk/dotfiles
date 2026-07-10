@@ -105,6 +105,12 @@ hook_back() {
         space="browser"
     elif [[ $current_app == "Brave Browser" ]]; then
         space="browser"
+    elif [[ $current_app == "Zoom" ]]; then
+        space="zoom"
+    elif [[ $current_app == "Slack" ]]; then
+        space="chat"
+    elif [[ $current_app == "Claude" ]]; then
+        space="other"
     elif [[ $current_app == "Microsoft Teams" ]]; then
         space="chat"
     elif [[ $current_app == "Obsidian" ]]; then
