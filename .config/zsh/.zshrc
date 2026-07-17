@@ -78,6 +78,8 @@
 
 # -- Oh my zsh
 # source $ZSH/oh-my-zsh.sh
+fpath=(~/.docker/completions $fpath)
+
 # manually manage plugins
 autoload -U compinit; compinit
 _comp_options+=(globdots) # With hidden files
@@ -279,7 +281,7 @@ alias t='tmux a'
 alias cat='bat'
 alias cd='z'
 alias rm='trash'
-alias l='eza -a --color=always --long --no-filesize --icons=always --no-time --no-user'
+alias l='eza -a --color=always --long --icons=always --no-time '
 alias ls='eza'
 alias cl='clear'
 # alias fd='fzf'
@@ -290,10 +292,13 @@ alias g='grep'
 alias air='~/go/bin/air'
 
 alias gl='git log --all --color --oneline --decorate --abbrev-commit'
-
 alias gb='git branch --no-column -v'
 alias gba='git branch --all --no-column -v'
 alias gbr='git branch -r --no-column -v'
+alias ggr='serie'
+
+alias tb='turbo'
+
 
 
 # --- Claude code & desktop config ---
@@ -302,7 +307,7 @@ alias gbr='git branch -r --no-column -v'
 #so for my personal account I will use the default claude command with my config symlinked to
 #dotfiles, and for work account must use clw BUT I need to replicate manually 
 #every change from the symlinked files
-alias clw="CLAUDE_CONFIG_DIR=$HOME/.claude_work claude"
+alias clw="CLAUDE_CONFIG_DIR=$HOME/.claude_work /opt/homebrew/bin/claude"
 
 #NOTE: Claude desktop uses ~/Library/Application Support/Claude for the config
 #so this is the final picture
@@ -378,6 +383,7 @@ export HISTFILE="$ZDOTDIR/.zsh_history"    # History filepath
 export HISTSIZE=10000                   # Maximum events for internal history
 export SAVEHIST=10000                   # Maximum events in history file
 
+export GH_DASH_CONFIG="$HOME/.config/gh-dash/config.yml"
 export OPENCODE_EXPERIMENTAL_LSP_TOOL=true 
 setopt share_history          # Share history across all sessions in real-time
 setopt hist_ignore_all_dups   # Remove older duplicate when new entry is added

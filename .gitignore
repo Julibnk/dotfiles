@@ -6,3 +6,24 @@
 .config/zsh/.zcompcache
 
 
+# Claude Code — runtime/estado/caché/privado (NO versionar)
+.claude/projects/
+.claude/sessions/
+.claude/history.jsonl
+.claude/file-history/
+.claude/backups/
+.claude/cache/
+.claude/paste-cache/
+.claude/plugins/
+.claude/shell-snapshots/
+.claude/session-env/
+.claude/plans/
+.claude/tasks/
+.claude/debug/
+.claude/ide/
+.claude/telemetry/
+.claude/*cache*.json
+.claude/.last-cleanup
+.claude/scheduled_tasks.lock
+.claude/.credentials.json
+.claude/settings.local.json

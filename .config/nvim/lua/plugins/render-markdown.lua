@@ -9,6 +9,7 @@ return {
 
 		completions = {
 			lsp = { enabled = true },
+			-- blink = { enabled = true },
 		},
 		heading = {
 			border = false,
@@ -32,6 +33,7 @@ return {
 				"RenderMarkdownH4",
 			},
 		},
-		indent = { enabled = true, skip_heading = true },
+		pipe_table = { cell = "trimmed" },
+		indent = { enabled = true, skip_heading = true, icon = "" },
 	},
 }

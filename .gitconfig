@@ -7,21 +7,21 @@
   defaultBranch = main
 
 [core]
-  pager = "diff-so-fancy | less --tabs=4 -RF"
+  pager = "delta"
   editor = nvim
 
 [merge]
-  conflictstyle = merge
+  conflictstyle = zdiff3
   tool = nvim
 
-[mergetool "nvim"]
-  cmd = nvim -c "DiffviewOpen"
-
-[mergetool]
-  prompt = false
+; [mergetool "nvim"]
+;   cmd = nvim -c "DiffviewOpen"
+;
+; [mergetool]
+;   prompt = false
 
 [interactive]
-  diffFilter = "diff-so-fancy --patch"
+  diffFilter = delta --color-only --features=interactive
 
 [diff]
   colorMoved = default
@@ -29,26 +29,36 @@
 [branch]
     sort = -committerdate
 
-[column]
-    ui = auto
+[pull]
+	rebase = true
+
+; [column]
+;     ui = auto
 
 # DELTA
 [delta]
+  pager = less
   navigate = true
+  hyperlinks = true
   line-numbers = true
   side-by-side = false
+  dark = true
+  wrap-max-lines = 0
+  file-decoration-style = ul
+  hunk-header-decoration-style = none
+  hunk-header-style = file line-number syntax
+  merge-conflict-begin-symbol = ⌃
+  merge-conflict-end-symbol = ⌄
+  merge-conflict-ours-diff-header-style = "#F0C269 bold"
+  merge-conflict-ours-diff-header-decoration-style = "#F0C269 box"
+  merge-conflict-theirs-diff-header-style = "#66BED9 bold"
+  merge-conflict-theirs-diff-header-decoration-style = "#66BED9 box"
 
 [delta "interactive"]
-    keep-plus-minus-markers = true
+  keep-plus-minus-markers = true
 
-[delta "decorations"]
-    commit-decoration-style = blue ol
-    commit-style = raw
-    file-style = omit
-    hunk-header-decoration-style = blue box
-    hunk-header-file-style = red
-    hunk-header-line-number-style = "#067a00"
-    hunk-header-style = file line-number syntax
+[alias]
+  conflicts = diff --name-only --diff-filter=U
+  remerge = show --remerge-diff
+  ds = diff --staged
 
-[pull]
-	rebase = true

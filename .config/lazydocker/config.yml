@@ -1,0 +1,3 @@
+gui:
+  # Screen mode on startup, as if pressing '+': 'normal' | 'half' | 'fullscreen'
+  screenMode: half

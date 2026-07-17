@@ -8,13 +8,26 @@ return {
 
 		return {
 			keymap = {
+				-- fzf-lua REEMPLAZA la tabla de keymaps por defecto salvo que
+				-- añadas `[1] = true` para heredarlos (ver config.lua build_bind_tables).
+				builtin = {
+					[1] = true, -- hereda los binds builtin por defecto (F4, scroll, etc.)
+					-- `files` usa el previewer builtin. OJO: esta tabla usa notación
+					-- de Neovim (<C-p>), se registra con vim.keymap.set("t", ...).
+					["<C-p>"] = "toggle-preview",
+				},
 				fzf = {
+					[1] = true, -- sin esto se perdían ctrl-z/alt-a/etc. por defecto
 					["ctrl-q"] = "select-all+accept",
+					-- Para previewers nativos de fzf (bat/git/etc.).
+					["ctrl-p"] = "toggle-preview",
 				},
 			},
 			winopts = { width = 0.9, height = 0.9, preview = { horizontal = "right:50%" } },
 			files = {
 				-- no_ignore = true,-- respect ".gitignore"  by default
+				-- preview oculto por defecto en find files (toggle con <C-p>)
+				winopts = { preview = { hidden = true } },
 			},
 			git = {
 				bcommits = { winopts = { preview = { layout = "horizontal", horizontal = "right:70%" } } },

@@ -14,7 +14,7 @@ return {
 					dark = "saturated",
 					light = "saturated",
 				},
-				minimal = true,
+				minimal = false,
 			})
 			vim.cmd("colorscheme kanso-zen")
 

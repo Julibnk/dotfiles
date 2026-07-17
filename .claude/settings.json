@@ -46,7 +46,8 @@
     "lua-lsp@claude-plugins-official": true
   },
   "effortLevel": "high",
-  "tui": "fullscreen",
+  "tui": "default",
   "theme": "auto",
-  "editorMode": "vim"
+  "editorMode": "vim",
+  "useAutoModeDuringPlan": true
 }

@@ -75,10 +75,11 @@ return {
 		},
 		sections = {
 			lualine_a = { { "mode", fmt = mode_fmt } },
-			lualine_b = { "branch", "diagnostics" },
+			-- lualine_b = { "branch", "diagnostics" },
+			lualine_b = { "diagnostics" },
 			lualine_c = {
 				{ "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-				{ "filename", path = 4 },
+				{ "filename", path = 1 },
 				{ harpoon_section, color = { fg = "#f2f1ef" } },
 				{ is_recording, color = { fg = "#f2f1ef" } },
 			},
