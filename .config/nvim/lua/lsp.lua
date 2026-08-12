@@ -28,13 +28,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 		map("gi", function()
 			fzf.lsp_implementations()
-		end, "[G]oto [R]eferences")
+		end, "[G]oto [I]mplementation")
 
 		if vim.lsp.get_client_by_id(event.data.client_id).name == "vtsls" then
 			map("gs", function()
 				-- vim.print(require("nvim-vtsls.vtsls"))
 				require("vtsls.commands").goto_source_definition(0)
-			end, "[G]oto [R]eferences")
+			end, "[G]oto [S]ource")
 		end
 
 		map("<leader>ca", function()

@@ -13,7 +13,11 @@ return {
 		})
 		local map = vim.keymap.set
 		map("n", "<leader><space>", function()
-			harpoon.ui:toggle_quick_menu(harpoon:list())
+			harpoon.ui:toggle_quick_menu(harpoon:list(), {
+				ui_width_ratio = 0.9,
+				ui_max_width = 120,
+				height_in_lines = 15,
+			})
 		end)
 		map("n", "<leader>M", function()
 			local function normalize_path(buf_name, root)

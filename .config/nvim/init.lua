@@ -1,3 +1,7 @@
+-- Debe ir ANTES de cargar lazy: nvim-colorizer valida &termguicolors en su
+-- setup (corre al cargar los plugins), y vague necesita truecolor.
+vim.opt.termguicolors = true
+
 require("config.lazy")
 require("opts")
 require("mappings")

@@ -121,8 +121,12 @@ hook_back() {
         space="music"
     elif [[ $current_app == "Postman" ]]; then
         space="other"
+    elif [[ $current_app == "ZenNotes" ]]; then
+        space="notes"
     elif [[ $current_app == "pgAdmin 4" ]]; then
         space="other"
+    elif [[ $current_app == "DBeaver" ]]; then
+        space="bd"
     elif [[ $current_app == "Microsoft Outlook" ]]; then
         space="other"
     fi

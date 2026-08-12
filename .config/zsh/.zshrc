@@ -106,24 +106,47 @@ done
 # ---- THEME ----
 autoload -U promptinit; promptinit
 prompt pure
-zstyle :prompt:pure:path color '#76B276'
-zstyle :prompt:pure:prompt:success color '#64B193'
-zstyle :prompt:pure:prompt:error color '#F2525C' # 
-zstyle :prompt:pure:prompt:continuation color '#393B44' #
-zstyle :prompt:pure:git:branch color '#8687B4'
-zstyle :prompt:pure:git:branch:cached color '#F2525C'
-zstyle :prompt:pure:git:arrow color '#F0C269'
-zstyle :prompt:pure:git:dirty color '#F0C269'
-zstyle :prompt:pure:git:action color '#F0C269'
-zstyle :prompt:pure:git:stash color '#66BED9'
-zstyle :prompt:pure:execution_time color '#BF8664'
-zstyle :prompt:pure:host color '#A4A7A4'
-zstyle :prompt:pure:user color '#66BED9'
-zstyle :prompt:pure:user:root color '#F2525C'
-zstyle :prompt:pure:suspended_jobs color '#F2525C'
-zstyle :prompt:pure:virtualenv color '#66BED9'
+# Colores por índice de la paleta ANSI/256 de kitty (color0-color17 en
+# current-theme.conf). Al usar índices en vez de hex, el prompt sigue
+# automáticamente cualquier cambio de tema de kitty. Fuente única de verdad.
+zstyle :prompt:pure:path color 10                 # verde brillante (color10)
+zstyle :prompt:pure:prompt:success color 14       # cyan/verde brillante (color14)
+zstyle :prompt:pure:prompt:error color 9          # rojo brillante (color9)
+zstyle :prompt:pure:prompt:continuation color '#393B44' # gris (selection_background, sin ranura en la paleta)
+zstyle :prompt:pure:git:branch color 13           # magenta brillante (color13)
+zstyle :prompt:pure:git:branch:cached color 9     # rojo brillante (color9)
+zstyle :prompt:pure:git:arrow color 11            # amarillo brillante (color11)
+zstyle :prompt:pure:git:dirty color 11            # amarillo brillante (color11)
+zstyle :prompt:pure:git:action color 11           # amarillo brillante (color11)
+zstyle :prompt:pure:git:stash color 12            # azul brillante (color12)
+zstyle :prompt:pure:execution_time color 16       # naranja/marrón extra (color16)
+zstyle :prompt:pure:host color 8                  # gris (color8)
+zstyle :prompt:pure:user color 12                 # azul brillante (color12)
+zstyle :prompt:pure:user:root color 9             # rojo brillante (color9)
+zstyle :prompt:pure:suspended_jobs color 9        # rojo brillante (color9)
+zstyle :prompt:pure:virtualenv color 12           # azul brillante (color12)
+
+# ---- KITTY PALETTE -> ENV ----
+# Exporta la paleta de kitty (current-theme.conf) como KITTY_COLOR0..17 /
+# KITTY_FOREGROUND / KITTY_BACKGROUND para que nvim (tema vague) tire de los
+# mismos colores sin duplicarlos. Fuente única de verdad: current-theme.conf.
+() {
+  local theme="$XDG_CONFIG_HOME/kitty/current-theme.conf"
+  [[ -r $theme ]] || return
+  local key val
+  while read -r key val; do
+    case $key in
+      color<->|foreground|background) export "KITTY_${(U)key}=${val}" ;;
+    esac
+  done < $theme
+}
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#5c6066'
+
+# Disable the reverse-video highlight zsh applies to pasted text. Without this,
+# pasted commands render each token as an inverted colored block instead of
+# normal syntax highlighting.
+zle_highlight=('paste:none')
 # ---- CONDA ----
 #
 # TODO check this and configure conda properly
@@ -190,6 +213,36 @@ export FZF_DEFAULT_OPTS="
     --layout reverse 
     --style minimal 
     --preview '$FZF_PREVIEW'"
+
+# Cattpuchin
+export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
+--color=bg+:#313244,bg:#1E1E2E,spinner:#F5E0DC,hl:#F38BA8 \
+--color=fg:#CDD6F4,header:#F38BA8,info:#CBA6F7,pointer:#F5E0DC \
+--color=marker:#B4BEFE,fg+:#CDD6F4,prompt:#CBA6F7,hl+:#F38BA8 \
+--color=selected-bg:#45475A \
+--color=border:#6C7086,label:#CDD6F4"
+#   --highlight-line \
+#   --info=inline-right \
+#   --ansi \
+#   --layout=reverse \
+#   --border=none \
+#   --color=bg+:#283457 \
+#   --color=bg:#16161e \
+#   --color=border:#27a1b9 \
+#   --color=fg:#c0caf5 \
+#   --color=gutter:#16161e \
+#   --color=header:#ff9e64 \
+#   --color=hl+:#2ac3de \
+#   --color=hl:#2ac3de \
+#   --color=info:#545c7e \
+#   --color=marker:#ff007c \
+#   --color=pointer:#ff007c \
+#   --color=prompt:#2ac3de \
+#   --color=query:#c0caf5:regular \
+#   --color=scrollbar:#27a1b9 \
+#   --color=separator:#ff9e64 \
+#   --color=spinner:#ff007c \
+# "
     
 
 export FZF_CTRL_T_OPTS="--preview '$FZF_PREVIEW'"
@@ -277,7 +330,6 @@ alias ..='cd ..'
 alias -- -='cd -'
 alias vim='nvim'
 alias v='nvim'
-alias t='tmux a'
 alias cat='bat'
 alias cd='z'
 alias rm='trash'
@@ -285,19 +337,38 @@ alias l='eza -a --color=always --long --icons=always --no-time '
 alias ls='eza'
 alias cl='clear'
 # alias fd='fzf'
-alias lg='lazygit'
+# alias lg='lazygit'
 alias ldc='lazydocker'
 alias grep='rg --hidden'
 alias g='grep'
 alias air='~/go/bin/air'
 
-alias gl='git log --all --color --oneline --decorate --abbrev-commit'
+alias ga='git add'
+alias gs='git status'
+alias gp='git push'
+alias gc='git commit'
+alias gl='git log --color --oneline --decorate --abbrev-commit'
+
+alias ggr='serie'
+alias gsw='git switch'
+alias gdiff='hunk diff'
+
+alias gco='git checkout'
+alias gcb='git checkout -b'
+
 alias gb='git branch --no-column -v'
 alias gba='git branch --all --no-column -v'
 alias gbr='git branch -r --no-column -v'
-alias ggr='serie'
+alias gbd='git branch -d'
 
-alias tb='turbo'
+ #    gco = "git checkout";
+ #    gcp = "git cherry-pick";
+     # gdiff = "git diff";
+ #    gl = "git prettylog";
+ #    gt = "git tag";
+
+alias t='turbo'
+alias k='kubectl'
 
 
 

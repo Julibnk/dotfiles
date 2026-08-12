@@ -1,0 +1,7 @@
+# bat config — https://github.com/sharkdp/bat
+#
+# Tema "ansi": usa SOLO los 16 colores ANSI (color0-color15 de kitty),
+# así que el resaltado sigue automáticamente tu tema de kitty igual que
+# hace el prompt de pure. Fuente única de verdad = current-theme.conf.
+# Alternativas que también siguen la paleta: "base16" (16) y "base16-256" (256).
+--theme="Catppuccin Mocha"

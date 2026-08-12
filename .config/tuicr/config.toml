@@ -1,0 +1,17 @@
+# tuicr configuration
+# Docs: run `tuicr --help`. Config lives in $XDG_CONFIG_HOME/tuicr/config.toml
+
+# --- Theme (Catppuccin) ---
+# Adapts to the OS light/dark setting. Available flavors:
+#   catppuccin-latte (light), catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha (dark)
+appearance = "system"
+theme_dark = "catppuccin-mocha"
+theme_light = "catppuccin-latte"
+
+# To pin a single theme regardless of OS appearance, comment the three lines
+# above and uncomment this:
+# theme = "catppuccin-mocha"
+
+# --- Diff view ---
+# "side-by-side" (split) or "unified"
+diff_view = "side-by-side"

@@ -178,6 +178,7 @@ return {
 		{ "<leader>Q", "<cmd>FzfLua diagnostics_workspace<CR>" },
 		{ "<leader>gc", "<cmd>FzfLua git_commits<CR>" },
 		{ "<leader>gb", "<cmd>FzfLua git_bcommits<CR>" },
+		{ "<leader>gs", "<cmd>FzfLua git_status<CR>" },
 		{ "<leader>fw", "<cmd>FzfLua grep_cword<CR>" },
 		{ "<leader>fW", "<cmd>FzfLua grep_cWORD<CR>" },
 	},

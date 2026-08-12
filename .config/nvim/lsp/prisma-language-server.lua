@@ -4,5 +4,9 @@ return {
 	root_markers = {
 		"package.json",
 	},
-	settings = {},
+	settings = {
+		prisma = {
+			enableDiagnostics = true,
+		},
+	},
 }

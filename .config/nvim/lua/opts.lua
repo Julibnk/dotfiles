@@ -1,4 +1,6 @@
 -- Options
+-- termguicolors se activa en init.lua ANTES de cargar lazy (nvim-colorizer
+-- valida &termguicolors en su setup, que corre al cargar los plugins).
 vim.opt.number = true
 vim.opt.relativenumber = true
 

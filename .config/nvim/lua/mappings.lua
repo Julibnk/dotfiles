@@ -22,6 +22,8 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Half page up centered" })
 vim.keymap.set("n", "n", "nzzzv", { desc = "Next search result centerd" })
 vim.keymap.set("n", "N", "Nzzzv", { desc = "Prev search result centerd" })
 
+vim.keymap.set("n", "<leader>yp", ':let @+ = expand("%")<CR>', { desc = "Yank ruta relativa al cwd" })
+
 -- Delete default mapings for go to reference
 vim.keymap.del("n", "grr")
 vim.keymap.del({ "n", "x" }, "gra")

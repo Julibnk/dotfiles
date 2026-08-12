@@ -44,10 +44,10 @@ yabai -m space 1 --label code
 yabai -m space 2 --label browser
 yabai -m space 3 --label chat
 yabai -m space 4 --label zoom
-yabai -m space 5 --label mail
-yabai -m space 6 --label other
-yabai -m space 7 --label notes
-yabai -m space 8 --label music
+yabai -m space 5 --label notes
+yabai -m space 6 --label bd
+yabai -m space 7 --label other
+yabai -m space 8 --label other2
 yabai -m space 9 --label external
 
 # window rules
@@ -55,21 +55,17 @@ yabai -m rule --add app="^kitty$" space=^code
 yabai -m rule --add app="^Brave Browser$" space=^browser
 yabai -m rule --add app="^Slack$" space=^chat
 yabai -m rule --add app="^Zoom$" space=^zoom
-yabai -m rule --add app="^Mail$" space=^mail
-
 yabai -m rule --add app="^ZenNotes$" space=^notes
+yabai -m rule --add app="^DBeaver$" space=^bd
 
 yabai -m rule --add app="^Claude$" space=^other
-yabai -m rule --add app="^DBeaver$" space=^other
 yabai -m rule --add app="^Preview$" space=^other
 yabai -m rule --add app="^Finder$" space=^other
 # yabai -m rule --add app="^Obsidian$" space=^other
-yabai -m rule --add app="^Notion$" space=^other
 yabai -m rule --add app="^Strongbox$" space=^other
-yabai -m rule --add app="^Discord$" space=^other
-yabai -m rule --add app="^Stremio$" space=^other
+yabai -m rule --add app="^Mail$" space=^other2
 
-yabai -m rule --add app="^Spotify$" space=^music
+# yabai -m rule --add app="^Spotify$" space=^music
 
 # specific space settings
 yabai -m config --space chat layout stack
