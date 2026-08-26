@@ -1,0 +1,51 @@
+# Ruido que NO queremos ver ni cuando buscamos en ficheros gitignorados.
+#
+# Se aplica con `--ignore-file` desde fzf-lua (<alt-i>, toggle_ignore).
+# Sintaxis .gitignore. Válido para fd y para rg: en ambos `--ignore-file`
+# tiene la precedencia más baja y NO lo desactiva `--no-ignore`.
+
+# Dependencias
+node_modules/
+bower_components/
+vendor/
+.pnpm-store/
+.yarn/
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.tox/
+
+# Artefactos de build
+dist/
+build/
+out/
+target/
+.next/
+.nuxt/
+.svelte-kit/
+.output/
+_build/
+
+# Cachés
+.cache/
+.turbo/
+.parcel-cache/
+.gradle/
+.terraform/
+coverage/
+.nyc_output/
+
+# Internals de VCS
+.git/
+.jj/
+.hg/
+.svn/
+
+# OS
+.DS_Store

@@ -11,6 +11,7 @@ local ft = {
 	"dockerfile",
 	"markdown_inline",
 	"prisma",
+	"python",
 	"javascript",
 	"typescript",
 	"vim",

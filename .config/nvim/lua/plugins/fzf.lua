@@ -6,6 +6,13 @@ return {
 		local fzf = require("fzf-lua")
 		fzf.register_ui_select()
 
+		-- <alt-i> (actions.toggle_ignore) inyecta por defecto `--no-ignore`, que
+		-- se carga TODO el filtrado: aparece node_modules/, dist/, .venv/...
+		-- `--no-ignore-vcs` solo se salta el .gitignore (así salen .scratch,
+		-- .claude/..., etc.) y `--ignore-file` deja fuera el ruido.
+		-- Misma sintaxis en fd y en rg, así que sirve para files y para grep.
+		local toggle_ignore_flag = "--no-ignore-vcs --ignore-file " .. vim.fn.stdpath("config") .. "/noise.ignore"
+
 		return {
 			keymap = {
 				-- fzf-lua REEMPLAZA la tabla de keymaps por defecto salvo que
@@ -24,8 +31,21 @@ return {
 				},
 			},
 			winopts = { width = 0.9, height = 0.9, preview = { horizontal = "right:50%" } },
+			actions = {
+				-- `files` cubre también a grep/live_grep (comparten tabla de acciones).
+				files = {
+					[1] = true, -- hereda las acciones por defecto (enter, ctrl-s/v/t, alt-h/f...)
+					-- toggle_ignore va en alt-i por defecto; lo movemos a ctrl-h.
+					-- OJO: ctrl-i NO vale, en terminal es el mismo byte (0x09) que
+					-- <Tab> y se cargaría el multi-select.
+					["alt-i"] = false,
+					["ctrl-h"] = { fn = fzf.actions.toggle_ignore, reuse = true, header = false },
+				},
+			},
 			files = {
-				-- no_ignore = true,-- respect ".gitignore"  by default
+				-- Arranca respetando .gitignore; <alt-i> alterna al modo "sin
+				-- .gitignore pero sin ruido" (ver toggle_ignore_flag arriba).
+				toggle_ignore_flag = toggle_ignore_flag,
 				-- preview oculto por defecto en find files (toggle con <C-p>)
 				winopts = { preview = { hidden = true } },
 			},
@@ -38,6 +58,7 @@ return {
 				rg_opts = '--column --no-heading --color=always --smart-case --max-columns=4096 -e -g "!.git"',
 				winopts = { preview = { horizontal = "right:60%" } },
 				hidden = true,
+				toggle_ignore_flag = toggle_ignore_flag,
 			},
 			diagnostics = {
 				-- Remove the dashed line between diagnostic items.
@@ -176,8 +197,8 @@ return {
 			end,
 		},
 		{ "<leader>Q", "<cmd>FzfLua diagnostics_workspace<CR>" },
-		{ "<leader>gc", "<cmd>FzfLua git_commits<CR>" },
-		{ "<leader>gb", "<cmd>FzfLua git_bcommits<CR>" },
+		-- { "<leader>gc", "<cmd>FzfLua git_commits<CR>" },
+		-- { "<leader>gb", "<cmd>FzfLua git_bcommits<CR>" },
 		{ "<leader>gs", "<cmd>FzfLua git_status<CR>" },
 		{ "<leader>fw", "<cmd>FzfLua grep_cword<CR>" },
 		{ "<leader>fW", "<cmd>FzfLua grep_cWORD<CR>" },

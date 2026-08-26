@@ -15,6 +15,56 @@ local function harpoon_section()
 	return ""
 end
 
+local function git_file_status()
+	local ok, cache = pcall(require, "gitsigns.cache")
+	if not ok then
+		return ""
+	end
+
+	local bcache = cache.cache[vim.api.nvim_get_current_buf()]
+	-- Sin cache = el buffer no está en un repo git (o gitsigns aún no ha attachado).
+	if not bcache then
+		return ""
+	end
+
+	-- gitsigns deja object_name a nil cuando el fichero no está en el index.
+	if bcache.git_obj.object_name == nil then
+		return "?"
+	end
+
+	local d = vim.b.gitsigns_status_dict
+	if d and ((d.added or 0) + (d.changed or 0) + (d.removed or 0)) > 0 then
+		return "M"
+	end
+
+	return ""
+end
+
+-- Mismos códigos y colores que el picker `git_status` de fzf-lua
+-- (defaults.lua: M = yellow, ? = magenta). fzf pinta con los colores ansi
+-- del terminal, así que usamos los de nvim si el colorscheme los define
+-- (catppuccin trae `term_colors = false`) y si no, los de la config de kitty.
+local git_status_color = {
+	["M"] = { 3, "#f9e2af" }, -- yellow
+	["?"] = { 5, "#f5c2e7" }, -- magenta
+}
+
+local function git_file_status_color()
+	local c = git_status_color[git_file_status()]
+	if c then
+		return { fg = vim.g["terminal_color_" .. c[1]] or c[2] }
+	end
+end
+
+local function gitsigns_diff_source()
+	-- Reusa el recuento de gitsigns en vez de que lualine lance su propio
+	-- `git diff --numstat` en background.
+	local d = vim.b.gitsigns_status_dict
+	if d then
+		return { added = d.added, modified = d.changed, removed = d.removed }
+	end
+end
+
 local function is_recording()
 	local reg = vim.fn.reg_recording()
 	if reg == "" then
@@ -80,6 +130,8 @@ return {
 			lualine_c = {
 				{ "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
 				{ "filename", path = 1 },
+				{ git_file_status, color = git_file_status_color },
+				{ "diff", source = gitsigns_diff_source },
 				{ harpoon_section, color = { fg = "#f2f1ef" } },
 				{ is_recording, color = { fg = "#f2f1ef" } },
 			},

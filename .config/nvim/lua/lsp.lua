@@ -64,6 +64,7 @@ local lsp_configs = {
 	"lua_ls",
 	"gopls",
 	"basedpyright",
+	"ruff",
 	"prisma-language-server",
 	"tailwindls",
 	"vtsls",

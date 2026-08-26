@@ -49,6 +49,9 @@ vim.opt.foldlevel = 99
 -- vim.opt.listchars = { tab = "> ", trail = "·", nbsp = "␣" }
 vim.opt.shortmess:append("W")
 
+-- Diff: líneas de relleno (huecos) en blanco en vez del `-` por defecto.
+vim.opt.fillchars:append({ diff = " " })
+
 -- Show which line your cursor is on
 vim.opt.cursorline = true
 
