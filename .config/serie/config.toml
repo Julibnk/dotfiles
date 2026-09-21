@@ -12,8 +12,10 @@ initial_selection = "head"
 ignore_case = false
 fuzzy = false
 
+
 [core.user_command]
-commands_1 = { name = "git diff", commands = ["git", "--no-pager", "diff", "--color=always", "{{first_parent_hash}}", "{{target_hash}}"]}
+# TODO: https://github.com/lusingander/serie/issues/121
+commands_1 = { name = "git diff (delta)", commands = ["sh", "-c", 'W=$(stty size </dev/tty 2>/dev/null | cut -d" " -f2); [ -z "$W" ] && W=200; git diff --color=always {{first_parent_hash}} {{target_hash}} | delta --paging=never --side-by-side --width=$((W-2)) | perl -pe "s/\e\]8;;.*?\e\\\\//g"'] }
 tab_width = 4
 
 [core.external]
@@ -99,5 +101,7 @@ status_error_fg = "red"
 divider_fg = "dark-gray"
 
 [keybind]
+user_command_view_toggle_1 = ["d"]
+page_down = ["ctrl-f", "pagedown"]
 # See the separate Custom Keybindings section for details.
 # ...

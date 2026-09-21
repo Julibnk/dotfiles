@@ -12,19 +12,25 @@
 
 [merge]
   conflictstyle = zdiff3
-  tool = nvim
+  tool = diffview
 
-; [mergetool "nvim"]
-;   cmd = nvim -c "DiffviewOpen"
-;
-; [mergetool]
-;   prompt = false
+[mergetool]
+  prompt = false
+  keepBackup = false
+
+[mergetool "diffview"]
+  # $MERGED es el fichero real del working tree, así que Diffview edita el
+  # mismo fichero que git va a stagear al salir.
+  cmd = nvim -n -c "DiffviewOpen" "$MERGED"
+  trustExitCode = true
+
 
 [interactive]
-  diffFilter = delta --color-only --features=interactive
+  diffFilter = delta --color-only 
 
 [diff]
   colorMoved = default
+  algorithm = histogram
 
 [branch]
     sort = -committerdate
@@ -62,6 +68,17 @@
   conflicts = diff --name-only --diff-filter=U
   remerge = show --remerge-diff
   ds = diff --staged
+  # Abre Diffview una sola vez con TODOS los conflictos (mejor que `git mergetool`,
+  # que relanza el editor fichero a fichero).
+  mt = !nvim -c DiffviewOpen
+  # `git difftool` no puede recibir revisiones: itera fichero a fichero pasando
+  # solo $LOCAL/$REMOTE. Con un alias sí reenviamos los argumentos tal cual.
+  #   git dt              -> working tree
+  #   git dt HEAD~3       -> contra HEAD~3
+  #   git dt main...HEAD  -> la rama contra su merge base
+  #   git dt HEAD -- src/ -> limitado a un path
+  dt = "!f() { nvim -c \"DiffviewOpen $*\"; }; f"
+  dpr = "!f() { nvim -c \"DiffviewFileHistory $* --right-only --no-merges\"; }; f"
 
 [delta "catppuccin-mocha"]
   blame-palette = "#1e1e2e #181825 #11111b #313244 #45475a"
@@ -78,14 +95,14 @@
   line-numbers-plus-style = bold "#a6e3a1"
   line-numbers-right-style = "#6c7086"
   line-numbers-zero-style = "#6c7086"
-  # 35% red 65% base
-  minus-emph-style = bold syntax "#694559"
-  # 20% red 80% base
-  minus-style = syntax "#493447"
-  # 35% green 65% base
-  plus-emph-style = bold syntax "#4e6356"
-  # 20% green 80% base
-  plus-style = syntax "#394545"
+  # 50% red 50% base
+  minus-emph-style = bold syntax "#89556b"
+  # 30% red 70% base
+  minus-style = syntax "#5e3f53"
+  # 50% green 50% base
+  plus-emph-style = bold syntax "#628168"
+  # 30% green 70% base
+  plus-style = syntax "#475951"
   map-styles = \
   	bold purple => syntax "#5b4e74", \
   	bold blue => syntax "#445375", \
@@ -93,3 +110,7 @@
   	bold yellow => syntax "#6b635b"
   # Should match the name of the bat theme
   syntax-theme = Catppuccin Mocha
+
+[rebase]
+	autoStash = true
+	updateRefs = true

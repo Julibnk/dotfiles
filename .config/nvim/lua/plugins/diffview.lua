@@ -44,13 +44,13 @@ return {
 				},
 			},
 			file_panel = {
-				listing_style = "list",
+				listing_style = "tree",
 				tree_options = {
 					-- Colapsa cadenas de carpetas con un solo hijo (src/lua/plugins).
 					flatten_dirs = true,
 					folder_statuses = "only_folded",
 				},
-				win_config = { position = "bottom", height = 16 },
+				win_config = { position = "left", width = 50 },
 			},
 			keymaps = {
 				view = {
@@ -59,8 +59,8 @@ return {
 					{ "n", "<C-p>", actions.select_prev_entry, { desc = "Fichero anterior" } },
 					{ "n", "<tab>", false },
 					{ "n", "<s-tab>", false },
-					-- { "n", "<leader>f", "<cmd>DiffviewFocusFiles<CR>", { desc = "Focus del panel de ficheros" } },
-					-- { "n", "<leader>F", "<cmd>DiffviewToggleFiles<CR>", { desc = "Abrir/cerrar el panel de ficheros" } },
+					{ "n", "<leader>t", "<cmd>DiffviewFocusFiles<CR>", { desc = "Focus del panel de ficheros" } },
+					{ "n", "<leader>e", false },
 				},
 				file_panel = {
 					{ "n", "q", "<cmd>DiffviewClose<CR>", { desc = "Cerrar Diffview" } },
@@ -68,7 +68,12 @@ return {
 					{ "n", "<C-p>", actions.select_prev_entry, { desc = "Fichero anterior" } },
 					{ "n", "<tab>", false },
 					{ "n", "<s-tab>", false },
-					{ "n", "<cr>", actions.focus_entry, { desc = "Abrir el diff y saltar al fichero (ventana derecha)" } },
+					{
+						"n",
+						"<cr>",
+						actions.focus_entry,
+						{ desc = "Abrir el diff y saltar al fichero (ventana derecha)" },
+					},
 					-- { "n", "<leader>f", "<cmd>DiffviewFocusFiles<CR>", { desc = "Focus del panel de ficheros" } },
 					-- { "n", "<leader>F", "<cmd>DiffviewToggleFiles<CR>", { desc = "Abrir/cerrar el panel de ficheros" } },
 					{
@@ -101,7 +106,12 @@ return {
 					{ "n", "<C-p>", actions.select_prev_entry, { desc = "Fichero anterior" } },
 					{ "n", "<tab>", false },
 					{ "n", "<s-tab>", false },
-					{ "n", "<cr>", actions.focus_entry, { desc = "Abrir el diff y saltar al fichero (ventana derecha)" } },
+					{
+						"n",
+						"<cr>",
+						actions.focus_entry,
+						{ desc = "Abrir el diff y saltar al fichero (ventana derecha)" },
+					},
 					-- { "n", "<leader>f", "<cmd>DiffviewFocusFiles<CR>", { desc = "Focus del panel de ficheros" } },
 					-- { "n", "<leader>F", "<cmd>DiffviewToggleFiles<CR>", { desc = "Abrir/cerrar el panel de ficheros" } },
 				},
