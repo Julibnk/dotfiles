@@ -1,17 +1,60 @@
 {
-  "model": "fable",
-  "hooks": {
-    "Stop": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "afplay /System/Library/Sounds/Glass.aiff"
-          }
-        ]
-      }
+  "permissions": {
+    "allow": [
+      "Bash(rg:*)"
     ],
+    "deny": [
+      "Bash(gcloud *)",
+      "Bash(kubectl apply *)",
+      "Bash(kubectl delete *)",
+      "Bash(npx prisma migrate *)",
+      "Bash(npx prisma db push *)",
+      "Bash(prisma migrate *)",
+      "Bash(prisma db push *)",
+      "Bash(psql *)",
+      "Bash(bq query *)",
+      "Bash(cloud-sql-proxy *)",
+      "Bash(sqlproxy *)"
+    ],
+    "ask": [
+      "Bash(rm *)",
+      "Bash(trash *)",
+      "Bash(git commit *)",
+      "Bash(git push *)",
+      "Bash(git push --force*)",
+      "Bash(git rebase *)",
+      "Bash(git reset --hard *)",
+      "Bash(git clean *)",
+      "Bash(gh pr create *)",
+      "Bash(gh pr merge *)",
+      "Bash(gh release create *)",
+      "Bash(gh workflow run *)",
+      "mcp__claude_ai_Slack__slack_send_message",
+      "mcp__claude_ai_Slack__slack_send_message_draft",
+      "mcp__claude_ai_Slack__slack_schedule_message",
+      "mcp__claude_ai_Slack__slack_create_conversation",
+      "mcp__claude_ai_Slack__slack_create_canvas",
+      "mcp__claude_ai_Slack__slack_update_canvas",
+      "mcp__claude_ai_Slack__slack_add_reaction",
+      "mcp__claude_ai_Gmail__send_message",
+      "mcp__claude_ai_Gmail__reply",
+      "mcp__claude_ai_Gmail__forward",
+      "mcp__claude_ai_Gmail__create_draft",
+      "mcp__claude_ai_Gmail__update_draft",
+      "mcp__youtrack__create_issue",
+      "mcp__youtrack__create_draft_issue",
+      "mcp__youtrack__update_issue",
+      "mcp__youtrack__add_issue_comment",
+      "mcp__youtrack__create_article",
+      "mcp__youtrack__update_article",
+      "mcp__youtrack__link_issues",
+      "mcp__youtrack__change_issue_assignee",
+      "mcp__youtrack__manage_issue_tags",
+      "mcp__youtrack__log_work"
+    ]
+  },
+  "model": "opus",
+  "hooks": {
     "PermissionRequest": [
       {
         "matcher": "",
@@ -33,6 +76,18 @@
           }
         ]
       }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "^(startup|resume|clear|compact|fork)$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash '/Users/julibnk/.claude/hooks/herdr-agent-state.sh' session",
+            "timeout": 10
+          }
+        ]
+      }
     ]
   },
   "statusLine": {
@@ -43,7 +98,16 @@
   "enabledPlugins": {
     "vtsls@claude-code-lsps": true,
     "superpowers@claude-plugins-official": false,
-    "lua-lsp@claude-plugins-official": true
+    "lua-lsp@claude-plugins-official": true,
+    "i-have-adhd@i-have-adhd": true
+  },
+  "extraKnownMarketplaces": {
+    "i-have-adhd": {
+      "source": {
+        "source": "github",
+        "repo": "ayghri/i-have-adhd"
+      }
+    }
   },
   "effortLevel": "high",
   "tui": "default",
