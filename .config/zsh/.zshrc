@@ -126,6 +126,47 @@ zstyle :prompt:pure:user:root color 9             # rojo brillante (color9)
 zstyle :prompt:pure:suspended_jobs color 9        # rojo brillante (color9)
 zstyle :prompt:pure:virtualenv color 12           # azul brillante (color12)
 
+# ---- K8S CONTEXT (Pure no lo trae de serie) ----
+# Muestra "contexto:namespace" al final de la linea de arriba, detras del
+# tiempo de ejecucion. Pure >=1.28 expone psvar[22] (prefijo) y psvar[23]
+# (sufijo) de la preprompt, rellenables desde prompt_pure_precustom.
+# Lee el kubeconfig directamente y cachea por mtime, asi que no invoca kubectl
+# (que tarda ~150ms) en cada prompt.
+zmodload -F zsh/stat b:zstat
+typeset -g PURE_KUBE_CONTEXT= _pure_kube_stamp=
+
+prompt_pure_kube_context() {
+  local cfg=${${(s.:.)KUBECONFIG}[1]:-$HOME/.kube/config}
+  if [[ ! -r $cfg ]]; then PURE_KUBE_CONTEXT=; _pure_kube_stamp=; return; fi
+  local -a st; zstat -A st +mtime $cfg
+  [[ $st[1] == $_pure_kube_stamp ]] && return
+  _pure_kube_stamp=$st[1]
+  # El bloque anidado "extensions:" tambien tiene un "name:", de ahi que se
+  # discrimine por indentacion exacta: 2 espacios = nombre del contexto.
+  PURE_KUBE_CONTEXT=$(awk '
+    function unq(s) { gsub(/^["\x27]|["\x27]$/, "", s); return s }
+    /^contexts:/               { inctx = 1; next }
+    inctx && /^[^ -]/          { inctx = 0 }
+    inctx && /^- /             { ns = "" }
+    inctx && /^    namespace:/ { ns = unq($2) }
+    inctx && /^  name:/        { ns_of[unq($2)] = ns }
+    /^current-context:/        { cc = unq($2) }
+    END {
+      if (cc == "") exit
+      printf "%s:%s", cc, (ns_of[cc] == "" ? "default" : ns_of[cc])
+    }
+  ' $cfg)
+}
+
+# Hook oficial de Pure: se invoca en cada render, antes de calcular el
+# fingerprint que decide si hay que repintar, asi que el cambio de contexto se
+# refleja tambien en los redibujados asincronos.
+prompt_pure_precustom() {
+  prompt_pure_kube_context
+  psvar[23]=${PURE_KUBE_CONTEXT:+⎈ $PURE_KUBE_CONTEXT}
+}
+zstyle :prompt:pure:custom:suffix color 6          # cyan (color6)
+
 # ---- KITTY PALETTE -> ENV ----
 # Exporta la paleta de kitty (current-theme.conf) como KITTY_COLOR0..17 /
 # KITTY_FOREGROUND / KITTY_BACKGROUND para que nvim (tema vague) tire de los
@@ -216,7 +257,7 @@ export FZF_DEFAULT_OPTS="
 
 # Cattpuchin
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
---color=bg+:#313244,bg:#1E1E2E,spinner:#F5E0DC,hl:#F38BA8 \
+--color=bg+:#313244,bg:#11111C,spinner:#F5E0DC,hl:#F38BA8 \
 --color=fg:#CDD6F4,header:#F38BA8,info:#CBA6F7,pointer:#F5E0DC \
 --color=marker:#B4BEFE,fg+:#CDD6F4,prompt:#CBA6F7,hl+:#F38BA8 \
 --color=selected-bg:#45475A \
@@ -349,6 +390,7 @@ alias gp='git push'
 alias gc='git commit'
 alias gl='git log --color --oneline --decorate --abbrev-commit'
 
+alias lg='lazygit'
 alias ggr='serie'
 alias gsw='git switch'
 alias gdiff='hunk diff'
@@ -356,10 +398,14 @@ alias gdiff='hunk diff'
 alias gco='git checkout'
 alias gcb='git checkout -b'
 
+alias gd='git dt'
 alias gb='git branch --no-column -v'
 alias gba='git branch --all --no-column -v'
 alias gbr='git branch -r --no-column -v'
 alias gbd='git branch -d'
+alias gbD='git branch -D'
+alias gfa='git fetch --all --tags --prune'
+alias gf='git fetch'
 
  #    gco = "git checkout";
  #    gcp = "git cherry-pick";
@@ -471,3 +517,10 @@ if [ -f '/Users/julibnk/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Use
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/julibnk/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/julibnk/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+# ── Herdr: auto-rename panes to the running program (tmux-style) ──
+if [[ -n ${HERDR_ENV:-} ]] && [[ -x ~/.config/herdr/herdr-auto-rename.sh ]]; then
+  if ! pgrep -qf 'herdr-auto-rename.sh' 2>/dev/null; then
+    (~/.config/herdr/herdr-auto-rename.sh &>/dev/null &) 
+  fi
+fi
