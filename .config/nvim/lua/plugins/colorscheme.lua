@@ -110,7 +110,16 @@ return {
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
-		config = function()
+		opts = {
+			-- Fondo más oscuro que el "base" por defecto, para más contraste con el texto.
+			-- Se sobreescribe en la paleta (no vía custom_highlights) para que todos los
+			-- grupos derivados (CursorLine, Visual, floats, etc.) se recalculen coherentes.
+			color_overrides = {
+				mocha = { base = "#11111c" },
+			},
+		},
+		config = function(_, opts)
+			require("catppuccin").setup(opts)
 			vim.cmd("colorscheme catppuccin-mocha")
 		end,
 		priority = 1000,
