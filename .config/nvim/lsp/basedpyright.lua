@@ -30,12 +30,11 @@ return {
 	cmd = { "basedpyright-langserver", "--stdio" },
 	filetypes = { "python" },
 	root_markers = {
-		"pyrightconfig.json",
-		"pyproject.toml",
-		"setup.py",
-		"setup.cfg",
-		"requirements.txt",
-		"Pipfile",
+		-- uv.lock only exists at a uv workspace's true root, never inside a
+		-- member package, so it outranks pyproject.toml in monorepos where
+		-- each member carries its own.
+		{ "uv.lock", "pyrightconfig.json" },
+		{ "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", "Pipfile" },
 		".git",
 	},
 	---@type lspconfig.settings.basedpyright
