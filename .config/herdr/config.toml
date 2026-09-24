@@ -194,6 +194,14 @@ type = "plugin_action"
 command = "vim-herdr-navigation.right"
 description = "navigate right (vim/herdr)"
 
+# prefix+V: vertical split that opens the new pane on the left.
+# Herdr only splits right or down, so this splits right and swaps the new pane left.
+[[keys.command]]
+key = "prefix+shift+v"
+type = "shell"
+command = 'h="${HERDR_BIN_PATH:-herdr}"; p=$("$h" pane split --direction right --focus | jq -r .result.pane.pane_id) && "$h" pane swap --pane "$p" --direction left'
+description = "split vertical, new pane on the left"
+
 # Legacy indexed shortcut config is still parsed for compatibility.
 # Prefer switch_tab, switch_workspace, and focus_agent for new configs.
 # [keys.indexed]

@@ -53,7 +53,7 @@
       "mcp__youtrack__log_work"
     ]
   },
-  "model": "opus",
+  "model": "opus[1m]",
   "hooks": {
     "PermissionRequest": [
       {
@@ -99,7 +99,8 @@
     "vtsls@claude-code-lsps": true,
     "superpowers@claude-plugins-official": false,
     "lua-lsp@claude-plugins-official": true,
-    "i-have-adhd@i-have-adhd": true
+    "i-have-adhd@i-have-adhd": true,
+    "mattpocock-skills@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "i-have-adhd": {
