@@ -1,5 +1,6 @@
 return {
-	"sindrets/diffview.nvim",
+	"dlyongemallo/diffview-plus.nvim",
+	version = "*",
 	cmd = {
 		"DiffviewOpen",
 		"DiffviewClose",
@@ -11,7 +12,7 @@ return {
 		-- { "<leader>gr", review_pr, desc = "[g]it [r]eview PR (vs merge base)" },
 		{ "<leader>gd", "<cmd>DiffviewOpen<CR>", desc = "[g]it [d]iff (working tree)" },
 		-- { "<leader>gD", "<cmd>DiffviewClose<CR>", desc = "[g]it [D]iff close" },
-		{ "<leader>gb", "<cmd>DiffviewFileHistory %<CR>", desc = "[g]it [h]istory of this file" },
+		{ "<leader>gb", "<cmd>DiffviewFileHistory % --pin-local<CR>", desc = "[g]it [h]istory of this file" },
 		-- { "<leader>gH", "<cmd>DiffviewFileHistory<CR>", desc = "[g]it [H]istory of the repo" },
 		{ "<leader>gh", "<Esc><cmd>'<,'>DiffviewFileHistory<CR>", mode = "v", desc = "[g]it [h]istory of selection" },
 	},
@@ -19,6 +20,8 @@ return {
 		local actions = require("diffview.actions")
 		return {
 			enhanced_diff_hl = true,
+			-- Guarda en disco los ficheros marcados como revisados (`w`) por repo y rango.
+			persist_selections = { enabled = true },
 			hooks = {
 				diff_buf_read = function(bufnr)
 					vim.opt_local.foldlevel = 99
