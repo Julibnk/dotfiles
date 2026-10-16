@@ -1,4 +1,6 @@
-install.sh
+\.git
+\.gitignore
+README\.md
+install\.sh
 keycron
-README.MD
-.DS_Store
+\.DS_Store
