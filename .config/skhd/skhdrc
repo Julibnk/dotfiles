@@ -4,7 +4,7 @@
 alt - f : open_and_move "kitty" 
 # alt - f : open_terminal "kitty" 0
 # alt - d : open_terminal "kitty" 1
-alt - d : open_and_move "DBeaver" "DBeaver Community"
+alt - d : open_and_move "DBeaver" "DBeaver( Community)?"
 alt - g : open_and_move "Brave Browser"
 alt - t : open_and_move "Slack"
 alt - z : open_and_move "zoom.us" "Zoom"

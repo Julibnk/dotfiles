@@ -1,0 +1,2 @@
+[projects."github.com/octane11/octaneverse"]
+post-start.install = "npm install"

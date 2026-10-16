@@ -56,7 +56,7 @@ yabai -m rule --add app="^Brave Browser$" space=^browser
 yabai -m rule --add app="^Slack$" space=^chat
 yabai -m rule --add app="^Zoom$" space=^zoom
 yabai -m rule --add app="^ZenNotes$" space=^notes
-yabai -m rule --add app="^DBeaver$" space=^bd
+yabai -m rule --add app="^DBeaver( Community)?$" space=^bd
 
 yabai -m rule --add app="^Claude$" space=^other
 yabai -m rule --add app="^Preview$" space=^other
@@ -78,8 +78,8 @@ yabai -m config --space external layout stack
 # Ignore apps
 yabai -m rule --add app="^(Messages|System Settings|Calculator|App Store|Steam|Alfred|Activity Monitor|IINA|GIMP)" manage=off
 
-# focus window after active space changes
-yabai -m signal --add event=space_changed action="yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id)"
+# focus a window after the active space changes, unless macOS or skhd already focused one there
+yabai -m signal --add event=space_changed action='[ "$(yabai -m query --windows --window | jq .space)" = "$(yabai -m query --spaces --space | jq .index)" ] || yabai -m window --focus "$(yabai -m query --windows --space | jq .[0].id)"'
 
 # trigger sketchybar events for space icon updates
 yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"

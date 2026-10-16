@@ -1,21 +1,55 @@
+-- Marca o desmarca el fichero bajo el cursor en el panel, o el fichero abierto en el diff.
+local function toggle_file_mark()
+	local view = require("diffview.lib").get_current_view()
+	local file = view and view.infer_cur_file and view:infer_cur_file()
+	if not file then
+		return
+	end
+	local selections = require("diffview.api.selections")
+	if selections.is_selected(file.path) then
+		selections.deselect({ file.path })
+	else
+		selections.select({ file.path })
+	end
+end
+
+-- Abre DiffviewOpen con el panel de ficheros abajo y en modo lista, sin tocar la config global.
+local function open_diff_bottom_list()
+	local file_panel = require("diffview.config").get_config().file_panel
+	local listing_style, win_config = file_panel.listing_style, file_panel.win_config
+	file_panel.listing_style = "list"
+	file_panel.win_config = { position = "bottom", height = 12 }
+	local ok, err = pcall(vim.cmd, "DiffviewOpen")
+	file_panel.listing_style, file_panel.win_config = listing_style, win_config
+	if not ok then
+		error(err)
+	end
+end
+
 return {
 	"dlyongemallo/diffview-plus.nvim",
-	version = "*",
+	branch = "main",
 	cmd = {
 		"DiffviewOpen",
 		"DiffviewClose",
 		"DiffviewFileHistory",
 		"DiffviewFocusFiles",
 		"DiffviewToggleFiles",
+		"DiffviewPR",
+		"DiffviewPRSync",
 	},
 	keys = {
 		-- { "<leader>gr", review_pr, desc = "[g]it [r]eview PR (vs merge base)" },
 		{ "<leader>gd", "<cmd>DiffviewOpen<CR>", desc = "[g]it [d]iff (working tree)" },
-		-- { "<leader>gD", "<cmd>DiffviewClose<CR>", desc = "[g]it [D]iff close" },
+		{ "<leader>gD", open_diff_bottom_list, desc = "[g]it [D]iff (files below, list)" },
 		{ "<leader>gb", "<cmd>DiffviewFileHistory % --pin-local<CR>", desc = "[g]it [h]istory of this file" },
 		-- { "<leader>gH", "<cmd>DiffviewFileHistory<CR>", desc = "[g]it [H]istory of the repo" },
 		{ "<leader>gh", "<Esc><cmd>'<,'>DiffviewFileHistory<CR>", mode = "v", desc = "[g]it [h]istory of selection" },
 	},
+	config = function(_, opts)
+		require("diffview").setup(opts)
+		require("diffview-pr").setup()
+	end,
 	opts = function()
 		local actions = require("diffview.actions")
 		return {
@@ -58,17 +92,18 @@ return {
 			keymaps = {
 				view = {
 					{ "n", "q", "<cmd>DiffviewClose<CR>", { desc = "Cerrar Diffview" } },
-					{ "n", "<C-n>", actions.select_next_entry, { desc = "Siguiente fichero" } },
-					{ "n", "<C-p>", actions.select_prev_entry, { desc = "Fichero anterior" } },
+					{ "n", "<C-j>", actions.select_next_entry, { desc = "Siguiente fichero" } },
+					{ "n", "<C-k>", actions.select_prev_entry, { desc = "Fichero anterior" } },
 					{ "n", "<tab>", false },
 					{ "n", "<s-tab>", false },
 					{ "n", "<leader>t", "<cmd>DiffviewFocusFiles<CR>", { desc = "Focus del panel de ficheros" } },
 					{ "n", "<leader>e", false },
+					{ "n", "<leader>w", toggle_file_mark, { desc = "Marcar/desmarcar el fichero como revisado" } },
 				},
 				file_panel = {
 					{ "n", "q", "<cmd>DiffviewClose<CR>", { desc = "Cerrar Diffview" } },
-					{ "n", "<C-n>", actions.select_next_entry, { desc = "Siguiente fichero" } },
-					{ "n", "<C-p>", actions.select_prev_entry, { desc = "Fichero anterior" } },
+					{ "n", "<C-j>", actions.select_next_entry, { desc = "Siguiente fichero" } },
+					{ "n", "<C-k>", actions.select_prev_entry, { desc = "Fichero anterior" } },
 					{ "n", "<tab>", false },
 					{ "n", "<s-tab>", false },
 					{
@@ -77,6 +112,15 @@ return {
 						actions.focus_entry,
 						{ desc = "Abrir el diff y saltar al fichero (ventana derecha)" },
 					},
+					{
+						"n",
+						"C",
+						function()
+							require("diffview-pr").clear_selections()
+						end,
+						{ desc = "Clear all file selections (disabled in PR views)" },
+					},
+					{ "n", "<leader>w", toggle_file_mark, { desc = "Marcar/desmarcar el fichero como revisado" } },
 					-- { "n", "<leader>f", "<cmd>DiffviewFocusFiles<CR>", { desc = "Focus del panel de ficheros" } },
 					-- { "n", "<leader>F", "<cmd>DiffviewToggleFiles<CR>", { desc = "Abrir/cerrar el panel de ficheros" } },
 					{
@@ -105,8 +149,8 @@ return {
 				},
 				file_history_panel = {
 					{ "n", "q", "<cmd>DiffviewClose<CR>", { desc = "Cerrar Diffview" } },
-					{ "n", "<C-n>", actions.select_next_entry, { desc = "Siguiente fichero" } },
-					{ "n", "<C-p>", actions.select_prev_entry, { desc = "Fichero anterior" } },
+					{ "n", "<C-j>", actions.select_next_entry, { desc = "Siguiente fichero" } },
+					{ "n", "<C-k>", actions.select_prev_entry, { desc = "Fichero anterior" } },
 					{ "n", "<tab>", false },
 					{ "n", "<s-tab>", false },
 					{

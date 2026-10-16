@@ -70,15 +70,16 @@
   ds = diff --staged
   # Abre Diffview una sola vez con TODOS los conflictos (mejor que `git mergetool`,
   # que relanza el editor fichero a fichero).
-  mt = !nvim -c DiffviewOpen
+	mt = "!unset GIT_DIR; nvim -c DiffviewOpen"
   # `git difftool` no puede recibir revisiones: itera fichero a fichero pasando
   # solo $LOCAL/$REMOTE. Con un alias sí reenviamos los argumentos tal cual.
   #   git dt              -> working tree
   #   git dt HEAD~3       -> contra HEAD~3
   #   git dt main...HEAD  -> la rama contra su merge base
   #   git dt HEAD -- src/ -> limitado a un path
-  dt = "!f() { nvim -c \"DiffviewOpen $*\"; }; f"
-  dpr = "!f() { nvim -c \"DiffviewFileHistory $* --right-only --no-merges\"; }; f"
+	dt = "!f() { unset GIT_DIR; nvim -c \"DiffviewOpen $*\"; }; f"
+	dpr = "!f() { unset GIT_DIR; nvim -c \"DiffviewFileHistory $* --right-only --no-merges\"; }; f"
+	pr = "!f() { unset GIT_DIR; nvim -c \"DiffviewPR $1\"; }; f"
 
 [delta "catppuccin-mocha"]
   blame-palette = "#1e1e2e #181825 #11111b #313244 #45475a"

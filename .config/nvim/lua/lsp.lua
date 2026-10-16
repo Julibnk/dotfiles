@@ -41,10 +41,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			fzf.lsp_code_actions()
 		end, "[C]ode [A]ction", { "n", "x" })
 
-		map("<leader>ws", function()
-			fzf.lsp_workspace_symbols()
-		end, "[W]orkspace [S]ymbols")
-
 		map("<leader>K", vim.lsp.buf.hover, "Hover docs")
 
 		map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
@@ -53,7 +49,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 local lsp_configs = {
 	-- "angularls",
-	"astrols",
+	-- "astrols",
 	"bashls",
 	"composels",
 	"clangd",

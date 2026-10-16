@@ -1,24 +1,20 @@
 #!/bin/bash
 open_and_move() {
     #$1 macos app app
-    #$2 (optional) app name when its started .app in yabai
+    #$2 (optional) regex for the app name in yabai, when it differs from $1
 
     focused_app=$(yabai -m query --windows | jq -r '.[] | select(.["has-focus"] == true)')
     fapp_id=$(jq -r '.id' <<< "$focused_app")
     fapp_name=$(jq -r '.app' <<< "$focused_app")
 
-    if [ -n "$2" ]; then
-        app_name=$2
-    else 
-        app_name=$1
-    fi
+    app_pattern="^${2:-$1}$"
 
     #destiny app instances
-    app_instances=$(yabai -m query --windows | jq -r "[.[] | select(.app==\"$app_name\") | select(.\"is-floating\"==false and .\"can-move\"==true)] | sort_by(.id)")
+    app_instances=$(yabai -m query --windows | jq --arg re "$app_pattern" '[.[] | select((.app | test($re)) and ."is-floating" == false and ."can-move" == true)] | sort_by(.id)')
     len=$(jq '. | length' <<< "$app_instances")
 
 
-    if [[ "$app_name" != "$fapp_name" || "$len" == "1" ]]; then 
+    if [[ ! "$fapp_name" =~ $app_pattern || "$len" == "1" ]]; then 
         #the app is not the same or there is only one instance, so index 0
         echo "different app or just one instance"
         app_indx=0
@@ -36,19 +32,52 @@ open_and_move() {
     fi
 
     if [[ "$len" == "0" ]]; then
-        # App not running, open it (yabai rules will handle space placement)
         open -a "$1"
+        move_new_window_to_rule_space "$app_pattern"
     else
-        # App already running, focus the target window directly
+        # Focusing the window also switches to its space
         target_id=$(jq ".[$app_indx].id" <<< "$app_instances")
-        target_space=$(jq ".[$app_indx].space" <<< "$app_instances")
-        current_space=$(yabai -m query --spaces --space | jq '.index')
-
-        if [[ "$target_space" != "$current_space" ]]; then
-            yabai -m space --focus "$target_space"
-        fi
         yabai -m window --focus "$target_id"
     fi
+}
+
+move_new_window_to_rule_space() {
+    # Moves the first window of a freshly opened app to the space of its yabai rule.
+    # Electron and Java apps often create their window too late for the rule to apply.
+    #$1 regex for the app name in yabai
+
+    app_pattern=$1
+    restarted=0
+    no_handle_ticks=0
+
+    # Wait up to 30s, since slow apps like DBeaver take a while to show a window
+    for i in $(seq 1 150); do
+        windows=$(yabai -m query --windows | jq --arg re "$app_pattern" 'map(select(.app | test($re))) | sort_by(.id)')
+        window_id=$(jq '[.[] | select(."can-move" and .subrole == "AXStandardWindow")][0].id // empty' <<< "$windows")
+        [[ -n "$window_id" ]] && break
+
+        # Some apps, like Claude, show a window that yabai cannot control until it rescans on restart
+        if [[ $(jq 'map(select(."has-ax-reference" | not)) | length' <<< "$windows") -gt 0 ]]; then
+            no_handle_ticks=$((no_handle_ticks + 1))
+        fi
+        if [[ $restarted == 0 && $no_handle_ticks -ge 25 ]]; then
+            yabai --restart-service
+            restarted=1
+            sleep 2
+        fi
+        sleep 0.2
+    done
+    [[ -z "$window_id" ]] && return
+
+    app_name=$(jq -r --argjson id "$window_id" '.[] | select(.id == $id).app' <<< "$windows")
+    rule_space=$(yabai -m rule --list | jq -r --arg app "$app_name" 'map(select(.app != "" and .space > 0 and (.app as $re | $app | test($re)))) | .[0].space // empty')
+    [[ -z "$rule_space" ]] && return
+
+    window_space=$(yabai -m query --windows --window "$window_id" | jq '.space')
+    if [[ "$window_space" != "$rule_space" ]]; then
+        yabai -m window "$window_id" --space "$rule_space"
+    fi
+    yabai -m window --focus "$window_id"
 }
 
 open_terminal() {
@@ -125,7 +154,7 @@ hook_back() {
         space="notes"
     elif [[ $current_app == "pgAdmin 4" ]]; then
         space="other"
-    elif [[ $current_app == "DBeaver" ]]; then
+    elif [[ $current_app == DBeaver* ]]; then
         space="bd"
     elif [[ $current_app == "Microsoft Outlook" ]]; then
         space="other"
