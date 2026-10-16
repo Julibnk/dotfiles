@@ -14,12 +14,12 @@ local function toggle_file_mark()
 end
 
 -- Abre DiffviewOpen con el panel de ficheros abajo y en modo lista, sin tocar la config global.
-local function open_diff_bottom_list()
+local function open_diff_bottom_list(args)
 	local file_panel = require("diffview.config").get_config().file_panel
 	local listing_style, win_config = file_panel.listing_style, file_panel.win_config
 	file_panel.listing_style = "list"
 	file_panel.win_config = { position = "bottom", height = 12 }
-	local ok, err = pcall(vim.cmd, "DiffviewOpen")
+	local ok, err = pcall(vim.cmd, "DiffviewOpen " .. (args or ""))
 	file_panel.listing_style, file_panel.win_config = listing_style, win_config
 	if not ok then
 		error(err)
@@ -31,6 +31,7 @@ return {
 	branch = "main",
 	cmd = {
 		"DiffviewOpen",
+		"DiffviewOpenBottom",
 		"DiffviewClose",
 		"DiffviewFileHistory",
 		"DiffviewFocusFiles",
@@ -41,7 +42,7 @@ return {
 	keys = {
 		-- { "<leader>gr", review_pr, desc = "[g]it [r]eview PR (vs merge base)" },
 		{ "<leader>gd", "<cmd>DiffviewOpen<CR>", desc = "[g]it [d]iff (working tree)" },
-		{ "<leader>gD", open_diff_bottom_list, desc = "[g]it [D]iff (files below, list)" },
+		{ "<leader>gD", function() open_diff_bottom_list() end, desc = "[g]it [D]iff (files below, list)" },
 		{ "<leader>gb", "<cmd>DiffviewFileHistory % --pin-local<CR>", desc = "[g]it [h]istory of this file" },
 		-- { "<leader>gH", "<cmd>DiffviewFileHistory<CR>", desc = "[g]it [H]istory of the repo" },
 		{ "<leader>gh", "<Esc><cmd>'<,'>DiffviewFileHistory<CR>", mode = "v", desc = "[g]it [h]istory of selection" },
@@ -49,6 +50,10 @@ return {
 	config = function(_, opts)
 		require("diffview").setup(opts)
 		require("diffview-pr").setup()
+		-- Como DiffviewOpen (acepta los mismos argumentos), pero con el panel de ficheros abajo y en modo lista.
+		vim.api.nvim_create_user_command("DiffviewOpenBottom", function(cmd)
+			open_diff_bottom_list(cmd.args)
+		end, { nargs = "*" })
 	end,
 	opts = function()
 		local actions = require("diffview.actions")
