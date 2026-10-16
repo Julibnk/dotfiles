@@ -81,7 +81,10 @@
 fpath=(~/.docker/completions $fpath)
 
 # manually manage plugins
-autoload -U compinit; compinit
+# Keep zsh caches and history in the XDG dirs instead of the home.
+mkdir -p "$XDG_CACHE_HOME/zsh" "$XDG_STATE_HOME/zsh"
+zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache"
+autoload -U compinit; compinit -d "$XDG_CACHE_HOME/zsh/zcompdump"
 _comp_options+=(globdots) # With hidden files
 
 ZSH_PLUGIN_HOME=$XDG_DATA_HOME/zsh/plugins
@@ -377,6 +380,7 @@ alias rm='trash'
 alias l='eza -a --color=always --long --icons=always --no-time '
 alias ls='eza'
 alias cl='clear'
+alias c='claude'
 # alias fd='fzf'
 # alias lg='lazygit'
 alias ldc='lazydocker'
@@ -406,6 +410,11 @@ alias gbd='git branch -d'
 alias gbD='git branch -D'
 alias gfa='git fetch --all --tags --prune'
 alias gf='git fetch'
+alias gcp='git cherry-pick'
+alias grp='git rebase'
+alias gpull='git pull'
+alias gpush='git push'
+alias gw='git worktree'
 
  #    gco = "git checkout";
  #    gcp = "git cherry-pick";
@@ -415,7 +424,9 @@ alias gf='git fetch'
 
 alias t='turbo'
 alias k='kubectl'
-
+alias cloud-sql-proxy-prod='cloud-sql-proxy --auto-iam-authn --impersonate-service-account "prisma-prod-gsa@octane11.iam.gserviceaccount.com" octane11:us-central1:octaneverse-prod -p 5432'
+alias cloud-sql-proxy-beta='cloud-sql-proxy --auto-iam-authn --impersonate-service-account "prisma-beta-gsa@octane11-beta.iam.gserviceaccount.com" octane11-beta:us-central1:octaneverse-beta -p 5432'
+alias cloud-sql-proxy-alpha='cloud-sql-proxy --auto-iam-authn --impersonate-service-account "prisma-alpha-gsa@octane11-alpha.iam.gserviceaccount.com" octane11-alpha:us-central1:octaneverse-alpha -p 5432'
 
 
 # --- Claude code & desktop config ---
@@ -424,7 +435,7 @@ alias k='kubectl'
 #so for my personal account I will use the default claude command with my config symlinked to
 #dotfiles, and for work account must use clw BUT I need to replicate manually 
 #every change from the symlinked files
-alias clw="CLAUDE_CONFIG_DIR=$HOME/.claude_work /opt/homebrew/bin/claude"
+alias clp="CLAUDE_CONFIG_DIR=$HOME/.claude_pers /opt/homebrew/bin/claude"
 
 #NOTE: Claude desktop uses ~/Library/Application Support/Claude for the config
 #so this is the final picture
@@ -496,7 +507,7 @@ export JAVA_HOME=/opt/homebrew/opt/openjdk/libexec/openjdk.jdk/Contents/Home
 # export JAVA_HOME=/Library/Java/JavaVirtualMachines/amazon-corretto-8.jdk/Contents/Home
 export PATH="$JAVA_HOME/bin:$PATH"
 
-export HISTFILE="$ZDOTDIR/.zsh_history"    # History filepath
+export HISTFILE="$XDG_STATE_HOME/zsh/history"    # History filepath
 export HISTSIZE=10000                   # Maximum events for internal history
 export SAVEHIST=10000                   # Maximum events in history file
 
@@ -518,9 +529,10 @@ if [ -f '/Users/julibnk/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Use
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/julibnk/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/julibnk/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
 
-# ── Herdr: auto-rename panes to the running program (tmux-style) ──
-if [[ -n ${HERDR_ENV:-} ]] && [[ -x ~/.config/herdr/herdr-auto-rename.sh ]]; then
-  if ! pgrep -qf 'herdr-auto-rename.sh' 2>/dev/null; then
-    (~/.config/herdr/herdr-auto-rename.sh &>/dev/null &) 
-  fi
-fi
+# https://github.com/qu8n/herdr-automatic-rename
+for _f in ${HOME}/.config/herdr/plugins/github/herdr-automatic-rename-*/shell/hook.zsh(N); do
+  source $_f; break
+done
+
+# worktrunk
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
