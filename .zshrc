@@ -411,10 +411,11 @@ alias gbD='git branch -D'
 alias gfa='git fetch --all --tags --prune'
 alias gf='git fetch'
 alias gcp='git cherry-pick'
-alias grp='git rebase'
+alias grb='git rebase'
 alias gpull='git pull'
 alias gpush='git push'
 alias gw='git worktree'
+alias wtl='wt list'
 
  #    gco = "git checkout";
  #    gcp = "git cherry-pick";
@@ -431,17 +432,11 @@ alias cloud-sql-proxy-alpha='cloud-sql-proxy --auto-iam-authn --impersonate-serv
 
 # --- Claude code & desktop config ---
 
-#NOTE: If you set manually CLAUDE_CONFIG_DIR Claude doesn't follow symlinks - 
-#so for my personal account I will use the default claude command with my config symlinked to
-#dotfiles, and for work account must use clw BUT I need to replicate manually 
-#every change from the symlinked files
-alias clp="CLAUDE_CONFIG_DIR=$HOME/.claude_pers /opt/homebrew/bin/claude"
+# Both accounts share ~/.claude, whose config files are symlinked from dotfiles/.claude.
+# `claude` uses the work login; `clp` swaps in the personal account's token from the keychain.
+alias clp='CLAUDE_ACCOUNT=personal CLAUDE_CODE_OAUTH_TOKEN=$(security find-generic-password -s claude-pers -w) claude'
 
-#NOTE: Claude desktop uses ~/Library/Application Support/Claude for the config
-#so this is the final picture
-# - personal cc account ~/.claude (symlinked relevant files to ~/dotfiles)
-# - octane11 cc account ~/.claude 
-# - octane11 Claude desktop account ~/Library/Application Support/Claude 
+# Claude Desktop keeps its own config in ~/Library/Application Support/Claude.
 
 
 # Init zoxide
@@ -536,3 +531,6 @@ done
 
 # worktrunk
 if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
+
+# Added by the Postman CLI installer
+export PATH='/Users/julibnk/.local/bin':"$PATH"

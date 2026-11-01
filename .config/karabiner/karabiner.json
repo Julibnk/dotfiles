@@ -81,7 +81,7 @@
                         ]
                     },
                     {
-                        "description": "Tap Caps Lock for ESC or Hold for Control",
+                        "description": "Tap Caps Lock for herdr prefix (ctrl+space) or Hold for Control",
                         "manipulators": [
                             {
                                 "from": {
@@ -94,7 +94,7 @@
                                         "lazy": true
                                     }
                                 ],
-                                "to_if_alone": [{ "key_code": "escape" }],
+                                "to_if_alone": [{ "key_code": "spacebar", "modifiers": ["left_control"] }],
                                 "type": "basic"
                             }
                         ]

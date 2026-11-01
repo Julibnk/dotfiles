@@ -5,7 +5,9 @@
   },
   "permissions": {
     "allow": [
-      "Bash(rg:*)"
+      "Bash(rg:*)",
+      "Bash(jq:*)",
+      "Bash(yq:*)"
     ],
     "deny": [
       "Bash(gcloud *)",
@@ -55,44 +57,18 @@
       "mcp__youtrack__change_issue_assignee",
       "mcp__youtrack__manage_issue_tags",
       "mcp__youtrack__log_work"
-    ]
+    ],
+    "defaultMode": "auto"
   },
   "model": "opus[1m]",
-  "hooks": {
-    "PermissionRequest": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "afplay /System/Library/Sounds/Glass.aiff"
-          }
-        ]
-      }
-    ],
-    "PreToolUse": [
-      {
-        "matcher": "AskUserQuestion",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "afplay /System/Library/Sounds/Glass.aiff"
-          }
-        ]
-      }
-    ],
-    "SessionStart": [
-      {
-        "matcher": "^(startup|resume|clear|compact|fork)$",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash '/Users/julibnk/.claude/hooks/herdr-agent-state.sh' session",
-            "timeout": 10
-          }
-        ]
-      }
-    ]
+  "skillOverrides": {
+    "copywriting": "off",
+    "seo-audit": "off",
+    "issue": "off",
+    "frontend-design": "off",
+    "brainstorming": "off",
+    "explain-code": "off",
+    "gh": "off"
   },
   "statusLine": {
     "type": "command",
@@ -102,9 +78,10 @@
   "enabledPlugins": {
     "vtsls@claude-code-lsps": true,
     "superpowers@claude-plugins-official": false,
-    "lua-lsp@claude-plugins-official": true,
-    "i-have-adhd@i-have-adhd": true,
-    "mattpocock-skills@claude-plugins-official": true
+    "lua-lsp@claude-plugins-official": false,
+    "mattpocock-skills@claude-plugins-official": true,
+    "worktrunk@worktrunk": true,
+    "postman@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "i-have-adhd": {
@@ -112,11 +89,25 @@
         "source": "github",
         "repo": "ayghri/i-have-adhd"
       }
+    },
+    "worktrunk": {
+      "source": {
+        "source": "github",
+        "repo": "max-sixty/worktrunk"
+      }
     }
   },
-  "effortLevel": "high",
-  "tui": "default",
-  "theme": "auto",
+  "effortLevel": "xhigh",
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "high"
+    }
+  },
+  "tui": "fullscreen",
+  "theme": "dark",
   "editorMode": "vim",
-  "useAutoModeDuringPlan": true
+  "verbose": false,
+  "env": {
+    "CLAUDE_CODE_AUTO_CONNECT_IDE": "true"
+  }
 }
