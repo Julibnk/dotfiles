@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Apps
-alt - f : open_and_move "kitty" 
+alt - f : open_and_move "Orca"
 # alt - f : open_terminal "kitty" 0
 # alt - d : open_terminal "kitty" 1
 alt - d : open_and_move "DBeaver" "DBeaver( Community)?"
@@ -11,7 +11,7 @@ alt - z : open_and_move "zoom.us" "Zoom"
 alt - c : open_and_move "Claude"
 # alt - m : open_and_move "Mail"
 alt - b : open_and_move "ZenNotes"
-alt - p : open_and_move "Postman"
+alt - q : open_and_move "Postman"
 
 # Move between spaces
 # alt - 1 : yabai -m space --focus  1

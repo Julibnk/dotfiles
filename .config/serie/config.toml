@@ -2,7 +2,7 @@
 # Not sure yet if this con
 
 [core.option]
-protocol = "kitty-unicode"
+protocol = "kitty"
 order = "topo"
 graph_width = "auto"
 graph_style = "rounded"

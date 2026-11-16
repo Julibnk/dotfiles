@@ -100,6 +100,19 @@ local function responsive_disable(content)
 	return content
 end
 
+-- La winbar solo aparece en ventanas de ficheros normales que no están en modo diff.
+local function is_file_window()
+	return vim.bo.buftype == "" and not vim.wo.diff
+end
+
+local winbar_file_sections = {
+	lualine_c = {
+		{ "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 }, cond = is_file_window },
+		{ "filename", path = 1, cond = is_file_window },
+		{ git_file_status, color = git_file_status_color, cond = is_file_window },
+	},
+}
+
 return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons", "ThePrimeagen/harpoon" },
@@ -111,7 +124,8 @@ return {
 			section_separators = { left = "", right = "" },
 			disabled_filetypes = {
 				statusline = {},
-				winbar = {},
+				-- Estos plugins pintan su propia winbar.
+				winbar = { "oil", "dap-view", "dap-view-help", "dap-view-term" },
 			},
 			ignore_focus = {},
 			always_divide_middle = true,
@@ -128,9 +142,6 @@ return {
 			-- lualine_b = { "branch", "diagnostics" },
 			lualine_b = { "diagnostics" },
 			lualine_c = {
-				{ "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-				{ "filename", path = 1 },
-				{ git_file_status, color = git_file_status_color },
 				{ "diff", source = gitsigns_diff_source },
 				{ harpoon_section, color = { fg = "#f2f1ef" } },
 				{ is_recording, color = { fg = "#f2f1ef" } },
@@ -146,14 +157,14 @@ return {
 		inactive_sections = {
 			lualine_a = {},
 			lualine_b = {},
-			lualine_c = { "filename" },
+			lualine_c = {},
 			lualine_x = { "location", "fileformat" },
 			lualine_y = {},
 			lualine_z = {},
 		},
 		tabline = {},
-		winbar = {},
-		inactive_winbar = {},
+		winbar = winbar_file_sections,
+		inactive_winbar = winbar_file_sections,
 		extensions = { "quickfix", "oil" },
 	},
 }

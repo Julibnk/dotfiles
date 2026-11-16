@@ -30,7 +30,8 @@ return {
 					["ctrl-p"] = "toggle-preview",
 				},
 			},
-			winopts = { width = 0.9, height = 0.9, preview = { horizontal = "right:50%" } },
+			-- El preview va siempre abajo en todos los pickers, sea cual sea el ancho de la ventana.
+			winopts = { width = 0.9, height = 0.9, preview = { layout = "vertical", vertical = "down:60%" } },
 			actions = {
 				-- `files` cubre también a grep/live_grep (comparten tabla de acciones).
 				files = {
@@ -40,6 +41,13 @@ return {
 					-- <Tab> y se cargaría el multi-select.
 					["alt-i"] = false,
 					["ctrl-h"] = { fn = fzf.actions.toggle_ignore, reuse = true, header = false },
+					-- Abre la selección en el editor de Orca en vez de en nvim.
+					["ctrl-o"] = {
+						fn = function(selected, opts)
+							require("orca").open_fzf_selection(selected, opts)
+						end,
+						desc = "open-in-orca",
+					},
 				},
 			},
 			files = {
@@ -49,14 +57,9 @@ return {
 				-- preview oculto por defecto en find files (toggle con <C-p>)
 				winopts = { preview = { hidden = true } },
 			},
-			git = {
-				bcommits = { winopts = { preview = { layout = "horizontal", horizontal = "right:70%" } } },
-				commits = { winopts = { preview = { layout = "horizontal", horizontal = "right:70%" } } },
-			},
 			grep = {
 				silent = true,
 				rg_opts = '--column --no-heading --color=always --smart-case --max-columns=4096 -e -g "!.git"',
-				winopts = { preview = { horizontal = "right:60%" } },
 				hidden = true,
 				toggle_ignore_flag = toggle_ignore_flag,
 			},

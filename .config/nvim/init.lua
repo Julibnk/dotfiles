@@ -20,6 +20,27 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 	end,
 })
 
+-- Recarga los buffers cuando otro proceso (por ejemplo Claude) cambia el fichero en disco.
+local function check_changed_files()
+	-- checktime falla mientras se escribe en la línea de comandos o en su ventana.
+	if vim.fn.mode() ~= "c" and vim.fn.getcmdwintype() == "" then
+		vim.cmd("checktime")
+	end
+end
+local reload_group = vim.api.nvim_create_augroup("reload_changed_files", { clear = true })
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
+	group = reload_group,
+	callback = check_changed_files,
+})
+vim.api.nvim_create_autocmd("FileChangedShellPost", {
+	group = reload_group,
+	callback = function(args)
+		vim.notify("Recargado: " .. vim.fn.fnamemodify(args.file, ":~:."))
+	end,
+})
+-- Revisa también cada segundo, porque la terminal no siempre pasa los eventos de foco.
+vim.uv.new_timer():start(1000, 1000, vim.schedule_wrap(check_changed_files))
+
 vim.api.nvim_create_user_command("CmdLog", function(opts)
 	local output = vim.fn.execute(opts.args)
 	vim.cmd("new")

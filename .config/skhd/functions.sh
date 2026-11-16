@@ -90,7 +90,7 @@ open_terminal() {
     app_instances=$(yabai -m query --windows | jq -r "[.[] | select(.app==\"$app_name\") | select(.\"is-floating\"==false and .\"can-move\"==true)] | sort_by(.id)")
     len=$(jq '. | length' <<< "$app_instances")
 
-    if [[ "$len" -le "$app_indx" ]] then
+    if [[ "$len" -le "$app_indx" ]]; then
         open -a "$1" -n
         # Wait for yabai to register the new window
         for i in $(seq 1 20); do
@@ -129,6 +129,8 @@ hook_back() {
     if [[ $current_app == "Ghostty" ]]; then
         space="code"
     elif [[ $current_app == "kitty" ]]; then
+        space="code"
+    elif [[ $current_app == "Orca" ]]; then
         space="code"
     elif [[ $current_app == "Zen" ]]; then
         space="browser"

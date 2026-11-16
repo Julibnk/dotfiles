@@ -24,6 +24,10 @@ vim.keymap.set("n", "N", "Nzzzv", { desc = "Prev search result centerd" })
 
 vim.keymap.set("n", "<leader>yp", ':let @+ = expand("%")<CR>', { desc = "Yank ruta relativa al cwd" })
 
+vim.keymap.set("n", "<leader>o", function()
+	require("orca").open_cursor_position()
+end, { desc = "Abrir en el editor de Orca" })
+
 -- Delete default mapings for go to reference
 vim.keymap.del("n", "grr")
 vim.keymap.del({ "n", "x" }, "gra")

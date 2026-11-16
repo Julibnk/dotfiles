@@ -260,7 +260,7 @@ export FZF_DEFAULT_OPTS="
 
 # Cattpuchin
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
---color=bg+:#313244,bg:#11111C,spinner:#F5E0DC,hl:#F38BA8 \
+--color=bg+:#313244,bg:#1E1E2E,spinner:#F5E0DC,hl:#F38BA8 \
 --color=fg:#CDD6F4,header:#F38BA8,info:#CBA6F7,pointer:#F5E0DC \
 --color=marker:#B4BEFE,fg+:#CDD6F4,prompt:#CBA6F7,hl+:#F38BA8 \
 --color=selected-bg:#45475A \
@@ -424,6 +424,7 @@ alias wtl='wt list'
  #    gt = "git tag";
 
 alias t='turbo'
+alias ov='npx octaneverse'
 alias k='kubectl'
 alias cloud-sql-proxy-prod='cloud-sql-proxy --auto-iam-authn --impersonate-service-account "prisma-prod-gsa@octane11.iam.gserviceaccount.com" octane11:us-central1:octaneverse-prod -p 5432'
 alias cloud-sql-proxy-beta='cloud-sql-proxy --auto-iam-authn --impersonate-service-account "prisma-beta-gsa@octane11-beta.iam.gserviceaccount.com" octane11-beta:us-central1:octaneverse-beta -p 5432'
@@ -523,11 +524,6 @@ if [ -f '/Users/julibnk/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Use
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/julibnk/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/julibnk/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
-
-# https://github.com/qu8n/herdr-automatic-rename
-for _f in ${HOME}/.config/herdr/plugins/github/herdr-automatic-rename-*/shell/hook.zsh(N); do
-  source $_f; break
-done
 
 # worktrunk
 if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi

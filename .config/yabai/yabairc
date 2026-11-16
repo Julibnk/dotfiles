@@ -52,6 +52,7 @@ yabai -m space 9 --label external
 
 # window rules
 yabai -m rule --add app="^kitty$" space=^code
+yabai -m rule --add app="^Orca$" space=^code
 yabai -m rule --add app="^Brave Browser$" space=^browser
 yabai -m rule --add app="^Slack$" space=^chat
 yabai -m rule --add app="^Zoom$" space=^zoom

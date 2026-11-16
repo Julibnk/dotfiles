@@ -111,12 +111,20 @@ return {
 		"catppuccin/nvim",
 		name = "catppuccin",
 		opts = {
-			-- Fondo más oscuro que el "base" por defecto, para más contraste con el texto.
-			-- Se sobreescribe en la paleta (no vía custom_highlights) para que todos los
-			-- grupos derivados (CursorLine, Visual, floats, etc.) se recalculen coherentes.
-			color_overrides = {
-				mocha = { base = "#11111c" },
-			},
+			-- Comentarios sin cursiva.
+			styles = { comments = {} },
+			-- Propiedades y campos con el color de texto, como en Monaco, en vez de lavanda.
+			custom_highlights = function(colors)
+				return {
+					-- Comentarios en un gris más claro que el overlay2 por defecto.
+					Comment = { fg = colors.subtext0 },
+					["@property"] = { fg = colors.text },
+					["@variable.member"] = { fg = colors.text },
+					-- Carpetas de Neo-tree en el color de texto en vez de azul.
+					NeoTreeDirectoryName = { fg = colors.text },
+					NeoTreeDirectoryIcon = { fg = colors.text },
+				}
+			end,
 		},
 		config = function(_, opts)
 			require("catppuccin").setup(opts)
